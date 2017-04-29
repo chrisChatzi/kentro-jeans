@@ -207,6 +207,7 @@ var mongoLib = require("./server/mongoLib.js");
         html += "<h3>Παραγγελία "+data.id+"</h3>";
         html += "<p><b>Από:</b> "+type+" "+name+"</p>";
         html += "<p><b>Διευθύνση:</b> "+address+"</p>";
+        html += "<p><b>Email:</b> "+data.email+"</p>";
         html += "<p><b>Άποστολή:</b> "+courrierType+" με κόστος: "+data.sendCost+" &euro;</p>";
         html += "<p><b>Πληρωμή:</b> "+paymentType+"</p>"
         html += "<br/>";
@@ -216,7 +217,7 @@ var mongoLib = require("./server/mongoLib.js");
         html += "<h4>Συνολικό κόστος: "+(totalCost+data.sendCost)+" &euro;</h4>";
         mongoObj.setCollection('products');
         let transporter = mail.createTransport({
-            service: 'yahoo',
+            service: 'plus.smtp.mail.yahoo.com',
             auth: {
                 user: 'xchris777@yahoo.com',
                 pass: 'ca21d3yh7'
@@ -286,7 +287,6 @@ var mongoLib = require("./server/mongoLib.js");
         html += "<p>Μολίς δεχθήκαμε την παραγγελία σας με ID: "+data.id+".</p>";
         html += "<p>Η παραγγελία θα ελεχθεί το συντομότερο δυνατό.</p>";
         html += "<p><b>Διευθύνση αποστολής:</b> "+address+"</p>";
-        html += "<p><b>Email:</b> "+data.email+"</p>";
         html += "<p><b>Άποστολή:</b> "+courrierType+" με κόστος: "+data.sendCost+" &euro;</p>";
         html += "<p><b>Πληρωμή:</b> "+paymentType+"</p>"
         html += "<br/>";
@@ -305,7 +305,7 @@ var mongoLib = require("./server/mongoLib.js");
         html += "<p>Κέντρο Jeans</p>"
         mongoObj.setCollection('products');
         let transporter = mail.createTransport({
-            service: 'yahoo',
+            service: 'plus.smtp.mail.yahoo.com',
             auth: {
                 user: 'xchris777@yahoo.com',
                 pass: 'ca21d3yh7'
