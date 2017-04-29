@@ -13,7 +13,7 @@ var config = require("./server/config"),
     httpPort = process.env.PORT || config.port;
 
 var mongoLib = require("./server/mongoLib.js");
-httpServerFunction();
+// httpServerFunction();
 // mongoDB init
     var mongoDBFunction = (function(){
         mongodb.on('error', function(){
