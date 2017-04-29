@@ -217,14 +217,14 @@ var mongoLib = require("./server/mongoLib.js");
         html += "<h4>Συνολικό κόστος: "+(totalCost+data.sendCost)+" &euro;</h4>";
         mongoObj.setCollection('products');
         let transporter = mail.createTransport({
-            service: 'plus.smtp.mail.yahoo.com',
+            service: 'yahoo',
             auth: {
                 user: 'xchris777@yahoo.com',
                 pass: 'ca21d3yh7'
             }
         });
         let mailOptions = {
-            from: 'Christos<xchris777@yahoo.com>',      // sender address
+            from: 'Κέντρο Jeans<xchris777@yahoo.com>',      // sender address
             to: 'xchris777@yahoo.com',   // list of receivers
             subject: 'Παραγγελία '+type+" "+name, // Subject line
             text: 'Hello world ?', // plain text body
@@ -232,9 +232,7 @@ var mongoLib = require("./server/mongoLib.js");
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                return console.log(error);
-            }
+            if(error) return console.log(error);
             console.log('Message %s sent: %s', info.messageId, info.response);
         });
     }
@@ -305,7 +303,7 @@ var mongoLib = require("./server/mongoLib.js");
         html += "<p>Κέντρο Jeans</p>"
         mongoObj.setCollection('products');
         let transporter = mail.createTransport({
-            service: 'plus.smtp.mail.yahoo.com',
+            service: 'yahoo',
             auth: {
                 user: 'xchris777@yahoo.com',
                 pass: 'ca21d3yh7'
