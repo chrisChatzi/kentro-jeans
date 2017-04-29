@@ -1,4 +1,4 @@
-var config = require("./server/config"),
+var config = require("./config"),
     fs = require("fs"),
     express = require('express'),
     path = require('path'),
@@ -12,8 +12,8 @@ var config = require("./server/config"),
     mail = require('nodemailer'),
     httpPort = process.env.PORT || config.port;
 
-var mongoLib = require("./server/mongoLib.js");
-httpServerFunction();
+var mongoLib = require("./mongoLib.js");
+
 // mongoDB init
     var mongoDBFunction = (function(){
         mongodb.on('error', function(){
@@ -44,10 +44,10 @@ httpServerFunction();
    function httpServerFunction(){
         //express
             //static
-                app.use('/', express.static((path.join(__dirname,'./dist'))));
-                app.use('/admin', express.static((path.join(__dirname,'./dist'))));
-                app.use('/admin/products', express.static((path.join(__dirname,'./dist'))));
-                app.use('/order', express.static((path.join(__dirname,'./dist'))));
+                app.use('/', express.static((path.join(__dirname,'../dist'))));
+                app.use('/admin', express.static((path.join(__dirname,'../dist'))));
+                app.use('/admin/products', express.static((path.join(__dirname,'../dist'))));
+                app.use('/order', express.static((path.join(__dirname,'../dist'))));
             //ajax
                 app.get('/categories', function (req, res) {
                     mongoObj.setCollection('categories');
@@ -119,32 +119,11 @@ httpServerFunction();
                     sendOrder(req.body.data);
                     sendClient(req.body.data);
                 });
-
-                ///////
-
-                app.set('port', (process.env.PORT || 5000));
-
-				app.use(express.static(__dirname + '/public'));
-
-				// views is directory for all template files
-				app.set('views', __dirname + '/views');
-				app.set('view engine', 'ejs');
-
-				app.get('/', function(request, response) {
-				  response.render('pages/index');
-				});
-
-				app.listen(app.get('port'), function() {
-				  console.log('Node app is running on port', app.get('port'));
-				});
-
-
-                //////
         //http listen
-        // http.listen(httpPort, function(){
-        //     console.log('listening on:' + config.port);
-        //     // mongoGet()
-        // });
+        http.listen(httpPort, function(){
+            console.log('listening on:' + config.port);
+            // mongoGet()
+        });
     };
 
 
