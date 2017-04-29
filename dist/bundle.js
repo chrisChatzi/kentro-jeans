@@ -41260,7 +41260,6 @@ var Checkout = function (_Component) {
 	}, {
 		key: 'makeOrderHandler',
 		value: function makeOrderHandler() {
-			// console.log(this.props.cart)
 			var products = [],
 			    sizes = [],
 			    colors = [],
@@ -41299,8 +41298,7 @@ var Checkout = function (_Component) {
 				cartQuant: this.props.cartQuant,
 				cartPrices: prices
 			};
-			console.log(obj);
-			// this.props.makeOrder(obj)
+			this.props.makeOrder(obj);
 			_history2.default.push("/order");
 		}
 	}, {

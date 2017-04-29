@@ -57,7 +57,6 @@ var mongoLib = require("./server/mongoLib.js");
                     });
                 });
                 app.get('/products', function (req, res) {
-                	console.log("products")
                     mongoObj.setCollection('products');
                     mongoObj.findAll(function (result){
                         res.send(JSON.stringify({ products : result }));
@@ -118,7 +117,6 @@ var mongoLib = require("./server/mongoLib.js");
                     });
                 });
                 app.post('/makeOrder', function (req, res) {
-                	console.log("order in")
                     sendOrder(req.body.data);
                     sendClient(req.body.data);
                 });

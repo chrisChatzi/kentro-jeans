@@ -1723,7 +1723,6 @@ button {
         .checkout .action .data .infoBlock .left {
           float: left;
           width: 30%;
-          font-weight: bold;
           color: #005792; }
         .checkout .action .data .infoBlock .right {
           float: left;
