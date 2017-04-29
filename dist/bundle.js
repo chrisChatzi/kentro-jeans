@@ -35717,7 +35717,7 @@ module.exports = warning;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.popupProducts_status = exports.popupCategory_status = exports.update_category = exports.add_category = exports.delete_category = exports.rearrange_categories = exports.get_categories = exports.update_product = exports.add_product = exports.delete_product = exports.rearrange_products = exports.get_products = exports.make_order = exports.change_quant = exports.delete_item = exports.show_cart = exports.sort_products_action = exports.sort_products = exports.update_cart = exports.selected_product = exports.fetch_products = exports.get_products_frontend = exports.change_path = exports.set_lang = exports.msg = exports.login_action = exports.login_user = undefined;
+exports.popupProducts_status = exports.popupCategory_status = exports.update_category = exports.add_category = exports.delete_category = exports.rearrange_categories = exports.get_categories = exports.update_product = exports.add_product = exports.delete_product = exports.rearrange_products = exports.get_products = exports.clear_cart = exports.make_order = exports.change_quant = exports.delete_item = exports.show_cart = exports.sort_products_action = exports.sort_products = exports.update_cart = exports.selected_product = exports.fetch_products = exports.get_products_frontend = exports.change_path = exports.set_lang = exports.msg = exports.login_action = exports.login_user = undefined;
 
 var _constants = require('./constants.js');
 
@@ -35822,7 +35822,14 @@ var change_quant = exports.change_quant = function change_quant(i, val) {
 //make order
 var make_order = exports.make_order = function make_order(obj) {
     return function (dispatch) {
-        (0, _logic.makeOrder)(obj, function (res) {});
+        (0, _logic.makeOrder)(obj, function (flag) {
+            if (flag.res) dispatch(clear_cart());
+        });
+    };
+};
+var clear_cart = exports.clear_cart = function clear_cart() {
+    return {
+        type: _constants.clear_cart_str
     };
 };
 // ADMIN
@@ -36326,7 +36333,7 @@ var Cart = function Cart(_ref) {
 	    deleteItem = _ref.deleteItem;
 	return _react2.default.createElement(
 		"div",
-		{ className: "cart" },
+		{ id: "cartBody", className: "cart" },
 		_react2.default.createElement(
 			"div",
 			{ className: "head" },
@@ -36551,7 +36558,7 @@ var Checkout = function Checkout(_ref) {
 	    makeOrder = _ref.makeOrder;
 	return _react2.default.createElement(
 		"div",
-		{ className: "checkout" },
+		{ id: "checkoutBody", className: "checkout" },
 		_react2.default.createElement(
 			"div",
 			{ className: "head" },
@@ -37353,7 +37360,7 @@ var Details = function Details(_ref) {
 	    sendComm = _ref.sendComm;
 	return _react2.default.createElement(
 		"div",
-		{ className: "details" },
+		{ id: "detailsBody", className: "details" },
 		!state.imageView ? _react2.default.createElement(
 			"div",
 			null,
@@ -37683,11 +37690,97 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Footer = function Footer() {
+var Footer = function Footer(_ref) {
+	var lang = _ref.lang;
 	return _react2.default.createElement(
 		"div",
 		{ className: "footer" },
-		"im just a footer"
+		_react2.default.createElement(
+			"div",
+			{ className: "sub" },
+			_react2.default.createElement(
+				"div",
+				{ className: "subHead" },
+				lang.contact
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "row" },
+				_react2.default.createElement("i", { className: "fa fa-location-arrow" }),
+				" \u039A\u03B1\u03C1\u03B1\u03CA\u03C3\u03BA\u03AC\u03BA\u03B7 5, \u0394\u03C1\u03AC\u03BC\u03B1"
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "row" },
+				_react2.default.createElement("i", { className: "fa fa-phone" }),
+				" 1234567890"
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "row" },
+				_react2.default.createElement("i", { className: "fa fa-envelope" }),
+				" kentro-jeans@gmail.com"
+			)
+		),
+		_react2.default.createElement(
+			"div",
+			{ className: "sub" },
+			_react2.default.createElement(
+				"div",
+				{ className: "subHead" },
+				lang.infoFooter[0]
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "row" },
+				lang.infoFooter[1]
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "row" },
+				lang.infoFooter[2]
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "row" },
+				lang.infoFooter[3]
+			)
+		),
+		_react2.default.createElement(
+			"div",
+			{ className: "sub" },
+			_react2.default.createElement(
+				"div",
+				{ className: "subHead" },
+				"Social"
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "row" },
+				_react2.default.createElement("i", { className: "fa fa-facebook-square" }),
+				" facebook"
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "row" },
+				_react2.default.createElement("i", { className: "fa fa-twitter-square" }),
+				" twitter"
+			)
+		),
+		_react2.default.createElement(
+			"div",
+			{ className: "bottom" },
+			_react2.default.createElement(
+				"div",
+				{ className: "left" },
+				"\xA9 Copyright kentro-jeans 2017. All Rights Reserved"
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "right" },
+				"createdby crooked"
+			)
+		)
 	);
 };
 
@@ -39282,7 +39375,7 @@ var Products = function Products(_ref) {
 	    langIdx = _ref.langIdx;
 	return _react2.default.createElement(
 		"div",
-		{ className: "products" },
+		{ id: "productsBody", className: "products" },
 		_react2.default.createElement(
 			"div",
 			{ className: "head" },
@@ -39871,30 +39964,34 @@ var Products = function Products(_ref) {
 				})
 			)
 		),
-		products.length > 0 ? products.map(function (v, i) {
-			return state.tagFlag[i] || state.tagFlag.length == 0 ? state.colorFlag[i] || state.colorFlag.length == 0 ? state.sizeFlag[i] || state.sizeFlag.length == 0 ? _react2.default.createElement(
-				"div",
-				{ className: "section animated zoomIn", key: i, onClick: function onClick() {
-						return productClick(v);
-					} },
-				_react2.default.createElement(
+		_react2.default.createElement(
+			"div",
+			{ className: "productList" },
+			products.length > 0 ? products.map(function (v, i) {
+				return state.tagFlag[i] || state.tagFlag.length == 0 ? state.colorFlag[i] || state.colorFlag.length == 0 ? state.sizeFlag[i] || state.sizeFlag.length == 0 ? _react2.default.createElement(
 					"div",
-					{ className: "img" },
-					_react2.default.createElement("img", { src: v.img[0] })
-				),
-				_react2.default.createElement(
-					"h3",
-					{ className: "title" },
-					v.title[langIdx]
-				),
-				_react2.default.createElement(
-					"div",
-					{ className: "price" },
-					v.price,
-					" \u20AC"
-				)
-			) : "" : "" : "";
-		}) : "No products"
+					{ className: "section animated zoomIn", key: i, onClick: function onClick() {
+							return productClick(v);
+						} },
+					_react2.default.createElement(
+						"div",
+						{ className: "img" },
+						_react2.default.createElement("img", { src: v.img[0] })
+					),
+					_react2.default.createElement(
+						"h3",
+						{ className: "title" },
+						v.title[langIdx]
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "price" },
+						v.price,
+						" \u20AC"
+					)
+				) : "" : "" : "";
+			}) : lang.noProducts
+		)
 	);
 };
 
@@ -39916,6 +40013,7 @@ var sort_products_str = "SORT_PRODUCTS";
 var show_cart_str = "SHOW_CART";
 var delete_item_str = "DELETE_ITEM_FROM_CART";
 var change_quant_str = "CHANGE_QUANTITY";
+var clear_cart_str = "CLEAR_CART";
 // admin
 var get_categories_str = "GET_CATEGORIES";
 var get_products_str = "GET_PRODUCTS";
@@ -39989,6 +40087,7 @@ var el = {
 		"grey": "Γκρι",
 		"black": "Μαύρο"
 	},
+	noProducts: "Δεν υπάρχουν προϊόντα",
 	addCart: "Προσθήκη στο καλάθι",
 	addedCart: "Προστέθηκε στο καλάθι",
 	imgLabel: "Πατήστε για μεγέθυνση",
@@ -40036,7 +40135,9 @@ var el = {
 	orderInfo1: "Ενα email θα σταλεί με τις λεπτομέρειες",
 	orderInfo2: "(Εάν μας δώσατε το email σας)",
 	orderTY: "Ευχαριστούμε",
-	orderBack: "Πίσω στην αρχική σελίδα"
+	orderBack: "Πίσω στην αρχική σελίδα",
+	contact: "Επικοινωνία",
+	infoFooter: ["Πληροφορίες", "Παραγγελίες/Παραδόσεις", "Οδηγός μεγέθους", "Όροι χρήσης"]
 };
 var en = {
 	search: "Search",
@@ -40095,6 +40196,7 @@ var en = {
 		"grey": "Grey",
 		"black": "Black"
 	},
+	noProducts: "No products",
 	addCart: "Add to cart",
 	addedCart: "Added to cart",
 	imgLabel: "Click to enlarge",
@@ -40142,7 +40244,9 @@ var en = {
 	orderInfo1: "An email will be sent with the details",
 	orderInfo2: "(If you're given one)",
 	orderTY: "Thank you",
-	orderBack: "Back to home page"
+	orderBack: "Back to home page",
+	contact: "Contact",
+	infoFooter: ["Info", "Help", "Guide", "Legal"]
 };
 
 exports.login_str = login_str;
@@ -40165,6 +40269,7 @@ exports.tags = tags;
 exports.get_products_frontend_str = get_products_frontend_str;
 exports.update_cart_str = update_cart_str;
 exports.sort_products_str = sort_products_str;
+exports.clear_cart_str = clear_cart_str;
 
 },{}],271:[function(require,module,exports){
 'use strict';
@@ -40816,7 +40921,10 @@ var Cart = function (_Component) {
 
 	_createClass(Cart, [{
 		key: 'componentDidMount',
-		value: function componentDidMount() {}
+		value: function componentDidMount() {
+			var h = window.innerHeight;
+			document.getElementById("cartBody").style.minHeight = h + "px";
+		}
 		//go to checkout
 
 	}, {
@@ -41159,7 +41267,10 @@ var Checkout = function (_Component) {
 
 	_createClass(Checkout, [{
 		key: 'componentDidMount',
-		value: function componentDidMount() {}
+		value: function componentDidMount() {
+			var h = window.innerHeight;
+			document.getElementById("checkoutBody").style.minHeight = h + "px";
+		}
 		//header click change type (delivery, billing or review)
 
 	}, {
@@ -41208,7 +41319,7 @@ var Checkout = function (_Component) {
 						if (this.state.name.length < 2) array[0] = true;
 						if (this.state.lastName.length < 2) array[1] = true;
 						if (this.state.email.length < 2) array[2] = true;
-						if (this.state.phone.length < 2) array[3] = true;
+						if (this.state.phone.length != 10 || isNaN(this.state.phone)) array[3] = true;
 						if (this.state.street.length < 2) array[4] = true;
 						if (this.state.number.length < 1) array[5] = true;
 						if (this.state.postcode.length < 5 || isNaN(this.state.postcode)) array[6] = true;
@@ -41389,8 +41500,8 @@ function mapDispatchToProps(dispatch) {
 		updateCart: function updateCart(product, size, color) {
 			dispatch((0, _actions.update_cart)(product, true, size, color));
 		},
-		sendComment: function sendComment(oldName, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments) {
-			dispatch((0, _actions.update_product)(oldName, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments));
+		sendComment: function sendComment(id, oldName, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments) {
+			dispatch((0, _actions.update_product)(id, oldName, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments));
 		}
 	};
 }
@@ -41443,7 +41554,10 @@ var Details = function (_Component) {
 
 	_createClass(Details, [{
 		key: 'componentDidMount',
-		value: function componentDidMount() {}
+		value: function componentDidMount() {
+			var h = window.innerHeight;
+			document.getElementById("detailsBody").style.minHeight = h + "px";
+		}
 	}, {
 		key: 'componentWillUnmount',
 		value: function componentWillUnmount() {
@@ -41552,7 +41666,7 @@ var Details = function (_Component) {
 					"date": [d.getDate(), d.getMonth() + 1, d.getFullYear(), d.getHours(), d.getMinutes()]
 				};
 				if (prodComm) prodComm.push(comment);else prodComm = [comment];
-				this.props.sendComment(this.props.product.title, this.props.product.title, this.props.product.price, this.props.product.category, this.props.product.descr, this.props.product.size, this.props.product.color, this.props.product.tag, this.props.product.fabric, this.props.product.qual, this.props.product.dims, this.props.product.img, prodComm);
+				this.props.sendComment(this.props.product.id, this.props.product.title, this.props.product.title, this.props.product.price, this.props.product.category, this.props.product.descr, this.props.product.size, this.props.product.color, this.props.product.tag, this.props.product.fabric, this.props.product.qual, this.props.product.dims, this.props.product.img, prodComm);
 			}
 		}
 	}, {
@@ -41623,7 +41737,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 function mapStateToProps(state, ownProps) {
-	return {};
+	return {
+		lang: state.main.lang
+	};
 }
 
 function mapDispatchToProps(dispatch) {
@@ -41655,7 +41771,7 @@ var Footer = function (_Component) {
 			return _react2.default.createElement(
 				'div',
 				{ className: '' },
-				_react2.default.createElement(_Footer2.default, null)
+				_react2.default.createElement(_Footer2.default, { lang: this.props.lang })
 			);
 		}
 	}]);
@@ -41882,6 +41998,7 @@ var Header = function (_Component) {
 		key: 'onCartHandler',
 		value: function onCartHandler() {
 			this.props.showCart(false);
+			this.props.change_path(0, 0, this.props.categories);
 			_history2.default.push("/cart");
 		}
 		//go to checkout
@@ -41890,6 +42007,7 @@ var Header = function (_Component) {
 		key: 'onCheckoutHandler',
 		value: function onCheckoutHandler() {
 			this.props.showCart(false);
+			this.props.change_path(0, 0, this.props.categories);
 			_history2.default.push("/checkout");
 		}
 	}, {
@@ -42833,7 +42951,10 @@ var Categories = function (_Component) {
 
 	_createClass(Categories, [{
 		key: 'componentDidMount',
-		value: function componentDidMount() {}
+		value: function componentDidMount() {
+			var h = window.innerHeight;
+			document.getElementById("productsBody").style.minHeight = h + "px";
+		}
 	}, {
 		key: 'componentDidUpdate',
 		value: function componentDidUpdate() {
@@ -43782,6 +43903,17 @@ var state_update = function state_update() {
 				}newstate.cartTotal = _total2;
 				return newstate;
 			}
+		case _constants.clear_cart_str:
+			{
+				var _array4 = [];
+				newstate.cart = _array4;
+				newstate.cartSizes = _array4;
+				newstate.cartColors = _array4;
+				newstate.cartQuant = _array4;
+				newstate.cartItems = 0;
+				newstate.cartTotal = 0;
+				return newstate;
+			}
 		default:
 			return state || _initialState2.default.main;
 	}
@@ -43975,7 +44107,8 @@ var Cart = function Cart() {
 		'div',
 		null,
 		_react2.default.createElement(_Header2.default, null),
-		_react2.default.createElement(_Cart2.default, null)
+		_react2.default.createElement(_Cart2.default, null),
+		_react2.default.createElement(_Footer2.default, null)
 	);
 };
 
@@ -44043,7 +44176,8 @@ var Checkout = function Checkout() {
 		'div',
 		null,
 		_react2.default.createElement(_Header2.default, null),
-		_react2.default.createElement(_Checkout2.default, null)
+		_react2.default.createElement(_Checkout2.default, null),
+		_react2.default.createElement(_Footer2.default, null)
 	);
 };
 
@@ -44068,6 +44202,10 @@ var _Details = require('../containers/Details');
 
 var _Details2 = _interopRequireDefault(_Details);
 
+var _Footer = require('../containers/Footer');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Details = function Details() {
@@ -44075,13 +44213,14 @@ var Details = function Details() {
 		'div',
 		null,
 		_react2.default.createElement(_Header2.default, null),
-		_react2.default.createElement(_Details2.default, null)
+		_react2.default.createElement(_Details2.default, null),
+		_react2.default.createElement(_Footer2.default, null)
 	);
 };
 
 exports.default = Details;
 
-},{"../containers/Details":278,"../containers/Header":280,"react":230}],303:[function(require,module,exports){
+},{"../containers/Details":278,"../containers/Footer":279,"../containers/Header":280,"react":230}],303:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44163,6 +44302,10 @@ var _Products = require('../containers/Products');
 
 var _Products2 = _interopRequireDefault(_Products);
 
+var _Footer = require('../containers/Footer');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Products = function Products() {
@@ -44170,10 +44313,11 @@ var Products = function Products() {
 		'div',
 		null,
 		_react2.default.createElement(_Header2.default, null),
-		_react2.default.createElement(_Products2.default, null)
+		_react2.default.createElement(_Products2.default, null),
+		_react2.default.createElement(_Footer2.default, null)
 	);
 };
 
 exports.default = Products;
 
-},{"../containers/Header":280,"../containers/Products":285,"react":230}]},{},[288]);
+},{"../containers/Footer":279,"../containers/Header":280,"../containers/Products":285,"react":230}]},{},[288]);

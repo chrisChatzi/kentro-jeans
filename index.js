@@ -119,28 +119,22 @@ var mongoLib = require("./server/mongoLib.js");
                 app.post('/makeOrder', function (req, res) {
                     sendOrder(req.body.data);
                     sendClient(req.body.data);
+                    res.send(JSON.stringify({ res : true }));
                 });
 
                 ///////
-
                 app.set('port', (process.env.PORT || 5000));
 
 				app.use(express.static(__dirname + '/public'));
 
-				// views is directory for all template files
 				app.set('views', __dirname + '/views');
 				app.set('view engine', 'ejs');
-
-				// app.get('/', function(request, response) {
-				//   response.render('pages/index');
-				// });
 
 				app.listen(app.get('port'), function() {
 				  console.log('Node app is running on port', app.get('port'));
 				});
-
-
                 //////
+                
         //http listen
         // http.listen(httpPort, function(){
         //     console.log('listening on:' + config.port);
@@ -159,7 +153,7 @@ var mongoLib = require("./server/mongoLib.js");
     function sendOrder(data){
         let type = (data.title == "1") ? "Κος" : "Κα";
         let name = data.name + " " + data.lastName;
-        let address = data.street+" "+data.number+", "+data.postcode+
+        let address = data.street+" "+data.number+" "+data.info+", "+data.postcode+
                         ", "+data.city;
         let courrier = data.sendType;      //0 - no, 1 - simple, 2 - expess
         let payment = data.paymentType;    //1-delivery,2-deposit,3-credit,4-store
@@ -183,7 +177,7 @@ var mongoLib = require("./server/mongoLib.js");
         products += "<div style='float:left; width:50px'>ID</div>";
         products += "<div style='float:left; width:250px'>Όνομα</div>";
         products += "<div style='float:left; width:100px'>Χρώμα</div>";
-        products += "<div style='float:left; width:50px'>Μέγεθος</div>";
+        products += "<div style='float:left; width:70px'>Μέγεθος</div>";
         products += "<div style='float:left; width:50px'>Τιμή</div>";
         products += "</div>"
         for(var i=0; i<data.products.length; i++){
@@ -208,6 +202,7 @@ var mongoLib = require("./server/mongoLib.js");
         html += "<p><b>Από:</b> "+type+" "+name+"</p>";
         html += "<p><b>Διευθύνση:</b> "+address+"</p>";
         html += "<p><b>Email:</b> "+data.email+"</p>";
+        html += "<p><b>Τηλέφωνο:</b> "+data.phone+"</p>";
         html += "<p><b>Άποστολή:</b> "+courrierType+" με κόστος: "+data.sendCost+" &euro;</p>";
         html += "<p><b>Πληρωμή:</b> "+paymentType+"</p>"
         html += "<br/>";
@@ -240,7 +235,7 @@ var mongoLib = require("./server/mongoLib.js");
     function sendClient(data){
         let type = (data.title == "1") ? "Αγαπητέ κύριε" : "Αγαπητή κυρία";
         let name = data.name + " " + data.lastName;
-        let address = data.street+" "+data.number+", "+data.postcode+
+        let address = data.street+" "+data.number+" "+data.info+", "+data.postcode+
                         ", "+data.city;
         let courrier = data.sendType;      //0 - no, 1 - simple, 2 - expess
         let payment = data.paymentType;    //1-delivery,2-deposit,3-credit,4-store
@@ -263,7 +258,7 @@ var mongoLib = require("./server/mongoLib.js");
         products += "<div style='float:left; width:150px'>Ποσότητα</div>";
         products += "<div style='float:left; width:250px'>Όνομα</div>";
         products += "<div style='float:left; width:100px'>Χρώμα</div>";
-        products += "<div style='float:left; width:50px'>Μέγεθος</div>";
+        products += "<div style='float:left; width:70px'>Μέγεθος</div>";
         products += "<div style='float:left; width:50px'>Τιμή</div>";
         products += "</div>"
         for(var i=0; i<data.products.length; i++){
