@@ -16,8 +16,9 @@ var mongoLib = require("./server/mongoLib.js");
 // httpServerFunction();
 // mongoDB init
     var mongoDBFunction = (function(){
-        mongodb.on('error', function(){
+        mongodb.on('error', function(error){
             console.log("Error connecting to the mongo DB");
+            console.log(error)
         });
         mongodb.once('open', function(){
             var m = mongoPath.substring(mongoPath.lastIndexOf('/')+1, mongoPath.length);
