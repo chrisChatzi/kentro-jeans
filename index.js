@@ -117,6 +117,7 @@ var mongoLib = require("./server/mongoLib.js");
                     });
                 });
                 app.post('/makeOrder', function (req, res) {
+                	console.log("order in")
                     sendOrder(req.body.data);
                     sendClient(req.body.data);
                 });
