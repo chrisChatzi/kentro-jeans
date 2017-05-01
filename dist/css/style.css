@@ -120,15 +120,15 @@ button {
   color: #fff; }
 
 /*reused divs*/
-.mainframe, .header .headerMenu, .categories, .details {
+.mainframe, .header .headerMenu, .header .subMenu, .categories, .details {
   width: 80%;
   padding: 10px 10%; }
   @media (max-width: 1100px) {
-    .mainframe, .header .headerMenu, .categories, .details {
+    .mainframe, .header .headerMenu, .header .subMenu, .categories, .details {
       width: 90%;
       padding: 10px 5%; } }
   @media (max-width: 700px) {
-    .mainframe, .header .headerMenu, .categories, .details {
+    .mainframe, .header .headerMenu, .header .subMenu, .categories, .details {
       width: 100%;
       padding: 10px 0; } }
 
@@ -142,11 +142,11 @@ button {
     background: #f5f5f5; }
   .cartItemRow .row .img, .cartHeadClass .row .img, .header .cartHead .row .img, .checkout .review .cartHead .row .img, .cart .row .img {
     float: left;
-    width: 125px;
-    height: 125px; }
+    width: 100px;
+    height: 100px; }
     .cartItemRow .row .img img, .cartHeadClass .row .img img, .header .cartHead .row .img img, .checkout .review .cartHead .row .img img, .cart .row .img img {
-      width: 90px;
-      height: 125px;
+      width: 80px;
+      height: 100px;
       /*max-height: 100px;*/ }
   .cartItemRow .row .main, .cartHeadClass .row .main, .header .cartHead .row .main, .checkout .review .cartHead .row .main, .cart .row .main {
     float: left;
@@ -181,7 +181,7 @@ button {
   user-select: none; }
 
 /*cart list*/
-.cartHeadClass, .header .cartHead, .checkout .review .cartHead {
+.cartHeadClass, .header .headerMobile .cartHead, .header .cartHead, .checkout .review .cartHead {
   padding: 5px 10px;
   width: 340px;
   border: 1px solid #ccc;
@@ -191,13 +191,13 @@ button {
   /* Handle */
   box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.5);
   cursor: pointer; }
-  .cartHeadClass ::-webkit-scrollbar, .header .cartHead ::-webkit-scrollbar, .checkout .review .cartHead ::-webkit-scrollbar {
+  .cartHeadClass ::-webkit-scrollbar, .header .headerMobile .cartHead ::-webkit-scrollbar, .header .cartHead ::-webkit-scrollbar, .checkout .review .cartHead ::-webkit-scrollbar {
     width: 10px; }
-  .cartHeadClass ::-webkit-scrollbar-track, .header .cartHead ::-webkit-scrollbar-track, .checkout .review .cartHead ::-webkit-scrollbar-track {
+  .cartHeadClass ::-webkit-scrollbar-track, .header .headerMobile .cartHead ::-webkit-scrollbar-track, .header .cartHead ::-webkit-scrollbar-track, .checkout .review .cartHead ::-webkit-scrollbar-track {
     -webkit-border-radius: 10px;
     background-color: #f0f0f0;
     border-radius: 10px; }
-  .cartHeadClass ::-webkit-scrollbar-thumb, .header .cartHead ::-webkit-scrollbar-thumb, .checkout .review .cartHead ::-webkit-scrollbar-thumb {
+  .cartHeadClass ::-webkit-scrollbar-thumb, .header .headerMobile .cartHead ::-webkit-scrollbar-thumb, .header .cartHead ::-webkit-scrollbar-thumb, .checkout .review .cartHead ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 2px;
     border-radius: 2px;
     background: #666; }
@@ -233,6 +233,13 @@ button {
       font-size: 18px;
       padding: 5px 14px;
       padding: 0 14px; }
+
+/*content of main pages*/
+.contentMain, .main .content, .categories, .products, .details, .cart, .checkout {
+  margin-top: 100px; }
+  @media (max-width: 700px) {
+    .contentMain, .main .content, .categories, .products, .details, .cart, .checkout {
+      margin-top: 60px; } }
 
 /*MESSAGE*/
 .message {
@@ -517,7 +524,57 @@ button {
   position: fixed;
   background: #fff;
   color: #242428;
-  z-index: 3; }
+  z-index: 3;
+  /*mobile*/
+  /*abs menus*/
+  /*cart - cart,checkout div at top right*/
+  /*language div at top right*/
+  /* ---------- */
+  /*header very top (search, logo, options at right)*/
+  /*categories*/
+  /*sub-categories*/
+  /*responsive*/ }
+  .header .headerMobile {
+    display: none; }
+    .header .headerMobile .logo-mobile {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: auto;
+      width: 250px;
+      height: 100%; }
+    .header .headerMobile .buttons-mobile {
+      float: right; }
+      .header .headerMobile .buttons-mobile .item {
+        cursor: pointer;
+        position: relative;
+        font-size: 20px;
+        float: left;
+        width: 20px;
+        padding: 0 20px; }
+        .header .headerMobile .buttons-mobile .item:hover {
+          transition: 0.25s;
+          background: #e7e7e7; }
+        .header .headerMobile .buttons-mobile .item .idx {
+          font-size: 11px;
+          position: absolute;
+          top: auto;
+          bottom: 10px;
+          left: auto;
+          right: 12px;
+          width: 17px;
+          height: 17px;
+          background: #c0392b;
+          color: #fff;
+          line-height: 17px;
+          border-radius: 17px; }
+      .header .headerMobile .buttons-mobile .on {
+        color: #c0392b; }
+    .header .headerMobile .cartHead {
+      right: 60px; }
+    .header .headerMobile .lang {
+      right: 119px; }
   .header .cartHead {
     position: absolute;
     top: 60px;
@@ -555,7 +612,8 @@ button {
     .header .lang .flagDe {
       content: url("../img/general/german.png"); }
   .header .off {
-    visibility: hidden; }
+    /*visibility: hidden;*/
+    display: none; }
   .header .hover {
     background: #e7e7e7; }
   .header .headerMain {
@@ -637,10 +695,18 @@ button {
   .header .headerMenu {
     height: 40px;
     line-height: 40px;
+    background: #fff;
+    overflow: auto;
     padding-top: 0;
     padding-bottom: 0;
     color: #555;
+    font-size: 18px;
+    font-weight: 900;
     box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.25); }
+    @media (max-width: 700px) {
+      .header .headerMenu {
+        height: 200px;
+        line-height: 200px; } }
     .header .headerMenu .item {
       float: left;
       width: 20%;
@@ -648,19 +714,27 @@ button {
       .header .headerMenu .item:hover {
         transition: 0.25s;
         background: #e7e7e7; }
+      @media (max-width: 700px) {
+        .header .headerMenu .item {
+          width: 100%;
+          height: 40px;
+          line-height: 40px; } }
     .header .headerMenu .active {
       color: #c0392b;
       font-weight: bold; }
   .header .subMenu {
     overflow: auto;
-    width: 100%;
-    margin: 0;
-    padding: 10px 10%;
+    overflow-y: hidden;
     background: #fff;
     color: #555;
+    width: auto;
     box-sizing: border-box;
     border-top: 1px solid #ccc;
-    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.25); }
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.25);
+    /*animation: slideDown 1s 1;*/ }
+    @media (max-width: 700px) {
+      .header .subMenu {
+        display: none; } }
     .header .subMenu .item {
       float: left;
       width: 20%; }
@@ -675,6 +749,13 @@ button {
       .header .subMenu .row:hover {
         transition: 0.25s;
         background: #e7e7e7; }
+  @media (max-width: 700px) {
+    .header {
+      height: 60px; }
+      .header .desktop {
+        display: none; }
+      .header .headerMobile {
+        display: block; } }
 
 /*FOOTER*/
 .footer {
@@ -683,7 +764,7 @@ button {
   overflow: auto;
   background: #242428;
   width: 80%;
-  padding: 0 10%; }
+  padding: 10px 10% 0 10%; }
   .footer .sub {
     float: left;
     width: 33.333%;
@@ -698,28 +779,36 @@ button {
       margin: 5px 0; }
     .footer .sub .row {
       height: 30px;
-      line-height: 30px; }
+      line-height: 30px;
+      cursor: pointer; }
+      .footer .sub .row:hover {
+        transition: 0.75s;
+        color: #005792; }
   .footer .bottom {
     overflow: auto;
     height: 30px;
     line-height: 30px;
     width: 100%;
-    margin-top: 20px;
-    padding: 5px 0;
+    margin-top: 25px;
+    padding: 10px 0;
     border-top: 1px solid #fff;
     font-size: 14px; }
     .footer .bottom .left {
       float: left; }
     .footer .bottom .right {
       float: right; }
+  .footer a {
+    text-decoration: none;
+    color: #fff; }
+    .footer a:hover {
+      transition: 0.75s;
+      color: #005792; }
 
 /*MAIN*/
 .main {
   overflow: auto;
-  width: 100%;
-  /*min-height: 800px;*/ }
+  width: 100%; }
   .main .content {
-    margin-top: 100px;
     position: fixed;
     left: 0;
     right: 0;
@@ -745,8 +834,7 @@ button {
 
 /*CATEGORIES*/
 .categories {
-  overflow: auto;
-  margin-top: 100px; }
+  overflow: auto; }
 
 /*POPUP*/
 .popup {
@@ -914,8 +1002,6 @@ button {
 /*PRODUCTS*/
 .products {
   overflow: auto;
-  /*@include setAbsolute(100px, 0, 0, 0, 100%, auto);*/
-  margin-top: 100px;
   width: 80%;
   padding: 10px 10%;
   background: #fff;
@@ -961,10 +1047,10 @@ button {
     @media (max-width: 480px) {
       .products .section {
         width: 98%; } }
-    @media (max-width: 650px) and (min-width: 481px) {
+    @media (max-width: 750px) and (min-width: 481px) {
       .products .section {
         width: 48%; } }
-    @media (max-width: 900px) and (min-width: 651px) {
+    @media (max-width: 900px) and (min-width: 751px) {
       .products .section {
         width: 31%; } }
   .products .options {
@@ -1139,8 +1225,6 @@ button {
 /*DETAILS*/
 .details {
   overflow: auto;
-  /*@include setAbsolute(100px, 0, 0, 0, "", auto);*/
-  margin-top: 100px;
   background: #fff;
   color: #242428; }
   .details .head {
@@ -1447,13 +1531,11 @@ button {
 /*CART*/
 .cart {
   overflow: auto;
-  /*@include setAbsolute(100px, 0, 0, 0, 100%, auto);*/
-  margin-top: 100px;
   width: 80%;
   padding: 10px 10%;
   background: #fff;
   color: #242428; }
-  @media only screen and (max-width: 750px) {
+  @media (max-width: 750px) {
     .cart {
       width: 100%;
       padding: 10px 0; } }
@@ -1483,10 +1565,9 @@ button {
       border-radius: 0;
       font-size: 20px;
       height: 45px;
-      /*padding: 5px 14px;*/
       padding: 7px 24px; }
-  @media only screen and (max-width: 750px) {
-    .cart .items, .cart .checkout {
+  @media (max-width: 750px) {
+    .cart .items, .cart .checkoutC {
       width: 100%;
       margin-left: 0; } }
   .cart .row {
@@ -1544,8 +1625,6 @@ button {
 /*CHECKOUT*/
 .checkout {
   overflow: auto;
-  /*@include setAbsolute(100px, 0, 0, 0, 100%, auto);*/
-  margin-top: 100px;
   width: 100%;
   padding: 10px 0%;
   background: #fff;
@@ -1692,6 +1771,9 @@ button {
               float: left;
               width: calc(100% - 60px);
               white-space: pre-wrap; }
+            @media (max-width: 700px) {
+              .checkout .action .data .row .block .type {
+                width: 98%; } }
           .checkout .action .data .row .block .typeOn {
             background: #f5f5f5;
             color: #c0392b; }

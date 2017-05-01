@@ -35969,7 +35969,7 @@ var popupProducts_status = exports.popupProducts_status = function popupProducts
     };
 };
 
-},{"./constants.js":270,"./general/logic.js":286}],256:[function(require,module,exports){
+},{"./constants.js":275,"./general/logic.js":291}],256:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37691,7 +37691,10 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Footer = function Footer(_ref) {
-	var lang = _ref.lang;
+	var lang = _ref.lang,
+	    delivery = _ref.delivery,
+	    size = _ref.size,
+	    legal = _ref.legal;
 	return _react2.default.createElement(
 		"div",
 		{ className: "footer" },
@@ -37706,20 +37709,25 @@ var Footer = function Footer(_ref) {
 			_react2.default.createElement(
 				"div",
 				{ className: "row" },
-				_react2.default.createElement("i", { className: "fa fa-location-arrow" }),
-				" \u039A\u03B1\u03C1\u03B1\u03CA\u03C3\u03BA\u03AC\u03BA\u03B7 5, \u0394\u03C1\u03AC\u03BC\u03B1"
+				_react2.default.createElement(
+					"a",
+					{ href: "https://www.google.gr/maps/@41.149107,24.1457097,41m/data=!3m1!1e3", target: "_blank" },
+					"\u039A\u03B1\u03C1\u03B1\u03CA\u03C3\u03BA\u03AC\u03BA\u03B7 5, \u0394\u03C1\u03AC\u03BC\u03B1"
+				)
 			),
 			_react2.default.createElement(
 				"div",
 				{ className: "row" },
-				_react2.default.createElement("i", { className: "fa fa-phone" }),
-				" 1234567890"
+				"1234567890"
 			),
 			_react2.default.createElement(
 				"div",
 				{ className: "row" },
-				_react2.default.createElement("i", { className: "fa fa-envelope" }),
-				" kentro-jeans@gmail.com"
+				_react2.default.createElement(
+					"a",
+					{ href: "mailto:kentro-jeans@gmail.com", target: "_blank" },
+					"kentro-jeans@gmail.com"
+				)
 			)
 		),
 		_react2.default.createElement(
@@ -37732,17 +37740,17 @@ var Footer = function Footer(_ref) {
 			),
 			_react2.default.createElement(
 				"div",
-				{ className: "row" },
+				{ className: "row", onClick: delivery },
 				lang.infoFooter[1]
 			),
 			_react2.default.createElement(
 				"div",
-				{ className: "row" },
+				{ className: "row", onClick: size },
 				lang.infoFooter[2]
 			),
 			_react2.default.createElement(
 				"div",
-				{ className: "row" },
+				{ className: "row", onClick: legal },
 				lang.infoFooter[3]
 			)
 		),
@@ -37757,14 +37765,22 @@ var Footer = function Footer(_ref) {
 			_react2.default.createElement(
 				"div",
 				{ className: "row" },
-				_react2.default.createElement("i", { className: "fa fa-facebook-square" }),
-				" facebook"
+				_react2.default.createElement(
+					"a",
+					{ target: "_blank" },
+					_react2.default.createElement("i", { className: "fa fa-facebook-square" }),
+					" facebook"
+				)
 			),
 			_react2.default.createElement(
 				"div",
 				{ className: "row" },
-				_react2.default.createElement("i", { className: "fa fa-twitter-square" }),
-				" twitter"
+				_react2.default.createElement(
+					"a",
+					{ target: "_blank" },
+					_react2.default.createElement("i", { className: "fa fa-twitter-square" }),
+					" twitter"
+				)
 			)
 		),
 		_react2.default.createElement(
@@ -37787,15 +37803,31 @@ var Footer = function Footer(_ref) {
 exports.default = Footer;
 
 },{"react":230}],264:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _HeaderLanguage = require('./HeaderLanguage.js');
+
+var _HeaderLanguage2 = _interopRequireDefault(_HeaderLanguage);
+
+var _HeaderCart = require('./HeaderCart.js');
+
+var _HeaderCart2 = _interopRequireDefault(_HeaderCart);
+
+var _HeaderCategories = require('./HeaderCategories.js');
+
+var _HeaderCategories2 = _interopRequireDefault(_HeaderCategories);
+
+var _HeaderSub = require('./HeaderSub.js');
+
+var _HeaderSub2 = _interopRequireDefault(_HeaderSub);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37823,33 +37855,90 @@ var Header = function Header(_ref) {
 	    onCheckout = _ref.onCheckout,
 	    changeLang = _ref.changeLang,
 	    showLang = _ref.showLang,
-	    showSub = _ref.showSub;
+	    showSub = _ref.showSub,
+	    changeHead = _ref.changeHead;
 	return _react2.default.createElement(
-		"div",
-		{ className: "header" },
+		'div',
+		{ className: 'header' },
 		_react2.default.createElement(
-			"div",
-			{ className: "headerMain" },
+			'div',
+			{ className: 'desktop' },
 			_react2.default.createElement(
-				"div",
-				{ className: "left" },
-				_react2.default.createElement("input", { placeholder: lang.search }),
+				'div',
+				{ className: 'headerMain' },
 				_react2.default.createElement(
-					"button",
-					null,
-					_react2.default.createElement("i", { className: "fa fa-search" })
+					'div',
+					{ className: 'left' },
+					_react2.default.createElement('input', { placeholder: lang.search }),
+					_react2.default.createElement(
+						'button',
+						null,
+						_react2.default.createElement('i', { className: 'fa fa-search' })
+					)
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'mid', onClick: home },
+					'logo'
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'right' },
+					_react2.default.createElement(
+						'div',
+						{ className: state.langShow ? "item hover" : "item",
+							onTouchStart: function onTouchStart(e) {
+								return showLang(false);
+							},
+							onMouseOver: function onMouseOver(e) {
+								return showLang(true);
+							}, onMouseOut: function onMouseOut(e) {
+								return showLang(false);
+							} },
+						_react2.default.createElement('i', { className: 'fa fa-globe' })
+					),
+					_react2.default.createElement(
+						'div',
+						{ id: 'cart', className: cartFlag ? "item hover" : "item", onClick: onCart,
+							onMouseOver: function onMouseOver(e) {
+								return showCart(true);
+							}, onMouseOut: function onMouseOut(e) {
+								return showCart(false);
+							} },
+						_react2.default.createElement(
+							'i',
+							{ className: 'fa fa-shopping-cart' },
+							cartItems > 0 ? _react2.default.createElement(
+								'div',
+								{ className: 'idx' },
+								cartItems
+							) : ""
+						)
+					)
 				)
 			),
+			_react2.default.createElement(_HeaderLanguage2.default, { state: state, langStr: langStr, showLang: showLang, changeLang: changeLang }),
+			_react2.default.createElement(_HeaderCart2.default, { cartFlag: cartFlag, showCart: showCart, lang: lang, langIdx: langIdx,
+				cart: cart, cartSizes: cartSizes, cartColors: cartColors, cartQuant: cartQuant,
+				onCart: onCart, onCheckout: onCheckout }),
+			_react2.default.createElement(_HeaderCategories2.default, { lang: lang, categories: categories, categoryIdx: categoryIdx,
+				clickCat: clickCat, showSub: showSub }),
+			_react2.default.createElement(_HeaderSub2.default, { lang: lang, categories: categories, categoryIdx: categoryIdx, productIdx: productIdx,
+				state: state, clickSub: clickSub, showSub: showSub })
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'headerMobile headerMain' },
 			_react2.default.createElement(
-				"div",
-				{ className: "mid", onClick: home },
-				"logo"
+				'div',
+				{ className: 'logo-mobile', onClick: home },
+				'logo'
 			),
 			_react2.default.createElement(
-				"div",
-				{ className: "right" },
+				'div',
+				{ className: 'buttons-mobile' },
 				_react2.default.createElement(
-					"div",
+					'div',
 					{ className: state.langShow ? "item hover" : "item",
 						onTouchStart: function onTouchStart(e) {
 							return showLang(false);
@@ -37859,185 +37948,612 @@ var Header = function Header(_ref) {
 						}, onMouseOut: function onMouseOut(e) {
 							return showLang(false);
 						} },
-					_react2.default.createElement("i", { className: "fa fa-globe" })
+					_react2.default.createElement('i', { className: 'fa fa-globe' })
 				),
 				_react2.default.createElement(
-					"div",
-					{ id: "cart", className: cartFlag ? "item hover" : "item", onClick: onCart,
+					'div',
+					{ id: 'cart', className: cartFlag ? "item hover" : "item",
+						onClick: !state.mobile ? onCart : "",
 						onMouseOver: function onMouseOver(e) {
 							return showCart(true);
-						}, onMouseOut: function onMouseOut(e) {
+						},
+						onMouseOut: function onMouseOut(e) {
 							return showCart(false);
 						} },
 					_react2.default.createElement(
-						"i",
-						{ className: "fa fa-shopping-cart" },
+						'i',
+						{ className: 'fa fa-shopping-cart' },
 						cartItems > 0 ? _react2.default.createElement(
-							"div",
-							{ className: "idx" },
+							'div',
+							{ className: 'idx' },
 							cartItems
 						) : ""
 					)
-				)
-			)
-		),
-		_react2.default.createElement(
-			"div",
-			{ className: state.langShow ? "lang" : "lang off",
-				onMouseOver: function onMouseOver(e) {
-					return showLang(true);
-				}, onMouseOut: function onMouseOut(e) {
-					return showLang(false);
-				} },
-			_react2.default.createElement(
-				"div",
-				{ className: langStr == "el" ? "row on" : "row", onClick: function onClick() {
-						return changeLang("el");
-					} },
-				_react2.default.createElement("img", { className: "flagGr" })
-			),
-			_react2.default.createElement(
-				"div",
-				{ className: langStr == "en" ? "row on" : "row", onClick: function onClick() {
-						return changeLang("en");
-					} },
-				_react2.default.createElement("img", { className: "flagEn" })
-			),
-			_react2.default.createElement(
-				"div",
-				{ className: langStr == "de" ? "row on" : "row", onClick: function onClick() {
-						return changeLang("de");
-					} },
-				_react2.default.createElement("img", { className: "flagDe" })
-			)
-		),
-		_react2.default.createElement(
-			"div",
-			{ className: cartFlag ? "cartHead" : "cartHead off",
-				onMouseOver: function onMouseOver(e) {
-					return showCart(true);
-				}, onMouseOut: function onMouseOut(e) {
-					return showCart(false);
-				} },
-			_react2.default.createElement(
-				"div",
-				{ className: "items" },
-				cart.map(function (v, i) {
-					return _react2.default.createElement(
-						"div",
-						{ className: "row", key: i },
-						_react2.default.createElement(
-							"div",
-							{ className: "img" },
-							_react2.default.createElement("img", { src: v.img[0] })
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "main" },
-							_react2.default.createElement(
-								"div",
-								{ className: "name" },
-								v.title[langIdx]
-							),
-							_react2.default.createElement(
-								"div",
-								{ className: "price" },
-								v.price,
-								" \u20AC"
-							),
-							_react2.default.createElement(
-								"div",
-								{ className: "size" },
-								lang.size + ": " + v.size[cartSizes[i]]
-							),
-							_react2.default.createElement(
-								"div",
-								{ className: "color" },
-								lang.color + ": " + lang.colors[v.color[cartColors[i]]]
-							),
-							_react2.default.createElement(
-								"div",
-								{ className: "quantity" },
-								lang.quantity + ": " + cartQuant[i]
-							)
-						)
-					);
-				})
-			),
-			_react2.default.createElement(
-				"div",
-				{ className: "end" },
-				_react2.default.createElement(
-					"div",
-					{ className: "half" },
-					_react2.default.createElement(
-						"button",
-						{ className: "cartB", onClick: onCart },
-						lang.cart
-					)
 				),
 				_react2.default.createElement(
-					"div",
-					{ className: "half", onClick: onCheckout },
-					_react2.default.createElement(
-						"button",
-						{ className: "checkoutB" },
-						lang.buy
-					)
+					'div',
+					{ className: state.showHead ? "item on" : "item", onClick: changeHead },
+					_react2.default.createElement('i', { className: 'fa fa-bars' })
 				)
-			)
-		),
-		_react2.default.createElement(
-			"div",
-			{ className: "headerMenu" },
-			categories.map(function (v, i) {
-				return _react2.default.createElement(
-					"div",
-					{ className: categoryIdx == i ? "item active" : "item",
-						key: i, onClick: function onClick() {
-							return clickCat(v.id);
-						},
-						onMouseOver: function onMouseOver(e) {
-							return showSub(true, true);
-						}, onMouseOut: function onMouseOut(e) {
-							return showSub(false, true);
-						} },
-					lang.categories[i]
-				);
-			})
-		),
-		_react2.default.createElement(
-			"div",
-			{ className: state.subShow ? "subMenu" : "subMenu off",
-				onMouseOver: function onMouseOver(e) {
-					return showSub(true, false);
-				}, onMouseOut: function onMouseOut(e) {
-					return showSub(false, false);
-				} },
-			categories.map(function (v, i) {
-				return _react2.default.createElement(
-					"div",
-					{ className: categoryIdx == i ? "item" : "item", key: i },
-					v.sub.map(function (vSub, iSub) {
-						return _react2.default.createElement(
-							"div",
-							{ className: categoryIdx == i && productIdx == iSub ? "row active" : "row",
-								key: iSub,
-								onClick: function onClick() {
-									return clickSub(v.id, vSub);
-								} },
-							lang.sub[i][iSub]
-						);
-					})
-				);
-			})
+			),
+			state.showHead ? _react2.default.createElement(_HeaderCategories2.default, { lang: lang, categories: categories, categoryIdx: categoryIdx,
+				clickCat: clickCat, showSub: showSub }) : "",
+			_react2.default.createElement(_HeaderLanguage2.default, { state: state, langStr: langStr, showLang: showLang, changeLang: changeLang }),
+			_react2.default.createElement(_HeaderCart2.default, { state: state, cartFlag: cartFlag, showCart: showCart, lang: lang, langIdx: langIdx,
+				cart: cart, cartSizes: cartSizes, cartColors: cartColors, cartQuant: cartQuant,
+				onCart: onCart, onCheckout: onCheckout })
 		)
 	);
 };
 
 exports.default = Header;
 
-},{"react":230}],265:[function(require,module,exports){
+},{"./HeaderCart.js":265,"./HeaderCategories.js":266,"./HeaderLanguage.js":267,"./HeaderSub.js":268,"react":230}],265:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Cart = function Cart(_ref) {
+	var state = _ref.state,
+	    cartFlag = _ref.cartFlag,
+	    showCart = _ref.showCart,
+	    cart = _ref.cart,
+	    cartSizes = _ref.cartSizes,
+	    cartColors = _ref.cartColors,
+	    cartQuant = _ref.cartQuant,
+	    lang = _ref.lang,
+	    langIdx = _ref.langIdx,
+	    onCart = _ref.onCart,
+	    onCheckout = _ref.onCheckout;
+	return _react2.default.createElement(
+		"div",
+		{ className: cartFlag ? "cartHead" : "cartHead off",
+			onMouseOver: function onMouseOver(e) {
+				return showCart(true);
+			}, onMouseOut: function onMouseOut(e) {
+				return showCart(false);
+			} },
+		_react2.default.createElement(
+			"div",
+			{ className: "items" },
+			cart.map(function (v, i) {
+				return _react2.default.createElement(
+					"div",
+					{ className: "row", key: i },
+					_react2.default.createElement(
+						"div",
+						{ className: "img" },
+						_react2.default.createElement("img", { src: v.img[0] })
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "main" },
+						_react2.default.createElement(
+							"div",
+							{ className: "name" },
+							v.title[langIdx]
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "price" },
+							v.price,
+							" \u20AC"
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "size" },
+							lang.size + ": " + v.size[cartSizes[i]]
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "color" },
+							lang.color + ": " + lang.colors[v.color[cartColors[i]]]
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "quantity" },
+							lang.quantity + ": " + cartQuant[i]
+						)
+					)
+				);
+			})
+		),
+		_react2.default.createElement(
+			"div",
+			{ className: "end" },
+			_react2.default.createElement(
+				"div",
+				{ className: "half" },
+				_react2.default.createElement(
+					"button",
+					{ className: "cartB", onClick: onCart },
+					lang.cart
+				)
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "half", onClick: onCheckout },
+				_react2.default.createElement(
+					"button",
+					{ className: "checkoutB" },
+					lang.buy
+				)
+			)
+		)
+	);
+};
+
+exports.default = Cart;
+
+},{"react":230}],266:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Categories = function Categories(_ref) {
+	var lang = _ref.lang,
+	    categories = _ref.categories,
+	    categoryIdx = _ref.categoryIdx,
+	    clickCat = _ref.clickCat,
+	    showSub = _ref.showSub;
+	return _react2.default.createElement(
+		"div",
+		{ className: "headerMenu" },
+		categories.map(function (v, i) {
+			return _react2.default.createElement(
+				"div",
+				{ className: categoryIdx == i ? "item active" : "item",
+					key: i, onClick: function onClick() {
+						return clickCat(v.id);
+					},
+					onMouseOver: function onMouseOver(e) {
+						return showSub(true, true);
+					}, onMouseOut: function onMouseOut(e) {
+						return showSub(false, true);
+					} },
+				lang.categories[i]
+			);
+		})
+	);
+};
+
+exports.default = Categories;
+
+},{"react":230}],267:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Order = function Order(_ref) {
+	var state = _ref.state,
+	    langStr = _ref.langStr,
+	    showLang = _ref.showLang,
+	    changeLang = _ref.changeLang;
+	return _react2.default.createElement(
+		"div",
+		{ className: state.langShow ? "lang" : "lang off",
+			onMouseOver: function onMouseOver(e) {
+				return showLang(true);
+			}, onMouseOut: function onMouseOut(e) {
+				return showLang(false);
+			} },
+		_react2.default.createElement(
+			"div",
+			{ className: langStr == "el" ? "row on" : "row", onClick: function onClick() {
+					return changeLang("el");
+				} },
+			_react2.default.createElement("img", { className: "flagGr" })
+		),
+		_react2.default.createElement(
+			"div",
+			{ className: langStr == "en" ? "row on" : "row", onClick: function onClick() {
+					return changeLang("en");
+				} },
+			_react2.default.createElement("img", { className: "flagEn" })
+		),
+		_react2.default.createElement(
+			"div",
+			{ className: langStr == "de" ? "row on" : "row", onClick: function onClick() {
+					return changeLang("de");
+				} },
+			_react2.default.createElement("img", { className: "flagDe" })
+		)
+	);
+};
+
+exports.default = Order;
+
+},{"react":230}],268:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Sub = function Sub(_ref) {
+	var state = _ref.state,
+	    lang = _ref.lang,
+	    categories = _ref.categories,
+	    categoryIdx = _ref.categoryIdx,
+	    productIdx = _ref.productIdx,
+	    clickSub = _ref.clickSub,
+	    showSub = _ref.showSub;
+	return _react2.default.createElement(
+		"div",
+		{ className: state.subShow ? "subMenu" : "subMenu off",
+			onMouseOver: function onMouseOver(e) {
+				return showSub(true, false);
+			}, onMouseOut: function onMouseOut(e) {
+				return showSub(false, false);
+			} },
+		categories.map(function (v, i) {
+			return _react2.default.createElement(
+				"div",
+				{ className: categoryIdx == i ? "item" : "item", key: i },
+				v.sub.map(function (vSub, iSub) {
+					return _react2.default.createElement(
+						"div",
+						{ className: categoryIdx == i && productIdx == iSub ? "row active" : "row",
+							key: iSub,
+							onClick: function onClick() {
+								return clickSub(v.id, vSub);
+							} },
+						lang.sub[i][iSub]
+					);
+				})
+			);
+		})
+	);
+};
+
+exports.default = Sub;
+
+},{"react":230}],269:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Order = function Order(_ref) {
+	var lang = _ref.lang,
+	    langIdx = _ref.langIdx,
+	    home = _ref.home;
+	return _react2.default.createElement(
+		"div",
+		{ className: "" },
+		_react2.default.createElement(
+			"h3",
+			null,
+			"\u038C\u03C1\u03BF\u03B9 & \u03A0\u03C1\u03BF\u03CB\u03C0\u03BF\u03B8\u03AD\u03C3\u03B5\u03B9\u03C2"
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"1. \u0393\u03B5\u03BD\u03B9\u03BA\u03AC"
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"1.1 \u039F\u03B9 \u03C0\u03B1\u03C1\u03CC\u03BD\u03C4\u03B5\u03C2 \u03CC\u03C1\u03BF\u03B9 \u03B1\u03C0\u03BF\u03C4\u03B5\u03BB\u03BF\u03CD\u03BD \u03BD\u03BF\u03BC\u03B9\u03BA\u03CC \u03AD\u03B3\u03B3\u03C1\u03B1\u03C6\u03BF (\xAB\u03A3\u03CD\u03BC\u03B2\u03B1\u03C3\u03B7\xBB) \u03C4\u03BF \u03BF\u03C0\u03BF\u03AF\u03BF \u03BF\u03C1\u03AF\u03B6\u03B5\u03B9 \u03C4\u03B1 \u03B4\u03B9\u03BA\u03B1\u03B9\u03CE\u03BC\u03B1\u03C4\u03B1 \u03BA\u03B1\u03B9 \u03C4\u03B9\u03C2 \u03C5\u03C0\u03BF\u03C7\u03C1\u03B5\u03CE\u03C3\u03B5\u03B9\u03C2 \u03C3\u03B1\u03C2 \u03C9\u03C2 \u03B1\u03B3\u03BF\u03C1\u03B1\u03C3\u03C4\u03AE\u03C2 (\xAB\u03B5\u03C3\u03B5\u03AF\u03C2\xBB) \u03BA\u03B1\u03B9 \u03C4\u03B9\u03C2 \u03C5\u03C0\u03BF\u03C7\u03C1\u03B5\u03CE\u03C3\u03B5\u03B9\u03C2 \u03BA\u03B1\u03B9 \u03C4\u03B1 \u03B4\u03B9\u03BA\u03B1\u03B9\u03CE\u03BC\u03B1\u03C4\u03B1 \u03C4\u03B7\u03C2 Power of Knowledge Ltd \u03AE P\u039F\u039A Ltd \u03BC\u03B5 \u03AD\u03B4\u03C1\u03B1 \u03C3\u03C4\u03B7\u03BD\u039B\u03B5\u03C9\u03C6.\u0391\u03BB\u03B5\u03BE\u03AC\u03BD\u03B4\u03C1\u03B1\u03C2 31A - 11473 - \u0391\u03B8\u03AE\u03BD\u03B1 \u03BA\u03B1\u03B9 \u0391\u03A6\u039C  998139100  \u0394\u039F\u03A5 \u0399\u0393 \u0391\u0398\u0397\u039D\u03A9\u039D (\xABkentro-jeans.gr\xBB, \xAB\u03B5\u03BC\u03B5\u03AF\u03C2\xBB \u03AE \xAB\u03B5\u03BC\u03AC\u03C2\xBB), \u03C3\u03B5 \u03C3\u03C7\u03AD\u03C3\u03B7 \u03C4\u03B1 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03B1 \u03C0\u03BF\u03C5 \u03C0\u03C1\u03BF\u03C3\u03C6\u03AD\u03C1\u03BF\u03C5\u03BC\u03B5 \u03BC\u03AD\u03C3\u03C9 \u03B1\u03C5\u03C4\u03BF\u03CD \u03C4\u03BF\u03C5 \u03B4\u03B9\u03BA\u03C4\u03C5\u03B1\u03BA\u03BF\u03CD \u03C4\u03CC\u03C0\u03BF\u03C5. \u0391\u03BD \u03B5\u03B3\u03B3\u03C1\u03B1\u03C6\u03B5\u03AF\u03C4\u03B5 \u03C3\u03C4\u03B9\u03C2 \u03C5\u03C0\u03B7\u03C1\u03B5\u03C3\u03AF\u03B5\u03C2 \u03C4\u03BF\u03C5 kentro-jeans.gr, \u03C3\u03C5\u03BC\u03C6\u03C9\u03BD\u03B5\u03AF\u03C4\u03B5 \u03BC\u03B5 \u03C4\u03BF\u03C5\u03C2 \u03CC\u03C1\u03BF\u03C5\u03C2 \u03BA\u03B1\u03B9 \u03C4\u03B9\u03C2 \u03C0\u03C1\u03BF\u03CB\u03C0\u03BF\u03B8\u03AD\u03C3\u03B5\u03B9\u03C2 \u03C4\u03B7\u03C2 \u03C0\u03B1\u03C1\u03BF\u03CD\u03C3\u03B1\u03C2 \u03A3\u03CD\u03BC\u03B2\u03B1\u03C3\u03B7\u03C2 \u03BA\u03B1\u03B9 \u03B8\u03B1 \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03B5\u03C0\u03B9\u03B2\u03B5\u03B2\u03B1\u03B9\u03CE\u03BD\u03B5\u03C4\u03B5 \u03CC\u03C4\u03B9 \u03B1\u03C0\u03BF\u03B4\u03AD\u03C7\u03B5\u03C3\u03C4\u03B5 \u03C4\u03BF\u03C5\u03C2 \u03CC\u03C1\u03BF\u03C5\u03C2 \u03C4\u03B7\u03C2 \u03BA\u03AC\u03B8\u03B5 \u03C6\u03BF\u03C1\u03AC \u03C0\u03BF\u03C5 \u03C7\u03C1\u03B7\u03C3\u03B9\u03BC\u03BF\u03C0\u03BF\u03B9\u03B5\u03AF\u03C4\u03B5 \u03C4\u03B9\u03C2 \u03C5\u03C0\u03B7\u03C1\u03B5\u03C3\u03AF\u03B5\u03C2 \u03BC\u03B1\u03C2."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"1.2 \u03A3\u03C5\u03BC\u03C6\u03C9\u03BD\u03B5\u03AF\u03C4\u03B5 \u03C4\u03B1 \u03B1\u03BA\u03CC\u03BB\u03BF\u03C5\u03B8\u03B1:"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"(\u03B1) \u03BD\u03B1 \u03C0\u03B1\u03C1\u03AD\u03C7\u03B5\u03C4\u03B5 \u03B1\u03BB\u03B7\u03B8\u03AE, \u03B1\u03BA\u03C1\u03B9\u03B2\u03AE, \u03B5\u03BD\u03B7\u03BC\u03B5\u03C1\u03C9\u03BC\u03AD\u03BD\u03B1 \u03BA\u03B1\u03B9 \u03C0\u03BB\u03AE\u03C1\u03B7 \u03C3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03B1 \u03C3\u03B1\u03C2, \u03CC\u03C0\u03C9\u03C2 \u03BA\u03B1\u03BB\u03B5\u03AF\u03C3\u03C4\u03B5 \u03BD\u03B1 \u03BA\u03AC\u03BD\u03B5\u03C4\u03B5 \u03C3\u03C4\u03B7 \u03C6\u03CC\u03C1\u03BC\u03B1 \u03B5\u03B3\u03B3\u03C1\u03B1\u03C6\u03AE\u03C2 \u03BC\u03B1\u03C2 (\u03BF\u03B9 \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03AF\u03B5\u03C2 \u03B1\u03C5\u03C4\u03AD\u03C2 \u03B1\u03BD\u03B1\u03C6\u03AD\u03C1\u03BF\u03BD\u03C4\u03B1\u03B9 \u03C9\u03C2 \xAB\u0394\u03B5\u03B4\u03BF\u03BC\u03AD\u03BD\u03B1 \u0395\u03B3\u03B3\u03C1\u03B1\u03C6\u03AE\u03C2\xBB) \u03BA\u03B1\u03B9"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"(\u03B2) \u03BD\u03B1 \u03B4\u03B9\u03B1\u03C4\u03B7\u03C1\u03B5\u03AF\u03C4\u03B5 \u03BA\u03B1\u03B9 \u03BD\u03B1 \u03B5\u03BD\u03B7\u03BC\u03B5\u03C1\u03CE\u03BD\u03B5\u03C4\u03B5 \u03B5\u03B3\u03BA\u03B1\u03AF\u03C1\u03C9\u03C2 \u03C4\u03B1 \u0394\u03B5\u03B4\u03BF\u03BC\u03AD\u03BD\u03B1 \u0395\u03B3\u03B3\u03C1\u03B1\u03C6\u03AE\u03C2, \u03CE\u03C3\u03C4\u03B5 \u03BD\u03B1 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03B1\u03BB\u03B7\u03B8\u03AE, \u03B1\u03BA\u03C1\u03B9\u03B2\u03AE, \u03B5\u03BD\u03B7\u03BC\u03B5\u03C1\u03C9\u03BC\u03AD\u03BD\u03B1 \u03BA\u03B1\u03B9 \u03C0\u03BB\u03AE\u03C1\u03B7. \u03A3\u03B5 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C0\u03BF\u03C5 \u03B4\u03CE\u03C3\u03B5\u03C4\u03B5 \u03BF\u03C0\u03BF\u03B9\u03B1\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03AF\u03B1 \u03C0\u03BF\u03C5 \u03B4\u03B5\u03BD \u03B5\u03AF\u03BD\u03B1\u03B9 \u03B1\u03BB\u03B7\u03B8\u03AE\u03C2, \u03B1\u03BA\u03C1\u03B9\u03B2\u03AE\u03C2, \u03B5\u03BD\u03B7\u03BC\u03B5\u03C1\u03C9\u03BC\u03AD\u03BD\u03B7 \u03AE \u03C0\u03BB\u03AE\u03C1\u03B7\u03C2 \u03AE \u03C4\u03BF kentro-jeans.gr \u03AD\u03C7\u03B5\u03B9 \u03BB\u03CC\u03B3\u03BF\u03C5\u03C2 \u03BD\u03B1 \u03C5\u03C0\u03BF\u03C0\u03C4\u03B5\u03CD\u03B5\u03C4\u03B1\u03B9 \u03CC\u03C4\u03B9 \u03BF\u03B9 \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03AF\u03B5\u03C2 \u03B1\u03C5\u03C4\u03AD\u03C2 \u03B4\u03B5\u03BD \u03B5\u03AF\u03BD\u03B1\u03B9 \u03B1\u03BA\u03C1\u03B9\u03B2\u03B5\u03AF\u03C2, \u03B1\u03BB\u03B7\u03B8\u03AE\u03C2, \u03B5\u03BD\u03B7\u03BC\u03B5\u03C1\u03C9\u03BC\u03AD\u03BD\u03B5\u03C2 \u03AE \u03C0\u03BB\u03AE\u03C1\u03B5\u03B9\u03C2, \u03C4\u03BF kentro-jeans.gr \u03AD\u03C7\u03B5\u03B9 \u03C4\u03BF \u03B4\u03B9\u03BA\u03B1\u03AF\u03C9\u03BC\u03B1 \u03BD\u03B1 \u03B4\u03B9\u03B1\u03BA\u03CC\u03C8\u03B5\u03B9 \u03C0\u03C1\u03BF\u03C3\u03C9\u03C1\u03B9\u03BD\u03AC \u03AE \u03BF\u03C1\u03B9\u03C3\u03C4\u03B9\u03BA\u03AC \u03C4\u03BF \u03BB\u03BF\u03B3\u03B1\u03C1\u03B9\u03B1\u03C3\u03BC\u03CC \u03C3\u03B1\u03C2 \u03BA\u03B1\u03B9 \u03BD\u03B1 \u03C3\u03C4\u03B1\u03BC\u03B1\u03C4\u03AE\u03C3\u03B5\u03B9 \u03BD\u03B1 \u03C3\u03B1\u03C2 \u03C0\u03C1\u03BF\u03BC\u03B7\u03B8\u03B5\u03CD\u03B5\u03B9"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"(\u03B3) \u03B5\u03AF\u03BD\u03B1\u03B9 \u03B5\u03C5\u03B8\u03CD\u03BD\u03B7 \u03C4\u03BF\u03C5 \u03C0\u03B5\u03BB\u03AC\u03C4\u03B7 \u03BD\u03B1 \u03B5\u03BD\u03B7\u03BC\u03B5\u03C1\u03CE\u03BD\u03B5\u03C4\u03B1\u03B9 \u03B3\u03B9\u03B1 \u03C4\u03C5\u03C7\u03CC\u03BD \u03B1\u03BB\u03BB\u03B1\u03B3\u03AD\u03C2 \u03C3\u03B5 \u03B1\u03C5\u03C4\u03BF\u03CD\u03C2 \u03C4\u03BF\u03C5 \u039F&\u03A0 \u03B1\u03BD\u03AC \u03C0\u03AC\u03C3\u03B1 \u03C3\u03C4\u03B9\u03B3\u03BC\u03B7, \u03AD\u03C3\u03C4\u03C9 \u03BA\u03B1\u03B9 \u03AC\u03BD \u03C3\u03B5 \u03BA\u03AC\u03B8\u03B5 \u03B1\u03B3\u03BF\u03C1\u03AC, \u03C4\u03BF\u03C5 \u03B6\u03B7\u03C4\u03B5\u03AF\u03C4\u03B1\u03B9 \u03BD\u03B1 \u03C3\u03C5\u03BC\u03C6\u03C9\u03BD\u03AE\u03C3\u03B5\u03B9 \u03BC\u03B5 \u03B1\u03C5\u03C4\u03BF\u03CD\u03C2 \u03B3\u03B9\u03B1 \u03BD\u03B1 \u03B5\u03C0\u03B9\u03BA\u03C5\u03C1\u03C9\u03B8\u03B5\u03AF \u03B7 \u03B5\u03BD\u03C4\u03BF\u03BB\u03AE \u03C4\u03BF\u03C5."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"2. \u03A4\u03CC\u03C0\u03BF\u03C2 \u03B4\u03C1\u03B1\u03C3\u03C4\u03B7\u03C1\u03B9\u03CC\u03C4\u03B7\u03C4\u03B1\u03C2 \u03BA\u03B1\u03B9 \u03B5\u03C6\u03B1\u03C1\u03BC\u03BF\u03C3\u03C4\u03AD\u03BF \u03B4\u03AF\u03BA\u03B1\u03B9\u03BF."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"\u0397 P\u039F\u039A Ltd \u03B5\u03AF\u03BD\u03B1\u03B9 \u03BC\u03B9\u03B1 \u03B5\u03C4\u03B1\u03B9\u03C1\u03B5\u03AF\u03B1 \u03B5\u03B3\u03B3\u03B5\u03B3\u03C1\u03B1\u03BC\u03BC\u03AD\u03BD\u03B7 \u03C3\u03C4\u03B7\u03BD \u0395\u03BB\u03BB\u03AC\u03B4\u03B1. \u0395\u03BA\u03C4\u03CC\u03C2 \u03B5\u03AC\u03BD \u03B1\u03BD\u03B1\u03C6\u03AD\u03C1\u03B5\u03C4\u03B1\u03B9 \u03B4\u03B9\u03B1\u03C6\u03BF\u03C1\u03B5\u03C4\u03B9\u03BA\u03AC, \u03C4\u03BF \u03C0\u03B5\u03C1\u03B9\u03B5\u03C7\u03CC\u03BC\u03B5\u03BD\u03BF \u03B1\u03C5\u03C4\u03BF\u03CD \u03C4\u03BF\u03C5 \u03B4\u03B9\u03BA\u03C4\u03C5\u03B1\u03BA\u03BF\u03CD \u03C4\u03CC\u03C0\u03BF\u03C5 \u03B1\u03C0\u03B5\u03C5\u03B8\u03CD\u03BD\u03B5\u03C4\u03B1\u03B9 \u03BC\u03CC\u03BD\u03BF \u03C3\u03C4\u03B1 \u03AC\u03C4\u03BF\u03BC\u03B1 \u03C0\u03BF\u03C5 \u03B5\u03C0\u03B9\u03C3\u03BA\u03AD\u03C0\u03C4\u03BF\u03BD\u03C4\u03B1\u03B9 \u03C4\u03BF \u03B4\u03B9\u03BA\u03C4\u03C5\u03B1\u03BA\u03CC \u03C4\u03CC\u03C0\u03BF \u03B1\u03C0\u03CC \u03C4\u03B7\u03BD \u0395\u03BB\u03BB\u03AC\u03B4\u03B1. \u03A4\u03BF kentro-jeans.gr \u03B4\u03B5\u03BD \u03B4\u03B7\u03BB\u03CE\u03BD\u03B5\u03B9 \u03CC\u03C4\u03B9 \u03BF\u03C0\u03BF\u03B9\u03BF\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD \u03C0\u03BF\u03C5 \u03B1\u03BD\u03B1\u03C6\u03AD\u03C1\u03B5\u03C4\u03B1\u03B9 \u03C3\u03C4\u03BF\u03BD \u03B4\u03B9\u03BA\u03C4\u03C5\u03B1\u03BA\u03CC \u03B1\u03C5\u03C4\u03CC \u03C4\u03CC\u03C0\u03BF \u03B5\u03AF\u03BD\u03B1\u03B9 \u03BA\u03B1\u03C4\u03AC\u03BB\u03BB\u03B7\u03BB\u03BF \u03B3\u03B9\u03B1 \u03C7\u03C1\u03AE\u03C3\u03B7 \u03AE \u03B4\u03B9\u03B1\u03B8\u03AD\u03C3\u03B9\u03BC\u03BF \u03BA\u03B1\u03B9 \u03C3\u03B5 \u03AC\u03BB\u03BB\u03B5\u03C2 \u03C0\u03B5\u03C1\u03B9\u03BF\u03C7\u03AD\u03C2.  \u0397 \u03C0\u03B1\u03C1\u03BF\u03CD\u03C3\u03B1 \u03A3\u03CD\u03BC\u03B2\u03B1\u03C3\u03B7 \u03B4\u03B9\u03AD\u03C0\u03B5\u03C4\u03B1\u03B9 \u03B1\u03C0\u03CC \u03C4\u03B7\u03BD E\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AE \u03BD\u03BF\u03BC\u03BF\u03B8\u03B5\u03C3\u03AF\u03B1."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"\u0397 \u03B5\u03C4\u03B1\u03B9\u03C1\u03B5\u03AF\u03B1 \u03BC\u03B1\u03C2 \u03BA\u03B1\u03B9 \u03B5\u03C3\u03B5\u03AF\u03C2 \u03C5\u03C0\u03B1\u03B3\u03CC\u03BC\u03B1\u03C3\u03C4\u03B5 \u03C3\u03C4\u03B7\u03BD \u03B1\u03C0\u03BF\u03BA\u03BB\u03B5\u03B9\u03C3\u03C4\u03B9\u03BA\u03AE \u03B4\u03B9\u03BA\u03B1\u03B9\u03BF\u03B4\u03BF\u03C3\u03AF\u03B1 \u03C4\u03C9\u03BD \u03B5\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03CE\u03BD \u03B4\u03B9\u03BA\u03B1\u03C3\u03C4\u03B7\u03C1\u03AF\u03C9\u03BD \u03CC\u03C3\u03BF\u03BD \u03B1\u03C6\u03BF\u03C1\u03AC \u03C4\u03B7\u03BD \u03B5\u03C0\u03AF\u03BB\u03C5\u03C3\u03B7 \u03B4\u03B9\u03B5\u03BD\u03AD\u03BE\u03B5\u03C9\u03BD \u03C0\u03BF\u03C5 \u03B5\u03BD\u03B4\u03B5\u03C7\u03BF\u03BC\u03AD\u03BD\u03C9\u03C2 \u03C0\u03C1\u03BF\u03BA\u03CD\u03C8\u03BF\u03C5\u03BD \u03B1\u03C0\u03CC \u03C4\u03B7\u03BD \u03C0\u03B1\u03C1\u03BF\u03CD\u03C3\u03B1 \u03A3\u03CD\u03BC\u03B2\u03B1\u03C3\u03B7. \u03A3\u03B5 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C0\u03BF\u03C5 \u03BF\u03C0\u03BF\u03B9\u03B1\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03B4\u03B9\u03AC\u03C4\u03B1\u03BE\u03B7 \u03C4\u03B7\u03C2 \u03C0\u03B1\u03C1\u03BF\u03CD\u03C3\u03B1\u03C2 \u03A3\u03CD\u03BC\u03B2\u03B1\u03C3\u03B7\u03C2 \u03BA\u03C1\u03B9\u03B8\u03B5\u03AF \u03C0\u03B1\u03C1\u03AC\u03BD\u03BF\u03BC\u03B7, \u03AC\u03BA\u03C5\u03C1\u03B7 \u03AE \u03B3\u03B9\u03B1 \u03BF\u03C0\u03BF\u03B9\u03BF\u03BD\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03BB\u03CC\u03B3\u03BF \u03BC\u03B7 \u03B5\u03C6\u03B1\u03C1\u03BC\u03CC\u03C3\u03B9\u03BC\u03B7, \u03B7 \u03B4\u03B9\u03AC\u03C4\u03B1\u03BE\u03B7 \u03B1\u03C5\u03C4\u03AE \u03B8\u03B1 \u03B8\u03B5\u03C9\u03C1\u03B5\u03AF\u03C4\u03B1\u03B9 \u03B4\u03B9\u03B1\u03B9\u03C1\u03B5\u03C4\u03AE \u03BA\u03B1\u03B9 \u03B4\u03B5\u03BD \u03B8\u03B1 \u03B5\u03C0\u03B7\u03C1\u03B5\u03AC\u03B6\u03B5\u03B9 \u03C4\u03B7\u03BD \u03B5\u03B3\u03BA\u03C5\u03C1\u03CC\u03C4\u03B7\u03C4\u03B1 \u03BA\u03B1\u03B9 \u03B5\u03C6\u03B1\u03C1\u03BC\u03BF\u03C3\u03B9\u03BC\u03CC\u03C4\u03B7\u03C4\u03B1 \u03C4\u03C9\u03BD \u03C5\u03C0\u03CC\u03BB\u03BF\u03B9\u03C0\u03C9\u03BD \u03B4\u03B9\u03B1\u03C4\u03AC\u03BE\u03B5\u03C9\u03BD."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"3. \u03A0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B5\u03C2"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"3.1 \u039C\u03B5 \u03C4\u03B7\u03BD \u03C5\u03C0\u03BF\u03B2\u03BF\u03BB\u03AE \u03BF\u03C0\u03BF\u03B9\u03B1\u03C3\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1\u03C2 \u03C3\u03C4\u03BF kentro-jeans.gr, \u03B5\u03BD\u03BD\u03BF\u03B5\u03AF\u03C4\u03B1\u03B9 \u03CC\u03C4\u03B9 \u03AD\u03C7\u03B5\u03C4\u03B5 \u03B1\u03C0\u03BF\u03B4\u03B5\u03C7\u03C4\u03B5\u03AF \u03C4\u03BF \u03C0\u03B1\u03C1\u03CC\u03BD, \u03CC\u03C0\u03C9\u03C2 \u03B5\u03C0\u03AF\u03C3\u03B7\u03C2 \u03CC\u03C4\u03B9 \u03BA\u03B1\u03C4\u03B1\u03BD\u03BF\u03B5\u03AF\u03C4\u03B5 \u03BA\u03B1\u03B9 \u03B1\u03C0\u03BF\u03B4\u03AD\u03C7\u03B5\u03C3\u03C4\u03B5 \u03C4\u03B9\u03C2 \u03CC\u03C0\u03BF\u03B9\u03BF\u03C5 \u03B5\u03AF\u03B4\u03BF\u03C5\u03C2 \u03BD\u03CC\u03BC\u03B9\u03BC\u03B5\u03C2 \u03C6\u03BF\u03C1\u03BF\u03BB\u03BF\u03B3\u03B9\u03BA\u03AD\u03C2 \u03B5\u03C0\u03B9\u03B2\u03B1\u03C1\u03CD\u03BD\u03C3\u03B5\u03B9\u03C2 \u03BA\u03B1\u03B9 \u03C4\u03B1 \u03B5\u03BD\u03B4\u03B5\u03C7\u03CC\u03BC\u03B5\u03BD\u03B1 \u03AD\u03BE\u03BF\u03B4\u03B1 \u03B1\u03C0\u03BF\u03C3\u03C4\u03BF\u03BB\u03AE\u03C2, \u03C3\u03B5 \u03B5\u03B9\u03B4\u03B9\u03BA\u03AD\u03C2 \u03C0\u03B5\u03C1\u03B9\u03C0\u03C4\u03CE\u03C3\u03B5\u03B9\u03C2 \u03C4\u03B1 \u03AD\u03BE\u03BF\u03B4\u03B1 \u03B5\u03B9\u03B4\u03B9\u03BA\u03AE\u03C2 \u03C3\u03C5\u03C3\u03BA\u03B5\u03C5\u03B1\u03C3\u03AF\u03B1\u03C2, \u03C4\u03B1 \u03AD\u03BE\u03BF\u03B4\u03B1 \u03B5\u03C0\u03B1\u03BB\u03AE\u03B8\u03B5\u03C5\u03C3\u03B7\u03C2 \u03C4\u03B1\u03C5\u03C4\u03CC\u03C4\u03B7\u03C4\u03B1\u03C2 \u03C3\u03C4\u03B7 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03B1\u03B3\u03BF\u03C1\u03AC\u03C2 \u03BC\u03B5 \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03AE \u03BA\u03AC\u03C1\u03C4\u03B1 \u03BA\u03B1\u03B9 \u03B5\u03BD \u03B3\u03AD\u03BD\u03B5\u03B9 \u03C4\u03B1 \u03AD\u03BE\u03BF\u03B4\u03B1 \u03C0\u03BF\u03C5 \u03B1\u03BD\u03B1\u03C6\u03AD\u03C1\u03BF\u03BD\u03C4\u03B1\u03B9 \u03C3\u03C4\u03BF\u03BD \u03BA\u03B1\u03C4\u03AC\u03BB\u03BF\u03B3\u03BF \u03C0\u03BF\u03C5 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03B1\u03BD\u03B1\u03C1\u03C4\u03B7\u03BC\u03AD\u03BD\u03BF\u03C2 \u03C3\u03C4\u03B7\u03BD \u03B9\u03C3\u03C4\u03BF\u03C3\u03B5\u03BB\u03AF\u03B4\u03B1 \u03BC\u03B1\u03C2."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"3.2 \u03A4\u03BF kentro-jeans.gr \u03B4\u03B5\u03BD \u03B5\u03AF\u03BD\u03B1\u03B9 \u03C5\u03C0\u03BF\u03C7\u03C1\u03B5\u03C9\u03BC\u03AD\u03BD\u03BF \u03BD\u03B1 \u03C3\u03B1\u03C2 \u03B1\u03C0\u03BF\u03C3\u03C4\u03B5\u03AF\u03BB\u03B5\u03B9 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03B1 \u03AE \u03C5\u03C0\u03B7\u03C1\u03B5\u03C3\u03AF\u03B5\u03C2 \u03C0\u03BF\u03C5 \u03AD\u03C7\u03B5\u03C4\u03B5 \u03C5\u03C0\u03BF\u03B2\u03AC\u03BB\u03B5\u03B9 \u03C3\u03C4\u03B7\u03BD \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1 \u03C3\u03B1\u03C2, \u03AD\u03C9\u03C2 \u03CC\u03C4\u03BF\u03C5 \u03BB\u03AC\u03B2\u03B5\u03C4\u03B5 \u03AD\u03BD\u03B1 e-mail \u03B5\u03C0\u03B9\u03B2\u03B5\u03B2\u03B1\u03AF\u03C9\u03C3\u03B7\u03C2 \u03B1\u03C0\u03CC \u03C4\u03BF kentro-jeans.gr, \u03BC\u03B5 \u03C4\u03BF \u03BF\u03C0\u03BF\u03AF\u03BF \u03B1\u03C0\u03BF\u03B4\u03AD\u03C7\u03B5\u03C4\u03B1\u03B9 \u03C4\u03B7\u03BD \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1 \u03C3\u03B1\u03C2 (\xAB\u0395\u03C0\u03B9\u03B2\u03B5\u03B2\u03B1\u03AF\u03C9\u03C3\u03B7 \u03A0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1\u03C2\xBB). \u03A9\u03C3\u03C4\u03CC\u03C3\u03BF, \u03C3\u03B5 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C0\u03BF\u03C5 \u03C4\u03B1 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03B1 \u03AE \u03BF\u03B9 \u03C5\u03C0\u03B7\u03C1\u03B5\u03C3\u03AF\u03B5\u03C2 \u03B1\u03BD\u03B1\u03C6\u03AD\u03C1\u03BF\u03BD\u03C4\u03B1\u03B9 \u03C3\u03C4\u03BF\u03BD \u03B4\u03B9\u03BA\u03C4\u03C5\u03B1\u03BA\u03CC \u03C4\u03CC\u03C0\u03BF \u03C4\u03BF kentro-jeans.gr \u03BC\u03B5 \u03BB\u03AC\u03B8\u03BF\u03C2 \u03C4\u03B9\u03BC\u03AE \u03BB\u03CC\u03B3\u03C9 \u03C4\u03C5\u03C0\u03BF\u03B3\u03C1\u03B1\u03C6\u03B9\u03BA\u03BF\u03CD \u03C3\u03C6\u03AC\u03BB\u03BC\u03B1\u03C4\u03BF\u03C2 \u03AE \u03C3\u03C6\u03AC\u03BB\u03BC\u03B1\u03C4\u03BF\u03C2 \u03C3\u03C4\u03B1 \u03C3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03B1 \u03C4\u03B9\u03BC\u03BF\u03BB\u03CC\u03B3\u03B7\u03C3\u03B7\u03C2, \u03B1\u03BB\u03BB\u03AC \u03C4\u03BF kentro-jeans.gr \u03B1\u03C0\u03BF\u03B4\u03AD\u03C7\u03C4\u03B7\u03BA\u03B5 \u03C4\u03B7\u03BD \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1 \u03C3\u03B1\u03C2 \u03C0\u03C1\u03B9\u03BD \u03B4\u03B9\u03B1\u03C0\u03B9\u03C3\u03C4\u03C9\u03B8\u03B5\u03AF \u03B7 \u03B4\u03B9\u03B1\u03C6\u03BF\u03C1\u03AC, \u03C4\u03BF kentro-jeans.gr \u03B8\u03B1 \u03C3\u03B1\u03C2 \u03C3\u03C4\u03B5\u03AF\u03BB\u03B5\u03B9 \u03AD\u03BD\u03B1 \u03BC\u03AE\u03BD\u03C5\u03BC\u03B1 \u03B7\u03BB\u03B5\u03BA\u03C4\u03C1\u03BF\u03BD\u03B9\u03BA\u03BF\u03CD \u03C4\u03B1\u03C7\u03C5\u03B4\u03C1\u03BF\u03BC\u03B5\u03AF\u03BF\u03C5 \u03C3\u03C4\u03BF \u03BF\u03C0\u03BF\u03AF\u03BF \u03B8\u03B1 \u03C3\u03B1\u03C2 \u03C1\u03C9\u03C4\u03AC\u03B5\u03B9 \u03B1\u03BD \u03B5\u03C0\u03B9\u03B8\u03C5\u03BC\u03B5\u03AF\u03C4\u03B5 \u03BD\u03B1 \u03BA\u03B1\u03C4\u03B1\u03B2\u03AC\u03BB\u03B5\u03C4\u03B5 \u03C4\u03B7 \u03C3\u03C9\u03C3\u03C4\u03AE \u03C4\u03B9\u03BC\u03AE \u03C4\u03C9\u03BD \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03C9\u03BD \u03BA\u03B1\u03B9 \u03C5\u03C0\u03B7\u03C1\u03B5\u03C3\u03B9\u03CE\u03BD \u03C0\u03BF\u03C5 \u03AD\u03C7\u03B5\u03C4\u03B5 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03AF\u03BB\u03B5\u03B9. \u0391\u03BD \u03B4\u03B5\u03BD \u03B5\u03C0\u03B9\u03B8\u03C5\u03BC\u03B5\u03AF\u03C4\u03B5 \u03BD\u03B1 \u03BA\u03B1\u03C4\u03B1\u03B2\u03AC\u03BB\u03B5\u03C4\u03B5 \u03C4\u03B7 \u03C3\u03C9\u03C3\u03C4\u03AE \u03C4\u03B9\u03BC\u03AE, \u03C4\u03BF kentro-jeans.gr \u03B4\u03B9\u03B1\u03C4\u03B7\u03C1\u03B5\u03AF \u03C4\u03BF \u03B4\u03B9\u03BA\u03B1\u03AF\u03C9\u03BC\u03B1 \u03BD\u03B1 \u03B1\u03BA\u03C5\u03C1\u03CE\u03C3\u03B5\u03B9 \u03C4\u03B7 \u03C3\u03CD\u03BC\u03B2\u03B1\u03C3\u03B7 \u03B1\u03BC\u03AD\u03C3\u03C9\u03C2, \u03C7\u03C9\u03C1\u03AF\u03C2 \u03BA\u03B1\u03BC\u03AF\u03B1 \u03B5\u03C5\u03B8\u03CD\u03BD\u03B7 \u03C0\u03C1\u03BF\u03C2 \u03B5\u03C3\u03AC\u03C2."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"3.3 \u03A3\u03B5 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C0\u03BF\u03C5 \u03C4\u03BF kentro-jeans.gr \u03B1\u03C3\u03BA\u03AE\u03C3\u03B5\u03B9 \u03C4\u03BF \u03B4\u03B9\u03BA\u03B1\u03AF\u03C9\u03BC\u03AC \u03C4\u03BF\u03C5 \u03C3\u03CD\u03BC\u03C6\u03C9\u03BD\u03B1 \u03BC\u03B5 \u03C4\u03B7\u03BD \u03C0\u03B1\u03C1\u03AC\u03B3\u03C1\u03B1\u03C6\u03BF 3.2 \u03BD\u03B1 \u03B1\u03BA\u03C5\u03C1\u03CE\u03C3\u03B5\u03B9 \u03C4\u03B7 \u03C3\u03CD\u03BC\u03B2\u03B1\u03C3\u03B7 \u03B1\u03BC\u03AD\u03C3\u03C9\u03C2, \u03BA\u03B1\u03B9 \u03C3\u03B5 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C7\u03C1\u03AE\u03C3\u03B7\u03C2 \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03AE\u03C2 \u03BA\u03AC\u03C1\u03C4\u03B1\u03C2 \u03B8\u03B1 \u03B5\u03BA\u03B4\u03CE\u03C3\u03B5\u03B9 \u03C4\u03B1\u03C5\u03C4\u03CC\u03C7\u03C1\u03BF\u03BD\u03B1 \u03BC\u03B9\u03B1 \u03C0\u03AF\u03C3\u03C4\u03C9\u03C3\u03B7 \u03C4\u03BF\u03C5 \u03BB\u03BF\u03B3\u03B1\u03C1\u03B9\u03B1\u03C3\u03BC\u03BF\u03CD \u03C4\u03B7\u03C2 \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03AE\u03C2 \u03AE \u03C7\u03C1\u03B5\u03C9\u03C3\u03C4\u03B9\u03BA\u03AE\u03C2 \u03BA\u03AC\u03C1\u03C4\u03B1\u03C2 \u03C3\u03B1\u03C2, \u03B5\u03AC\u03BD \u03C4\u03B7\u03BD \u03AD\u03C7\u03B5\u03B9 \u03AE\u03B4\u03B7 \u03C7\u03C1\u03B5\u03CE\u03C3\u03B5\u03B9 \u03C0\u03C1\u03B9\u03BD \u03C4\u03B7\u03BD \u03B1\u03BA\u03CD\u03C1\u03C9\u03C3\u03B7 \u03C4\u03B7\u03C2 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1\u03C2 \u03C3\u03B1\u03C2 \u03AE \u03BD\u03B1 \u03C0\u03C1\u03BF\u03B2\u03B5\u03AF \u03C3\u03C4\u03B7\u03BD \u03B4\u03B9\u03B1\u03B3\u03C1\u03B1\u03C6\u03AE \u03BA\u03B1\u03B9 \u03BD\u03B1 \u03B1\u03BA\u03CD\u03C1\u03C9\u03C3\u03B7 \u03C4\u03B7 \u03C0\u03C1\u03AC\u03BE\u03B7 \u03B1\u03B3\u03BF\u03C1\u03AC\u03C2 \u03BC\u03B5 \u03C4\u03B7\u03BD \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03AE \u03AD\u03C4\u03C3\u03B9 \u03CE\u03C3\u03C4\u03B5 \u03BD\u03B1 \u03BC\u03B7\u03BD \u03B3\u03AF\u03BD\u03B5\u03B9 \u03B7 \u03C7\u03C1\u03AD\u03C9\u03C3\u03B7 \u03C3\u03C4\u03BF\u03BD \u03BA\u03B1\u03C4\u03B1\u03BD\u03B1\u03BB\u03C9\u03C4\u03AE"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"3.4 \u03A4\u03BF kentro-jeans.gr \u03AD\u03C7\u03B5\u03B9 \u03B4\u03B9\u03BA\u03B1\u03AF\u03C9\u03BC\u03B1 \u03BD\u03B1 \u03BC\u03B7\u03BD \u03B1\u03C0\u03BF\u03B4\u03B5\u03C7\u03C4\u03B5\u03AF \u03B1\u03B3\u03BF\u03C1\u03AC \u03C0\u03BF\u03C5 \u03AD\u03B3\u03B9\u03BD\u03B5 \u03BC\u03B5 \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03AE \u03BA\u03AC\u03C1\u03C4\u03B1, \u03B1\u03BA\u03C5\u03C1\u03CE\u03BD\u03BF\u03BD\u03C4\u03B1\u03C2 \u03C4\u03B7\u03BD \u03C0\u03C1\u03AC\u03BE\u03B7 \u03C0\u03BB\u03B7\u03C1\u03C9\u03BC\u03AE\u03C2, \u03C7\u03C9\u03C1\u03AF\u03C2 \u03BD\u03B1 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03C5\u03C0\u03BF\u03C7\u03C1\u03B5\u03C9\u03BC\u03AD\u03BD\u03BF \u03BD\u03B1 \u03B4\u03CE\u03C3\u03B5\u03B9 \u03B5\u03BE\u03B7\u03B3\u03AE\u03C3\u03B5\u03B9\u03C2 \u03C0\u03AD\u03C1\u03B1\u03BD \u03B1\u03C0\u03CC \u03C4\u03BF \u03BD\u03B1 \u03B5\u03B9\u03B4\u03BF\u03C0\u03BF\u03B9\u03AE\u03C3\u03B5\u03B9 \u03C4\u03BF\u03BD \u03C0\u03B5\u03BB\u03AC\u03C4\u03B7 \u03B3\u03B9\u03B1 \u03C4\u03B7\u03BD \u03BC\u03B7 \u03B1\u03C0\u03BF\u03B4\u03BF\u03C7\u03AE."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"3.5 \u03A4\u03BF kentro-jeans.gr \u03AD\u03C7\u03B5\u03B9 \u03C4\u03BF \u03B4\u03B9\u03BA\u03B1\u03AF\u03C9\u03BC\u03B1 \u03BD\u03B1 \u03B6\u03B7\u03C4\u03AE\u03C3\u03B5\u03B9 \u03BD\u03B1 \u03C4\u03BF\u03C5 \u03B1\u03C0\u03BF\u03C3\u03C4\u03B1\u03BB\u03B5\u03AF \u03B1\u03BD\u03C4\u03AF\u03B3\u03C1\u03B1\u03C6\u03BF \u03C4\u03B1\u03C5\u03C4\u03CC\u03C4\u03B7\u03C4\u03B1\u03C2 \u03AE/\u03BA\u03B1\u03B9 \u03B1\u03BD\u03C4\u03AF\u03B3\u03C1\u03B1\u03C6\u03BF \u03C4\u03B7\u03C2 \u03C0\u03C1\u03CC\u03C3\u03B8\u03B9\u03B1\u03C2 \u03CC\u03C8\u03B7\u03C2 \u03C4\u03B7\u03C2 \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03AE\u03C2, \u03C3\u03C4\u03B7\u03BD \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C0\u03BF\u03C5 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03B1\u03BD\u03B1\u03B3\u03BA\u03B1\u03AF\u03B1 \u03B7 \u03C4\u03B1\u03C5\u03C4\u03BF\u03C0\u03BF\u03AF\u03B7\u03C3\u03B7 \u03C0\u03C1\u03BF\u03C3\u03CE\u03C0\u03BF\u03C5 \u03B1\u03BD\u03B1\u03C6\u03BF\u03C1\u03B9\u03BA\u03AC \u03BC\u03B5 \u03C4\u03B9\u03C2 \u03B1\u03B3\u03BF\u03C1\u03AD\u03C2 \u03C0\u03BF\u03C5 \u03B3\u03AF\u03BD\u03BF\u03BD\u03C4\u03B1\u03B9 \u03BC\u03B5 \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03AD\u03C2 \u03BA\u03AC\u03C1\u03C4\u03B5\u03C2"
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"4. \u0394\u03B9\u03BA\u03B1\u03AF\u03C9\u03BC\u03B1 \u03B1\u03BA\u03CD\u03C1\u03C9\u03C3\u03B7\u03C2 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1\u03C2 & \u03B1\u03B3\u03BF\u03C1\u03AC\u03C2 - \u0395\u03C0\u03B9\u03C3\u03C4\u03C1\u03BF\u03C6\u03AD\u03C2"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"4.1 \u03A5\u03C0\u03AC\u03C1\u03C7\u03B5\u03B9 \u03B4\u03B9\u03BA\u03B1\u03AF\u03C9\u03BC\u03B1 \u03B1\u03BA\u03CD\u03C1\u03C9\u03C3\u03B7\u03C2 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1\u03C2 \u03B5\u03C6\u03CC\u03C3\u03BF\u03BD \u03B4\u03B5\u03BD \u03C3\u03B1\u03C2 \u03AD\u03C7\u03B5\u03B9 \u03B1\u03C0\u03BF\u03C3\u03C4\u03B1\u03BB\u03B5\u03AF \u03C4\u03BF email \xAB\u0395\u03C0\u03B9\u03B2\u03B5\u03B2\u03B1\u03AF\u03C9\u03C3\u03B7\u03C2 \u03A0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1\u03C2\xBB \u03BA\u03B1\u03B9 \u03C4\u03BF \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD \u03AD\u03C7\u03B5\u03B9 \u03B4\u03B5\u03BD \u03AD\u03C7\u03B5\u03B9 \u03C0\u03B1\u03C1\u03B1\u03B4\u03BF\u03B8\u03B5\u03AF \u03B3\u03B9\u03B1 \u03B1\u03C0\u03BF\u03C3\u03C4\u03BF\u03BB\u03AE."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"4.2 \u03A5\u03C0\u03AC\u03C1\u03C7\u03B5\u03B9 \u03B4\u03B9\u03BA\u03B1\u03AF\u03C9\u03BC\u03B1 \u03B5\u03C0\u03B9\u03C3\u03C4\u03C1\u03BF\u03C6\u03AE\u03C2 \u03C3\u03C4\u03B7\u03BD \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03B5\u03BB\u03B1\u03C4\u03C4\u03C9\u03BC\u03B1\u03C4\u03B9\u03BA\u03CE\u03BD \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03C9\u03BD . \u0391\u03C5\u03C4\u03CC \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03B3\u03AF\u03BD\u03B5\u03B9 \u03BC\u03AD\u03C3\u03B1 \u03C3\u03B5 \u03B4\u03B5\u03BA\u03B1\u03C4\u03AD\u03C3\u03C3\u03B5\u03C1\u03B5\u03B9\u03C2 \u03B7\u03BC\u03AD\u03C1\u03B5\u03C2 \u03B1\u03C0\u03CC \u03C4\u03B7\u03BD \u03B7\u03BC\u03B5\u03C1\u03BF\u03BC\u03B7\u03BD\u03AF\u03B1 \u03C0\u03B1\u03C1\u03AC\u03B4\u03BF\u03C3\u03B7\u03C2."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"4.2 \u0397 \u03B5\u03B9\u03B4\u03BF\u03C0\u03BF\u03AF\u03B7\u03C3\u03B7 \u03B1\u03BA\u03CD\u03C1\u03C9\u03C3\u03B7\u03C2 \u03AE \u03B5\u03C0\u03B9\u03C3\u03C4\u03C1\u03BF\u03C6\u03AE\u03C2 \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03B1\u03C0\u03BF\u03C3\u03C4\u03B1\u03BB\u03B5\u03AF \u03BC\u03B5 e-mail \u03C3\u03C4\u03BF contact@kentro-jeans.gr \u03BA\u03B1\u03B9 \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03B1\u03BD\u03B1\u03C6\u03AD\u03C1\u03B5\u03B9 \u03C4\u03BF \u03CC\u03BD\u03BF\u03BC\u03AC \u03C3\u03B1\u03C2, \u03BC\u03B9\u03B1 \u03C0\u03B5\u03C1\u03B9\u03B3\u03C1\u03B1\u03C6\u03AE \u03C4\u03C9\u03BD \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03C9\u03BD \u03C0\u03BF\u03C5 \u03AD\u03C7\u03B5\u03C4\u03B5 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03AF\u03BB\u03B5\u03B9 \u03BA\u03B1\u03B8\u03CE\u03C2 \u03BA\u03B1\u03B9 \u03C4\u03B7\u03BD \u03C0\u03B5\u03C1\u03B9\u03B3\u03C1\u03B1\u03C6\u03AE \u03C4\u03BF\u03C5 \u03B5\u03BB\u03B1\u03C4\u03C4\u03CE\u03BC\u03B1\u03C4\u03BF\u03C2, \u03B5\u03C0\u03B9\u03C3\u03C5\u03BD\u03AC\u03C0\u03C4\u03BF\u03BD\u03C4\u03B1\u03C2 \u039F\u03A0\u03A9\u03A3\u0394\u0397\u03A0\u039F\u03A4\u0395 \u03C4\u03B7\u03BD \u03B1\u03C0\u03CC\u03B4\u03B5\u03B9\u03BE\u03B7 \u03B1\u03B3\u03BF\u03C1\u03AC\u03C2."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"4.3 \u03A3\u03B5 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C0\u03BF\u03C5 \u03C4\u03BF kentro-jeans.gr \u03C3\u03B1\u03C2 \u03AD\u03C7\u03B5\u03B9 \u03C0\u03C1\u03BF\u03BC\u03B7\u03B8\u03B5\u03CD\u03C3\u03B5\u03B9 \u03B5\u03BB\u03B1\u03C4\u03C4\u03C9\u03BC\u03B1\u03C4\u03B9\u03BA\u03CC \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD, \u03BF\u03C6\u03B5\u03AF\u03BB\u03B5\u03C4\u03B5 \u03BD\u03B1 \u03BC\u03B5\u03C1\u03B9\u03BC\u03BD\u03AE\u03C3\u03B5\u03C4\u03B5 \u03B4\u03B5\u03CC\u03BD\u03C4\u03C9\u03C2 \u03B3\u03B9\u03B1 \u03B1\u03C5\u03C4\u03CC \u03BC\u03AD\u03C7\u03C1\u03B9 \u03C4\u03B7\u03BD \u03B5\u03C0\u03B9\u03C3\u03C4\u03C1\u03BF\u03C6\u03AE \u03C4\u03BF\u03C5 \u03C3\u03C4\u03BF kentro-jeans.gr. \u03A4\u03BF kentro-jeans.gr \u03B1\u03C0\u03BF\u03B4\u03AD\u03C7\u03B5\u03C4\u03B1\u03B9 \u03BC\u03CC\u03BD\u03BF \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03B1 \u03C0\u03BF\u03C5 \u03B5\u03C0\u03B9\u03C3\u03C4\u03C1\u03AD\u03C6\u03BF\u03BD\u03C4\u03B1\u03B9 \u03C3\u03C4\u03B7\u03BD \u03B1\u03C1\u03C7\u03B9\u03BA\u03AE \u03C3\u03C5\u03C3\u03BA\u03B5\u03C5\u03B1\u03C3\u03AF\u03B1 \u03C4\u03BF\u03C5\u03C2 \u03BA\u03B1\u03B9 \u03C0\u03BF\u03C5 \u03B4\u03B5\u03BD \u03C6\u03AD\u03C1\u03BF\u03C5\u03BD \u03C3\u03B7\u03BC\u03AC\u03B4\u03B9\u03B1 \u03B6\u03B7\u03BC\u03B9\u03AC\u03C2 \u03AE \u03C6\u03B8\u03BF\u03C1\u03AC\u03C2. \u039F\u03C0\u03BF\u03B9\u03B1\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03C7\u03C1\u03AE\u03C3\u03B7 \u03C4\u03C9\u03BD \u03C0\u03B1\u03C1\u03B1\u03B4\u03BF\u03B8\u03AD\u03BD\u03C4\u03C9\u03BD \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03C9\u03BD \u03C0\u03AD\u03C1\u03B1\u03BD \u03C4\u03B7\u03C2 \u03B1\u03C0\u03B1\u03C1\u03B1\u03AF\u03C4\u03B7\u03C4\u03B7\u03C2 \u03B3\u03B9\u03B1 \u03C4\u03B7\u03BD \u03B5\u03C0\u03B9\u03B8\u03B5\u03CE\u03C1\u03B7\u03C3\u03AE \u03C4\u03BF\u03C5\u03C2 \u03BA\u03B1\u03C4\u03AC \u03C4\u03B7\u03BD \u03C0\u03B1\u03C1\u03AC\u03B4\u03BF\u03C3\u03B7, \u03B1\u03BA\u03C5\u03C1\u03CE\u03BD\u03B5\u03B9 \u03C4\u03BF \u03B4\u03B9\u03BA\u03B1\u03AF\u03C9\u03BC\u03AC \u03C3\u03B1\u03C2 \u03BD\u03B1 \u03B1\u03BA\u03C5\u03C1\u03CE\u03C3\u03B5\u03C4\u03B5 \u03C4\u03B7 \u03C3\u03CD\u03BC\u03B2\u03B1\u03C3\u03B7."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"4.4 \u03A0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03B5\u03C0\u03B9\u03C3\u03C4\u03C1\u03AD\u03C8\u03B5\u03C4\u03B5 \u03C4\u03B1 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03B1 \u03C3\u03C4\u03BF kentro-jeans.gr \u03BC\u03B5 \u03B5\u03C0\u03AF\u03C3\u03B7\u03BC\u03BF \u03C4\u03B1\u03C7\u03C5\u03B4\u03C1\u03BF\u03BC\u03B5\u03AF\u03BF \u03AE \u03B1\u03BD\u03C4\u03AF\u03C3\u03C4\u03BF\u03B9\u03C7\u03BF \u03C4\u03C1\u03CC\u03C0\u03BF \u03BC\u03AD\u03C3\u03B1 \u03C3\u03B5 \u03B4\u03B5\u03BA\u03B1\u03C4\u03B5\u03C3\u03C3\u03B5\u03C1\u03B5\u03B9\u03C2 \u03B7\u03BC\u03B5\u03C1\u03BF\u03BB\u03BF\u03B3\u03B9\u03B1\u03BA\u03AD\u03C2 \u03BC\u03AD\u03C1\u03B5\u03C2 \u03B1\u03C0\u03CC \u03C4\u03B7\u03BD \u03B7\u03BC\u03B5\u03C1\u03BF\u03BC\u03B7\u03BD\u03AF\u03B1 \u03C4\u03B7\u03C2 \u0395\u03B9\u03B4\u03BF\u03C0\u03BF\u03AF\u03B7\u03C3\u03B7\u03C2 \u0391\u03BA\u03CD\u03C1\u03C9\u03C3\u03B7\u03C2. \u0391\u03BD\u03B1\u03BB\u03B1\u03BC\u03B2\u03AC\u03BD\u03B5\u03C4\u03B5 \u03C4\u03B7\u03BD \u03B5\u03C5\u03B8\u03CD\u03BD\u03B7 \u03B3\u03B9\u03B1 \u03C4\u03BF \u03BA\u03CC\u03C3\u03C4\u03BF\u03C2 \u03B5\u03C0\u03B9\u03C3\u03C4\u03C1\u03BF\u03C6\u03AE\u03C2 \u03C4\u03C9\u03BD \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03C9\u03BD \u03C3\u03C4\u03BF kentro-jeans.gr \u03BA\u03B1\u03B9 \u03C4\u03BF\u03BD \u03BA\u03AF\u03BD\u03B4\u03C5\u03BD\u03BF \u03BD\u03B1 \u03C5\u03C0\u03BF\u03C3\u03C4\u03BF\u03CD\u03BD \u03B6\u03B7\u03BC\u03AF\u03B5\u03C2 \u03C4\u03B1 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03B1 \u03BA\u03B1\u03C4\u03AC \u03C4\u03B7 \u03BC\u03B5\u03C4\u03B1\u03C6\u03BF\u03C1\u03AC \u03C4\u03BF\u03C5\u03C2. \u0391\u03BD \u03C4\u03B1 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03B1 \u03C5\u03C0\u03BF\u03C3\u03C4\u03BF\u03CD\u03BD \u03B6\u03B7\u03BC\u03AF\u03B5\u03C2 \u03BA\u03B1\u03C4\u03AC \u03C4\u03B7 \u03BC\u03B5\u03C4\u03B1\u03C6\u03BF\u03C1\u03AC, \u03C4\u03BF kentro-jeans.gr \u03B4\u03B9\u03B1\u03C4\u03B7\u03C1\u03B5\u03AF \u03C4\u03BF \u03B4\u03B9\u03BA\u03B1\u03AF\u03C9\u03BC\u03B1 \u03BD\u03B1 \u03B1\u03C1\u03BD\u03B7\u03B8\u03B5\u03AF \u03C4\u03B7\u03BD \u03B5\u03C0\u03B9\u03C3\u03C4\u03C1\u03BF\u03C6\u03AE \u03BA\u03B1\u03B9 \u03B8\u03B1 \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03B4\u03B9\u03B5\u03BA\u03B4\u03B9\u03BA\u03AE\u03C3\u03B5\u03C4\u03B5 \u03B1\u03C0\u03BF\u03B6\u03B7\u03BC\u03AF\u03C9\u03C3\u03B7 \u03B1\u03C0\u03CC \u03C4\u03BF\u03BD \u03BC\u03B5\u03C4\u03B1\u03C6\u03BF\u03C1\u03AD\u03B1."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"4.5 \u0391\u03C6\u03BF\u03CD \u03C4\u03BF kentro-jeans.gr \u03BB\u03AC\u03B2\u03B5\u03B9 \u03C4\u03B1 \u03B5\u03C0\u03B9\u03C3\u03C4\u03C1\u03B5\u03C6\u03CC\u03BC\u03B5\u03BD\u03B1 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03B1 \u03BA\u03B1\u03B9 \u03B2\u03B5\u03B2\u03B1\u03B9\u03C9\u03B8\u03B5\u03AF \u03CC\u03C4\u03B9 \u03AD\u03C7\u03B5\u03C4\u03B5 \u03C4\u03B7\u03C1\u03AE\u03C3\u03B5\u03B9 \u03C4\u03BF \u03AC\u03C1\u03B8\u03C1\u03BF 4.3, \u03B8\u03B1 \u03C3\u03B1\u03C2 \u03C3\u03C4\u03B5\u03AF\u03BB\u03B5\u03B9 \u03B5\u03C0\u03B9\u03B2\u03B5\u03B2\u03B1\u03AF\u03C9\u03C3\u03B7 \u03BC\u03AD\u03C3\u03C9 \u03B7\u03BB\u03B5\u03BA\u03C4\u03C1\u03BF\u03BD\u03B9\u03BA\u03BF\u03CD \u03C4\u03B1\u03C7\u03C5\u03B4\u03C1\u03BF\u03BC\u03B5\u03AF\u03BF\u03C5 \u03CC\u03C4\u03B9 \u03AD\u03C7\u03B5\u03B9 \u03B1\u03C0\u03BF\u03B4\u03B5\u03C7\u03B8\u03B5\u03AF \u03C4\u03B7\u03BD \u03B5\u03C0\u03B9\u03C3\u03C4\u03C1\u03BF\u03C6\u03AE \u03C4\u03C9\u03BD \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03C9\u03BD \u03BA\u03B1\u03B9 \u03B8\u03B1 \u03B5\u03C0\u03B9\u03C3\u03C4\u03C1\u03AD\u03C8\u03B5\u03B9 \u03AC\u03BC\u03B5\u03C3\u03B1 \u03C4\u03B7 \u03C3\u03C5\u03BC\u03B2\u03B1\u03C4\u03B9\u03BA\u03AE \u03C4\u03B9\u03BC\u03AE \u03C3\u03B5 \u03C4\u03C1\u03B1\u03C0\u03B5\u03B6\u03B9\u03BA\u03CC \u03BB\u03BF\u03B3\u03B1\u03C1\u03B9\u03B1\u03C3\u03BC\u03CC \u03C0\u03BF\u03C5 \u03B8\u03B1 \u03BC\u03B1\u03C2 \u03C5\u03C0\u03BF\u03B4\u03B5\u03AF\u03BE\u03B5\u03C4\u03B5 \u03C3\u03B5 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03B1\u03BD\u03C4\u03B9\u03BA\u03B1\u03C4\u03B1\u03B2\u03BF\u03BB\u03AE\u03C2 \u03AE \u03BA\u03B1\u03C4\u03AC\u03B8\u03B5\u03C3\u03B7\u03C2 \u03C3\u03B5 \u03C4\u03C1\u03AC\u03C0\u03B5\u03B6\u03B1, \u03B5\u03AF\u03C4\u03B5 \u03C3\u03C4\u03B7\u03BD \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03AE \u03AE \u03C7\u03C1\u03B5\u03C9\u03C3\u03C4\u03B9\u03BA\u03AE \u03BA\u03AC\u03C1\u03C4\u03B1 \u03C0\u03BF\u03C5 \u03C7\u03C1\u03B7\u03C3\u03B9\u03BC\u03BF\u03C0\u03BF\u03B9\u03AE\u03B8\u03B7\u03BA\u03B5 \u03B3\u03B9\u03B1 \u03C4\u03B7\u03BD \u03B1\u03B3\u03BF\u03C1\u03AC \u03C4\u03C9\u03BD \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03C9\u03BD."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"4.6 \u0394\u03B5\u03BD \u03B3\u03AF\u03BD\u03BF\u03BD\u03C4\u03B1\u03B9 \u03B1\u03C0\u03BF\u03B4\u03B5\u03BA\u03C4\u03AD\u03C2 \u03B5\u03C0\u03B9\u03C3\u03C4\u03C1\u03BF\u03C6\u03AD\u03C2 \u03BC\u03B7 \u03B5\u03BB\u03B1\u03C4\u03C4\u03C9\u03BC\u03B1\u03C4\u03B9\u03BA\u03CE\u03BD \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03C9\u03BD \u03CC\u03C4\u03B1\u03BD \u03AD\u03C7\u03B5\u03B9 \u03B1\u03BD\u03BF\u03B9\u03C7\u03C4\u03B5\u03AF \u03B7 \u03C3\u03C5\u03C3\u03BA\u03B5\u03C5\u03B1\u03C3\u03AF\u03B1 \u03C4\u03BF\u03C5\u03C2. \u03A3\u03C4\u03B7\u03BD \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03B1\u03BB\u03BB\u03B1\u03B3\u03AE\u03C2 \u03B3\u03BD\u03CE\u03BC\u03B7\u03C2, \u03CC\u03C4\u03B1\u03BD \u03B4\u03B5\u03BD \u03AD\u03C7\u03B5\u03B9 \u03B1\u03BD\u03BF\u03B9\u03C7\u03C4\u03B5\u03AF \u03B7 \u03C3\u03C5\u03C3\u03BA\u03B5\u03C5\u03B1\u03C3\u03AF\u03B1, \u03B4\u03B5\u03BD \u03B5\u03C0\u03B9\u03C3\u03C4\u03C1\u03AD\u03C6\u03BF\u03BD\u03C4\u03B1\u03B9 \u03C7\u03C1\u03AE\u03BC\u03B1\u03C4\u03B1 \u03B1\u03BB\u03BB\u03AC \u03AD\u03BD\u03B1 \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03CC \u03B1\u03BD\u03C4\u03AF\u03C3\u03C4\u03BF\u03B9\u03C7\u03B7\u03C2 \u03B1\u03BE\u03AF\u03B1\u03C2 \u03B3\u03B9\u03B1 \u03B1\u03B3\u03BF\u03C1\u03AD\u03C2 \u03B1\u03C0\u03CC \u03C4\u03BF \u03BA\u03B1\u03C4\u03AC\u03C3\u03C4\u03B7\u03BC\u03B1 \u03BC\u03B1\u03C2."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"4.7 \u0393\u03B9\u03B1 \u03C4\u03B1 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03B1 \u03C3\u03C4\u03B1 \u03BF\u03C0\u03BF\u03AF\u03B1 \u03B1\u03BD\u03B1\u03B3\u03C1\u03AC\u03C6\u03B5\u03C4\u03B1\u03B9 \"\u039A\u03B1\u03C4\u03CC\u03C0\u03B9\u03BD \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1\u03C2\", \u03C4\u03BF kentro-jeans.gr \u03BC\u03C0\u03BF\u03C1\u03B5\u03AF \u03BD\u03B1 \u03BC\u03B7\u03BD \u03B1\u03C0\u03BF\u03B4\u03AD\u03C7\u03B5\u03C4\u03B1\u03B9 \u03C4\u03B9\u03C2 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B5\u03C2 \u03B3\u03B9\u03B1 \u03C4\u03B9\u03C2 \u03BF\u03C0\u03BF\u03AF\u03B5\u03C2 \u03B7 \u03B4\u03B9\u03B1\u03B8\u03B5\u03C3\u03B9\u03BC\u03CC\u03C4\u03B7\u03C4\u03B1 \u03B1\u03C0\u03CC \u03C4\u03BF\u03C5\u03C2 \u03C0\u03C1\u03BF\u03BC\u03B7\u03B8\u03B5\u03C5\u03C4\u03AD\u03C2 \u03C4\u03BF\u03C5 \u03BE\u03B5\u03C0\u03B5\u03C1\u03BD\u03AC \u03C4\u03B9\u03C2 7 \u03BC\u03AD\u03C1\u03B5\u03C2."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"4.8 \u0394\u03B5\u03B4\u03BF\u03BC\u03AD\u03BD\u03BF\u03C5 \u03CC\u03C4\u03B9 \u03B7 \u03B5\u03C4\u03B1\u03B9\u03C1\u03B5\u03AF\u03B1 \u03BC\u03B1\u03C2 \u03B5\u03B9\u03C3\u03AC\u03B3\u03B5\u03B9 \u03B1\u03C0\u03CC \u03B4\u03B9\u03AC\u03C6\u03BF\u03C1\u03B5\u03C2 \u0395\u03C5\u03C1\u03C9\u03C0\u03B1\u03CA\u03BA\u03AD\u03C2 \u03C7\u03CE\u03C1\u03B5\u03C2, \u03C0\u03C7 \u0391\u03B3\u03B3\u03BB\u03AF\u03B1, \u03C5\u03C0\u03AC\u03C1\u03C7\u03B5\u03B9 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03BC\u03B5\u03C1\u03B9\u03BA\u03AD\u03C2 \u03C3\u03C5\u03C3\u03BA\u03B5\u03C5\u03B1\u03C3\u03AF\u03B5\u03C2 \u03BD\u03B1 \u03C0\u03B5\u03C1\u03B9\u03AD\u03C7\u03BF\u03C5\u03BD \u03C6\u03BF\u03C1\u03C4\u03B9\u03C3\u03C4\u03AD\u03C2 BS1363-EURO UK \u03AE \u03CC\u03BC\u03BF\u03B9\u03BF (3 pin), \u03BF\u03B9 \u03BF\u03C0\u03BF\u03AF\u03BF\u03B9 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03C0\u03AC\u03BD\u03BF\u03C4\u03B5 \u03C3\u03C5\u03BC\u03B2\u03B1\u03C4\u03BF\u03AF \u03BC\u03B5 \u03C4\u03B1 \u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC \u03B4\u03B5\u03B4\u03BF\u03BC\u03AD\u03BD\u03B1 \u03BA\u03B1\u03B9 \u03BF\u03B9 \u03C3\u03C5\u03BA\u03B5\u03C5\u03B1\u03C3\u03AF\u03B5\u03C2 \u03C3\u03C5\u03BD\u03BF\u03B4\u03B5\u03CD\u03BF\u03BD\u03C4\u03B1\u03B9 \u03BC\u03B5 \u03C0\u03C1\u03BF\u03C3\u03B1\u03C1\u03BC\u03BF\u03B3\u03B5\u03AF\u03C2. \u03A4\u03BF kentro-jeans.gr \u03B4\u03B5\u03BD \u03B5\u03AF\u03BD\u03B1\u03B9 \u03C5\u03C0\u03BF\u03C7\u03C1\u03B5\u03CE\u03BD\u03B5\u03C4\u03B1\u03B9 \u03BD\u03B1 \u03C4\u03BF \u03B1\u03BD\u03B1\u03B3\u03C1\u03AC\u03C6\u03B5\u03B9 \u03C3\u03C4\u03B1 \u03C7\u03B1\u03C1\u03B1\u03BA\u03C4\u03B7\u03C1\u03B9\u03C3\u03C4\u03B9\u03BA\u03AC \u03C4\u03C9\u03BD \u03C3\u03C5\u03C3\u03BA\u03B5\u03C5\u03CE\u03BD \u03BA\u03B1\u03B9 \u03B1\u03C5\u03C4\u03CC \u03B4\u03B5\u03BD \u03B1\u03C0\u03BF\u03C4\u03B5\u03BB\u03B5\u03AF \u03B1\u03B9\u03C4\u03AF\u03B1 \u03B5\u03C0\u03B9\u03C3\u03C4\u03C1\u03BF\u03C6\u03AE\u03C2 \u03AE \u03B4\u03B9\u03B5\u03BA\u03B4\u03B9\u03BA\u03AE\u03C3\u03B5\u03C9\u03BD."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"5. \u03A0\u03B5\u03C1\u03B9\u03B5\u03C7\u03CC\u03BC\u03B5\u03BD\u03BF \u03B9\u03C3\u03C4\u03BF\u03C3\u03B5\u03BB\u03AF\u03B4\u03B1\u03C2"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"5.1 \u03A4\u03BF kentro-jeans.gr \u03AD\u03C7\u03B5\u03B9 \u03BA\u03B1\u03C4\u03B1\u03B2\u03AC\u03BB\u03B5\u03B9 \u03C4\u03B7 \u03B4\u03AD\u03BF\u03C5\u03C3\u03B1 \u03BC\u03AD\u03C1\u03B9\u03BC\u03BD\u03B1 \u03BA\u03B1\u03C4\u03AC \u03C4\u03B7\u03BD \u03C0\u03C1\u03BF\u03B5\u03C4\u03BF\u03B9\u03BC\u03B1\u03C3\u03AF\u03B1 \u03C4\u03BF\u03C5 \u03C0\u03B5\u03C1\u03B9\u03B5\u03C7\u03BF\u03BC\u03AD\u03BD\u03BF\u03C5 \u03B1\u03C5\u03C4\u03BF\u03CD \u03C4\u03BF\u03C5 \u03B4\u03B9\u03BA\u03C4\u03C5\u03B1\u03BA\u03BF\u03CD \u03C4\u03CC\u03C0\u03BF\u03C5. \u03A9\u03C3\u03C4\u03CC\u03C3\u03BF, \u03B5\u03C6\u03CC\u03C3\u03BF\u03BD \u03C4\u03BF \u03B5\u03C0\u03B9\u03C4\u03C1\u03AD\u03C0\u03B5\u03B9 \u03B7 \u03B9\u03C3\u03C7\u03CD\u03BF\u03C5\u03C3\u03B1 \u03BD\u03BF\u03BC\u03BF\u03B8\u03B5\u03C3\u03AF\u03B1, \u03C4\u03BF kentro-jeans.gr \u03C0\u03B1\u03C1\u03B1\u03B9\u03C4\u03B5\u03AF\u03C4\u03B1\u03B9 \u03B1\u03C0\u03CC \u03BA\u03AC\u03B8\u03B5 \u03B5\u03C5\u03B8\u03CD\u03BD\u03B7 (\u03C1\u03B7\u03C4\u03AE \u03AE \u03C3\u03B9\u03C9\u03C0\u03B7\u03C1\u03AE) \u03C9\u03C2 \u03C0\u03C1\u03BF\u03C2 \u03C4\u03B7\u03BD \u03B1\u03BA\u03C1\u03AF\u03B2\u03B5\u03B9\u03B1 \u03C4\u03C9\u03BD \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03B9\u03CE\u03BD \u03C0\u03BF\u03C5 \u03C0\u03B5\u03C1\u03B9\u03AD\u03C7\u03B5\u03B9 \u03BF \u03B4\u03B9\u03BA\u03C4\u03C5\u03B1\u03BA\u03CC\u03C2 \u03C4\u03CC\u03C0\u03BF\u03C2."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"5.2 \u03A4\u03BF kentro-jeans.gr \u03B4\u03B5\u03BD \u03B5\u03C5\u03B8\u03CD\u03BD\u03B5\u03C4\u03B1\u03B9 \u03AD\u03BD\u03B1\u03BD\u03C4\u03B9 \u03BF\u03C0\u03BF\u03B9\u03BF\u03C5\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03B1\u03C4\u03CC\u03BC\u03BF\u03C5 \u03B3\u03B9\u03B1 \u03B1\u03C0\u03CE\u03BB\u03B5\u03B9\u03B5\u03C2 \u03AE \u03B6\u03B7\u03BC\u03AF\u03B5\u03C2 \u03C0\u03BF\u03C5 \u03B5\u03BD\u03B4\u03B5\u03C7\u03BF\u03BC\u03AD\u03BD\u03C9\u03C2 \u03C0\u03C1\u03BF\u03BA\u03CD\u03C8\u03BF\u03C5\u03BD \u03B1\u03C0\u03CC \u03C4\u03B7 \u03C7\u03C1\u03AE\u03C3\u03B7 \u03C4\u03C9\u03BD \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03B9\u03CE\u03BD \u03C0\u03BF\u03C5 \u03C0\u03B5\u03C1\u03B9\u03AD\u03C7\u03B5\u03B9 \u03BF \u03B4\u03B9\u03BA\u03C4\u03C5\u03B1\u03BA\u03CC\u03C2 \u03C4\u03CC\u03C0\u03BF\u03C2."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"5.3 \u03A4\u03BF kentro-jeans.gr \u03B5\u03C0\u03AF\u03C3\u03B7\u03C2 \u03B4\u03B5\u03BD \u03B1\u03BD\u03B1\u03BB\u03B1\u03BC\u03B2\u03AC\u03BD\u03B5\u03B9 \u03BA\u03B1\u03BC\u03AF\u03B1 \u03B5\u03C5\u03B8\u03CD\u03BD\u03B7 \u03AE \u03C5\u03C0\u03BF\u03C7\u03C1\u03AD\u03C9\u03C3\u03B7 \u03B3\u03B9\u03B1 \u03C4\u03BF \u03C0\u03B5\u03C1\u03B9\u03B5\u03C7\u03CC\u03BC\u03B5\u03BD\u03BF \u03BF\u03C0\u03BF\u03B9\u03BF\u03C5\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03B4\u03B9\u03BA\u03C4\u03C5\u03B1\u03BA\u03BF\u03CD \u03C4\u03CC\u03C0\u03BF\u03C5 \u03C0\u03BF\u03C5 \u03AD\u03C7\u03B5\u03B9 \u03C3\u03CD\u03BD\u03B4\u03B5\u03C3\u03BC\u03BF \u03C3\u03C4\u03B7\u03BD \u03B9\u03C3\u03C4\u03BF\u03C3\u03B5\u03BB\u03AF\u03B4\u03B1 \u03BC\u03B1\u03C2."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"5.4 \u039F\u03B9 \u03C6\u03C9\u03C4\u03BF\u03B3\u03C1\u03B1\u03C6\u03AF\u03B5\u03C2 \u03C4\u03C9\u03BD \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03C9\u03BD \u03B5\u03AF\u03BD\u03B1\u03B9 \u03B5\u03BD\u03B4\u03B5\u03B9\u03BA\u03C4\u03B9\u03BA\u03AD\u03C2 \u03BA\u03B1\u03B9 \u03B4\u03B5\u03BD \u03B1\u03C0\u03BF\u03C4\u03B5\u03BB\u03B5\u03AF \u03B1\u03B9\u03C4\u03AF\u03B1 \u03AD\u03B3\u03B5\u03C1\u03C3\u03B7\u03C2 \u03B4\u03B9\u03B5\u03BA\u03B4\u03B9\u03BA\u03AE\u03C3\u03B5\u03C9\u03BD \u03C4\u03BF \u03B3\u03B5\u03B3\u03BF\u03BD\u03CC\u03C2 \u03CC\u03C4\u03B9 \u03BC\u03C0\u03BF\u03C1\u03B5\u03AF \u03C0\u03B1\u03C1\u03B1\u03C4\u03B7\u03C1\u03B7\u03B8\u03B5\u03AF \u03B4\u03B9\u03B1\u03C6\u03BF\u03C1\u03AC \u03B1\u03C0\u03CC \u03C4\u03BF \u03C0\u03C1\u03B1\u03B3\u03BC\u03B1\u03C4\u03B9\u03BA\u03CC \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD \u03B5\u03C6\u03CC\u03C3\u03BF\u03BD \u03C4\u03B1 \u03C3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03B1 \u03C0\u03BF\u03C5 \u03B1\u03BD\u03B1\u03B3\u03C1\u03AC\u03C6\u03BF\u03BD\u03C4\u03B1\u03B9 \u03C3\u03C4\u03B7 \u03C3\u03C5\u03C3\u03BA\u03B5\u03C5\u03B1\u03C3\u03AF\u03B1 \u03C4\u03BF\u03C5 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03BF\u03C2 \u03C0\u03BF\u03C5 \u03C0\u03B1\u03C1\u03B1\u03BB\u03B1\u03BC\u03B2\u03AC\u03BD\u03B5\u03C4\u03B5 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03AF\u03B4\u03B9\u03B1 \u03BC\u03B5 \u03C4\u03B1 \u03B1\u03BD\u03B1\u03B3\u03C1\u03B1\u03C6\u03CC\u03BC\u03B5\u03BD\u03B1 \u03C3\u03C4\u03B7\u03BD \u03B9\u03C3\u03C4\u03BF\u03C3\u03B5\u03BB\u03AF\u03B4\u03B1 \u03BC\u03B1\u03C2, \u03B1\u03BD\u03B5\u03BE\u03B1\u03C1\u03C4\u03AE\u03C4\u03C9\u03C2 \u03B5\u03B9\u03BA\u03CC\u03BD\u03C9\u03BD."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"6. \u03A0\u03B5\u03C1\u03B9\u03BF\u03C1\u03B9\u03C3\u03BC\u03CC\u03C2 \u03B5\u03C5\u03B8\u03CD\u03BD\u03B7\u03C2 - \u0391\u03C0\u03BF\u03B6\u03B7\u03BC\u03AF\u03C9\u03C3\u03B7 "
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"6.1 \u039A\u03B1\u03BC\u03AF\u03B1 \u03B4\u03B9\u03AC\u03C4\u03B1\u03BE\u03B7 \u03C4\u03B7\u03C2 \u03C0\u03B1\u03C1\u03BF\u03CD\u03C3\u03B1\u03C2 \u03A3\u03CD\u03BC\u03B2\u03B1\u03C3\u03B7\u03C2 \u03B4\u03B5\u03BD \u03B8\u03B1 \u03B1\u03C0\u03BF\u03B4\u03AF\u03B4\u03B5\u03B9 \u03B4\u03B9\u03BA\u03B1\u03AF\u03C9\u03BC\u03B1 \u03B4\u03B9\u03B5\u03BA\u03B4\u03AF\u03BA\u03B7\u03C3\u03B7\u03C2 \u03B6\u03B7\u03BC\u03B9\u03CE\u03BD \u03AE \u03B1\u03C0\u03BF\u03B6\u03B7\u03BC\u03B9\u03CE\u03C3\u03B5\u03C9\u03BD, \u03B4\u03B9\u03B1\u03C6\u03C5\u03B3\u03CC\u03BD\u03C4\u03B1 \u03BA\u03AD\u03C1\u03B4\u03B7, \u03B4\u03B9\u03B1\u03BA\u03BF\u03C0\u03AE \u03B5\u03C0\u03B9\u03C7\u03B5\u03B9\u03C1\u03B7\u03BC\u03B1\u03C4\u03B9\u03BA\u03AE\u03C2 \u03B4\u03C1\u03B1\u03C3\u03C4\u03B7\u03C1\u03B9\u03CC\u03C4\u03B7\u03C4\u03B1\u03C2, \u03B1\u03C0\u03CE\u03BB\u03B5\u03B9\u03B1 \u03C6\u03AE\u03BC\u03B7\u03C2, \u03B1\u03C0\u03CE\u03BB\u03B5\u03B9\u03B1 \u03B5\u03C0\u03B9\u03C7\u03B5\u03B9\u03C1\u03B7\u03BC\u03B1\u03C4\u03B9\u03BA\u03CE\u03BD \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03B9\u03CE\u03BD \u03AE \u03BF\u03C0\u03BF\u03B9\u03B1\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03AC\u03BB\u03BB\u03B7 \u03BF\u03B9\u03BA\u03BF\u03BD\u03BF\u03BC\u03B9\u03BA\u03AE \u03B1\u03C0\u03CE\u03BB\u03B5\u03B9\u03B1 (\u03B1\u03BA\u03CC\u03BC\u03B7 \u03BA\u03B1\u03B9 \u03C3\u03B5 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C0\u03BF\u03C5 \u03C4\u03BF kentro-jeans.gr \u03B5\u03AF\u03C7\u03B5 \u03B5\u03BD\u03B7\u03BC\u03B5\u03C1\u03C9\u03B8\u03B5\u03AF) \u03B3\u03B9\u03B1 \u03C4\u03BF\u03BD \u03BF\u03C0\u03BF\u03B9\u03BF\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03BB\u03CC\u03B3\u03BF \u03AE/\u03BA\u03B1\u03B9 \u03C0\u03BF\u03C5 \u03B1\u03C0\u03BF\u03C1\u03C1\u03AD\u03B5\u03B9 \u03B1\u03C0\u03CC \u03C4\u03B7\u03BD \u03B1\u03B3\u03BF\u03C1\u03AC \u03AE \u03B5\u03C0\u03AF\u03C3\u03BA\u03B5\u03C8\u03B7 \u03C3\u03C4\u03B7\u03BD \u03B9\u03C3\u03C4\u03BF\u03C3\u03B5\u03BB\u03AF\u03B4\u03B1 \u03BA\u03B1\u03B9 \u03B1\u03C0\u03CC \u03C4\u03B7\u03BD \u03C7\u03C1\u03AE\u03C3\u03B7 \u03C4\u03C9\u03BD \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03C9\u03BD \u03C0\u03BF\u03C5 \u03B1\u03B3\u03BF\u03C1\u03AC\u03C3\u03C4\u03B7\u03BA\u03B1\u03BD \u03B1\u03C0\u03CC \u03C4\u03BF kentro-jeans.gr. \u03A0\u03C1\u03B9\u03BD \u03C0\u03C1\u03BF\u03B2\u03B5\u03AF\u03C4\u03B5 \u03C3\u03B5 \u03B5\u03BD\u03C4\u03BF\u03BB\u03AE\u03C2 \u03B1\u03B3\u03BF\u03C1\u03AC\u03C2 \u03B2\u03B5\u03B2\u03B1\u03B9\u03C9\u03B8\u03B5\u03AF\u03C4\u03B5 \u03CC\u03C4\u03B9 \u03B1\u03B3\u03BF\u03C1\u03AC \u03C3\u03B1\u03C2 \u03B4\u03B5\u03BD \u03B5\u03BE\u03B1\u03C1\u03C4\u03AC\u03C4\u03B1\u03B9 \u03AE \u03B4\u03B5\u03BD \u03B8\u03B1 \u03C3\u03B1\u03C2 \u03BF\u03B4\u03B7\u03B3\u03AE\u03C3\u03B5\u03B9 \u03C3\u03B5 \u03BC\u03B9\u03B1 \u03B1\u03C0\u03CC \u03C0\u03AC\u03BD\u03C9 \u03C3\u03C5\u03BD\u03B8\u03AE\u03BA\u03B5\u03C2, \u03B4\u03B9\u03B1\u03C6\u03BF\u03C1\u03B5\u03C4\u03B9\u03BA\u03AC \u03BC\u03B7\u03BD \u03C4\u03BF\u03C0\u03BF\u03B8\u03B5\u03C4\u03AE\u03C3\u03B5\u03C4\u03B5 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"6.2 \u03A3\u03C4\u03B7\u03BD \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C0\u03BF\u03C5 \u03BF\u03C0\u03BF\u03B9\u03BF\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03B5\u03BB\u03AC\u03C4\u03C4\u03C9\u03BC\u03B1 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03BF\u03C2 \u03B7 \u03B5\u03C5\u03B8\u03CD\u03BD\u03B7 \u03BC\u03B1\u03C2 \u03C0\u03B5\u03C1\u03B9\u03BF\u03C1\u03AF\u03B6\u03B5\u03C4\u03B1\u03B9 \u03C3\u03C4\u03B7 \u03B5\u03B3\u03B3\u03CD\u03B7\u03C3\u03B7 \u03C4\u03BF\u03C5 \u03BA\u03B1\u03C4\u03B1\u03C3\u03BA\u03B5\u03C5\u03B1\u03C3\u03C4\u03AE \u03BC\u03B5 \u03BC\u03AD\u03B3\u03B9\u03C3\u03C4\u03BF \u03C4\u03B7\u03BD \u03B1\u03BD\u03C4\u03B9\u03BA\u03B1\u03C4\u03AC\u03C3\u03C4\u03B1\u03C3\u03B7 \u03C4\u03BF\u03C5 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03BF\u03C2 \u03C3\u03C4\u03B7\u03BD \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03B1\u03C0\u03BF\u03B4\u03B5\u03B4\u03B5\u03B9\u03B3\u03BC\u03AD\u03BD\u03B7\u03C2 \u03B5\u03C5\u03B8\u03CD\u03BD\u03B7\u03C2 \u03C4\u03BF\u03C5 kentro-jeans.gr. \u03A3\u03C4\u03BF \u03B5\u03BD\u03B4\u03B5\u03C7\u03CC\u03BC\u03B5\u03BD\u03BF \u03C0\u03BF\u03C5 \u03B7 \u03C3\u03C5\u03C3\u03BA\u03B5\u03C5\u03B1\u03C3\u03AF\u03B1 \u03C0\u03B5\u03C1\u03B9\u03BB\u03B1\u03BC\u03B2\u03AC\u03BD\u03B5\u03B9 \u03C6\u03BF\u03C1\u03C4\u03B9\u03C3\u03C4\u03AD\u03C2 \u03B3\u03B9\u03B1 \u03B7\u03BB\u03B5\u03BA\u03C4\u03C1\u03B9\u03BA\u03AC \u03B4\u03AF\u03BA\u03C4\u03C5\u03B1 \u03B4\u03B9\u03B1\u03C6\u03BF\u03C1\u03B5\u03C4\u03B9\u03BA\u03AC \u03B1\u03C0\u03CC \u03C4\u03BF \u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03CC \u03C0\u03C7 \u03BC\u03C0\u03C1\u03AF\u03B6\u03B1 3 pin, \u03B1\u03C5\u03C4\u03CC \u03B4\u03B5\u03BD \u03B1\u03C0\u03BF\u03C4\u03B5\u03BB\u03B5\u03AF \u03B5\u03BB\u03AC\u03C4\u03C4\u03C9\u03BC\u03B1. \u0397 \u03B5\u03C4\u03B1\u03B9\u03C1\u03B5\u03AF\u03B1 \u03BC\u03B1\u03C2 \u03C6\u03C1\u03BF\u03BD\u03C4\u03AF\u03B6\u03B5\u03B9 \u03BD\u03B1 \u03C3\u03B1\u03C2 \u03C0\u03C1\u03BF\u03BC\u03B7\u03B8\u03B5\u03CD\u03C3\u03B5\u03B9 \u03C4\u03BF\u03BD \u03BA\u03B1\u03C4\u03AC\u03BB\u03BB\u03B7\u03BB\u03BF \u03C0\u03C1\u03BF\u03C3\u03B1\u03C1\u03BC\u03BF\u03B3\u03AD\u03B1."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"6.3 \u0394\u03B5\u03BD \u03B1\u03C0\u03BF\u03C4\u03B5\u03BB\u03B5\u03AF \u03B1\u03B9\u03C4\u03AF\u03B1 \u03AD\u03B3\u03B5\u03C1\u03C3\u03B7\u03C2 \u03B4\u03B9\u03B5\u03BA\u03B4\u03B9\u03BA\u03AE\u03C3\u03B5\u03C9\u03BD \u03B7 \u03BF\u03C0\u03BF\u03B9\u03B1\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03B1\u03B4\u03C5\u03BD\u03B1\u03BC\u03AF\u03B1 \u03C4\u03BF\u03C5 kentro-jeans.gr \u03BD\u03B1 \u03B5\u03C0\u03B5\u03BE\u03B5\u03C1\u03B3\u03B1\u03C3\u03C4\u03B5\u03AF \u03C3\u03AE\u03BC\u03B1\u03C4\u03B1, \u03B4\u03B5\u03B4\u03BF\u03BC\u03AD\u03BD\u03B1, \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03AF\u03B5\u03C2, \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B5\u03C2 \u03AE \u03BC\u03B7\u03BD\u03CD\u03BC\u03B1\u03C4\u03B1 \u03C3\u03C9\u03C3\u03C4\u03AC \u03AE \u03B5\u03B3\u03BA\u03B1\u03AF\u03C1\u03C9\u03C2."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"7. \u0391\u03C0\u03BF\u03C3\u03C4\u03BF\u03BB\u03AE \u03BA\u03B1\u03B9 \u03A0\u03B1\u03C1\u03AC\u03B4\u03BF\u03C3\u03B7"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"7.1 \u039F\u03B9 \u03B1\u03BD\u03B1\u03C6\u03B5\u03C1\u03CC\u03BC\u03B5\u03BD\u03BF\u03B9 \u03C7\u03C1\u03CC\u03BD\u03BF\u03B9 \u03B1\u03C0\u03BF\u03C3\u03C4\u03BF\u03BB\u03AE\u03C2 \u03BA\u03B1\u03B9 \u03C0\u03B1\u03C1\u03AC\u03B4\u03BF\u03C3\u03B7\u03C2 \u03B1\u03C0\u03BF\u03C4\u03B5\u03BB\u03BF\u03CD\u03BD \u03BC\u03CC\u03BD\u03BF \u03B5\u03BA\u03C4\u03B9\u03BC\u03AE\u03C3\u03B5\u03B9\u03C2 \u03BA\u03B1\u03B9 \u03C4\u03BF kentro-jeans.gr \u03B4\u03B5\u03BD \u03C6\u03AD\u03C1\u03B5\u03B9 \u03B5\u03C5\u03B8\u03CD\u03BD\u03B7 \u03B3\u03B9\u03B1 \u03BF\u03C0\u03BF\u03B9\u03B1\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03BA\u03B1\u03B8\u03C5\u03C3\u03C4\u03AD\u03C1\u03B7\u03C3\u03B7, \u03B5\u03BA\u03C4\u03CC\u03C2 \u03B5\u03AC\u03BD \u03B1\u03C5\u03C4\u03AE \u03BF\u03C6\u03B5\u03AF\u03BB\u03B5\u03C4\u03B1\u03B9 \u03C3\u03B5 \u03C3\u03BA\u03CC\u03C0\u03B9\u03BC\u03B7 \u03B5\u03BD\u03AD\u03C1\u03B3\u03B5\u03B9\u03B1 \u03AE \u03B1\u03BC\u03AD\u03BB\u03B5\u03B9\u03B1 \u03C4\u03BF\u03C5 kentro-jeans.gr. \u03A4\u03BF kentro-jeans.gr \u03B4\u03B5\u03BD \u03B1\u03BD\u03B1\u03BB\u03B1\u03BC\u03B2\u03AC\u03BD\u03B5\u03B9 \u03BA\u03B1\u03BC\u03BC\u03AF\u03B1 \u03B5\u03C5\u03B8\u03CD\u03BD\u03B7 \u03C4\u03B7\u03C2 \u03C3\u03C5\u03BD\u03AD\u03C0\u03B5\u03B9\u03B1\u03C2 \u03BA\u03B1\u03B9 \u03C4\u03B7\u03C2 \u03BA\u03B1\u03BB\u03AE\u03C2 \u03BB\u03B5\u03B9\u03C4\u03BF\u03C5\u03C1\u03B3\u03AF\u03B1\u03C2 \u03C4\u03C9\u03BD \u03BC\u03B5\u03C4\u03B1\u03C6\u03BF\u03C1\u03B9\u03BA\u03CE\u03BD \u03B5\u03C4\u03B1\u03B9\u03C1\u03B5\u03B9\u03CE\u03BD \u03AE \u03C6\u03BF\u03C1\u03AD\u03C9\u03BD \u03BA\u03B1\u03B9 \u03C4\u03B7\u03C2 \u03C3\u03C5\u03BD\u03AD\u03C0\u03B5\u03B9\u03B1\u03C2 \u03C4\u03C9\u03BD \u03C0\u03C1\u03BF\u03BC\u03B7\u03B8\u03B5\u03C5\u03C4\u03CE\u03BD."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"7.2 \u0395\u03C6\u03CC\u03C3\u03BF\u03BD \u03B3\u03AF\u03BD\u03B5\u03B9 \u03C0\u03BB\u03B7\u03C1\u03C9\u03BC\u03AE \u03BC\u03B5 \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03AE \u03BA\u03AC\u03C1\u03C4\u03B1, \u03BF \u03C0\u03B5\u03BB\u03AC\u03C4\u03B7\u03C2 \u03C4\u03BF\u03C5 \u03BF\u03C0\u03BF\u03AF\u03BF\u03C5 \u03CC\u03BD\u03BF\u03BC\u03B1 \u03B5\u03BC\u03C6\u03B1\u03BD\u03AF\u03B6\u03B5\u03C4\u03B1\u03B9 \u03C3\u03C4\u03B7\u03BD \u03BA\u03AC\u03C1\u03C4\u03B1 \u03B8\u03B1 \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03C0\u03B1\u03C1\u03CE\u03BD \u03BA\u03B1\u03C4\u03AC \u03C4\u03B7\u03BD \u03C0\u03B1\u03C1\u03B1\u03BB\u03B1\u03B2\u03AE \u03C4\u03B7\u03C2 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1\u03C2 \u03C4\u03BF\u03C5 \u03B5\u03C0\u03B9\u03B4\u03B5\u03B9\u03BA\u03BD\u03CD\u03BF\u03BD\u03C4\u03B1\u03C2 \u03C4\u03B7\u03BD \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03AE \u03C4\u03BF\u03C5 \u03BA\u03AC\u03C1\u03C4\u03B1 \u03BA\u03B1\u03B9 \u03C4\u03B7\u03BD \u03C4\u03B1\u03C5\u03C4\u03CC\u03C4\u03B7\u03C4\u03AC \u03C4\u03BF\u03C5 \u03BA\u03B1\u03C4\u03AC \u03C4\u03B7\u03BD \u03C0\u03B1\u03C1\u03B1\u03BB\u03B1\u03B2\u03AE. \u0394\u03B5\u03BD \u03B5\u03C0\u03B9\u03C4\u03C1\u03AD\u03C0\u03B5\u03C4\u03B1\u03B9 \u03B7 \u03C0\u03B1\u03C1\u03B1\u03BB\u03B1\u03B2\u03AE \u03C4\u03B7\u03C2 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1\u03C2 \u03B1\u03C0\u03CC \u03C4\u03C1\u03AF\u03C4\u03BF \u03C0\u03C1\u03CC\u03C3\u03C9\u03C0\u03BF. \u03A3\u03B5 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C0\u03BF\u03C5 \u03B7 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1 \u03C0\u03C1\u03B1\u03B3\u03BC\u03B1\u03C4\u03BF\u03C0\u03BF\u03B9\u03B5\u03AF\u03C4\u03B1\u03B9 \u03B3\u03B9\u03B1 \u03BB\u03BF\u03B3\u03B1\u03C1\u03B9\u03B1\u03C3\u03BC\u03CC \u03B5\u03C4\u03B1\u03B9\u03C1\u03B5\u03AF\u03B1\u03C2 \u03BC\u03B5 \u03B5\u03C4\u03B1\u03B9\u03C1\u03B9\u03BA\u03AE \u03BA\u03AC\u03C1\u03C4\u03B1 \u03C4\u03CC\u03C4\u03B5 \u03BA\u03B1\u03C4\u03AC \u03C4\u03B7\u03BD \u03C0\u03B1\u03C1\u03AC\u03B4\u03BF\u03C3\u03B7 \u03B8\u03B1 \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03C0\u03B1\u03C1\u03CE\u03BD \u03BF \u03B5\u03BE\u03BF\u03C5\u03C3\u03B9\u03BF\u03B4\u03BF\u03C4\u03B7\u03BC\u03AD\u03BD\u03BF\u03C2 \u03BA\u03AC\u03C4\u03BF\u03C7\u03BF\u03C2 \u03BC\u03B5 \u03C4\u03B7 \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03AE \u03BA\u03AC\u03C1\u03C4\u03B1 \u03BA\u03B1\u03B9 \u03C4\u03B7 \u03C4\u03B1\u03C5\u03C4\u03CC\u03C4\u03B7\u03C4\u03B1 \u03C4\u03BF\u03C5."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"8. \u0395\u03B3\u03B3\u03C5\u03AE\u03C3\u03B5\u03B9\u03C2"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"8.1 \u039F\u03B9 \u03C3\u03C5\u03C3\u03BA\u03B5\u03C5\u03AD\u03C2  \u03C6\u03AD\u03C1\u03BF\u03C5\u03BD \u03C4\u03B7\u03BD \u03B5\u03B3\u03B3\u03CD\u03B7\u03C3\u03B7 \u03C4\u03BF\u03C5 \u03BA\u03B1\u03C4\u03B1\u03C3\u03BA\u03B5\u03C5\u03B1\u03C3\u03C4\u03AE \u03BA\u03B1\u03B9 \u03C5\u03C0\u03CC\u03BA\u03B5\u03B9\u03BD\u03C4\u03B1\u03B9 \u03C3\u03C4\u03BF\u03C5\u03C2 \u038C\u03C1\u03BF\u03C5\u03C2 \u03C4\u03BF\u03C5 \u03B5\u03BA\u03AC\u03C3\u03C4\u03BF\u03C4\u03B5 \u03BA\u03B1\u03C4\u03B1\u03C3\u03BA\u03B5\u03C5\u03B1\u03C3\u03C4\u03AE. \u0397 \u03B5\u03C4\u03B1\u03B9\u03C1\u03B5\u03AF\u03B1 \u03BC\u03B1\u03C2 \u03B4\u03B5\u03BD \u03B1\u03BD\u03B1\u03BB\u03B1\u03BC\u03B2\u03AC\u03BD\u03B5\u03B9 \u03BA\u03B1\u03BC\u03AF\u03B1 \u03B5\u03B8\u03CD\u03BD\u03B7 \u03B3\u03B9\u03B1 \u03C4\u03BF\u03C5\u03C2 \u03CC\u03C1\u03BF\u03C5\u03C2 \u03B1\u03C5\u03C4\u03BF\u03CD\u03C2 \u03BA\u03B1\u03B9 \u03C7\u03C1\u03CC\u03BD\u03BF\u03C5\u03C2 \u03B1\u03C0\u03CC\u03BA\u03C1\u03B9\u03C3\u03B7\u03C2 \u03C4\u03C9\u03BD service \u03C4\u03C9\u03BD \u03B4\u03B9\u03B1\u03C6\u03CC\u03C1\u03C9\u03BD \u03BA\u03B1\u03C4\u03B1\u03C3\u03BA\u03B5\u03C5\u03B1\u03C3\u03C4\u03CE\u03BD."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"8.2 \u03A3\u03C4\u03B7 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C0\u03BF\u03C5 \u03B7 \u03B5\u03C4\u03B1\u03B9\u03C1\u03B5\u03AF\u03B1 \u03B1\u03BD\u03B1\u03BB\u03B1\u03BC\u03B2\u03AC\u03BD\u03B5\u03B9 \u03BD\u03B1 \u03B5\u03BE\u03C5\u03C0\u03B7\u03C1\u03B5\u03C4\u03AE\u03C3\u03B5\u03B9 \u03C0\u03B5\u03BB\u03AC\u03C4\u03B7 \u03B3\u03B9\u03B1 \u03BD\u03B1 \u03C0\u03B1\u03C1\u03B1\u03B4\u03CC\u03C3\u03B5\u03B9 \u03C3\u03C4\u03BF \u03B5\u03C0\u03AF\u03C3\u03B7\u03BC\u03BF service \u03BA\u03AC\u03C0\u03BF\u03B9\u03BF\u03C5 \u03BA\u03B1\u03C4\u03B1\u03C3\u03BA\u03B5\u03C5\u03B1\u03C3\u03C4\u03AE, \u03C0\u03C1\u03BF\u03C2 \u03B1\u03C0\u03BB\u03AE \u03B4\u03B9\u03B5\u03C5\u03BA\u03CC\u03BB\u03C5\u03BD\u03C3\u03B7 \u03B1\u03C5\u03C4\u03BF\u03CD (\u03BB\u03CC\u03B3\u03C9 \u03B1\u03C0\u03CC\u03C3\u03C4\u03B1\u03C3\u03B7\u03C2 \u03BA\u03BB\u03C0) \u03B4\u03B5\u03BD \u03B5\u03C5\u03B8\u03CD\u03BD\u03B5\u03C4\u03B1\u03B9 \u03B3\u03B9\u03B1 \u03C4\u03BF\u03C5\u03C2 \u03C7\u03C1\u03BF\u03BD\u03BF\u03C5\u03C2 \u03B1\u03C0\u03CC\u03BA\u03C1\u03B9\u03C3\u03B7\u03C2 \u03C4\u03BF\u03C5 service \u03C4\u03BF\u03C5 \u03BA\u03B1\u03C4\u03B1\u03C3\u03BA\u03B5\u03C5\u03B1\u03C3\u03C4\u03AE."
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"8.3 \u0397 \u03B5\u03C4\u03B1\u03B9\u03C1\u03B5\u03AF\u03B1 \u03BC\u03B1\u03C2 \u03B1\u03BD\u03B1\u03BB\u03B1\u03BC\u03B2\u03AC\u03BD\u03B5\u03B9 \u03C4\u03B7\u03BD \u03B5\u03C5\u03B8\u03CD\u03BD\u03B7 \u03BC\u03CC\u03BD\u03BF \u03B3\u03B9\u03B1 \u03C4\u03B9\u03C2 \u03B5\u03B3\u03B3\u03C5\u03AE\u03C3\u03B5\u03B9\u03C2 \u03C0\u03BF\u03C5 \u03C4\u03C5\u03C7\u03CC\u03BD \u03B7  \u03AF\u03B4\u03B9\u03B1 \u03C0\u03C1\u03BF\u03C3\u03C6\u03AD\u03C1\u03B5\u03B9, \u03B3\u03B9\u03B1 \u03BF\u03C1\u03B9\u03C3\u03BC\u03AD\u03BD\u03B1 \u03B5\u03B9\u03B4\u03B9\u03BA\u03AC \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03B1 \u03CC\u03C4\u03B1\u03BD \u03C3\u03B5 \u03B1\u03C5\u03C4\u03AC \u03B1\u03BD\u03B1\u03B3\u03C1\u03AC\u03C6\u03B5\u03C4\u03B1\u03B9 \u03CC\u03C4\u03B9 \u03B7 \u03B5\u03B3\u03B3\u03CD\u03B7\u03C3\u03B7 \u03C0\u03C1\u03BF\u03C3\u03C6\u03AD\u03C4\u03B1\u03B9 \u03B1\u03C0\u03CC \u03C4\u03B7\u03BD \u03B5\u03C4\u03B1\u03B9\u03C1\u03B5\u03AF\u03B1 \u03BC\u03B1\u03C2."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"9. \u0394\u03B9\u03B1\u03B4\u03B9\u03BA\u03B1\u03C3\u03AF\u03B1 \u03B5\u03C0\u03AF\u03BB\u03C5\u03C3\u03B7\u03C2 \u03C0\u03B1\u03C1\u03B1\u03C0\u03CC\u03BD\u03C9\u03BD"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"\u03A3\u03B5 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C0\u03BF\u03C5 \u03AD\u03C7\u03B5\u03C4\u03B5 \u03BF\u03C0\u03BF\u03B9\u03BF\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03C0\u03B1\u03C1\u03AC\u03C0\u03BF\u03BD\u03BF \u03B3\u03B9\u03B1 \u03C4\u03B7\u03BD \u03B5\u03BE\u03C5\u03C0\u03B7\u03C1\u03AD\u03C4\u03B7\u03C3\u03AE \u03C3\u03B1\u03C2 \u03AE \u03C4\u03B1 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03B1 \u03BA\u03B1\u03B9 \u03C4\u03B9\u03C2 \u03C5\u03C0\u03B7\u03C1\u03B5\u03C3\u03AF\u03B5\u03C2 \u03C0\u03BF\u03C5 \u03C0\u03C1\u03BF\u03BC\u03B7\u03B8\u03B5\u03C5\u03C4\u03AE\u03BA\u03B1\u03C4\u03B5 \u03B1\u03C0\u03CC \u03C4\u03BF\u03BD \u03B4\u03B9\u03BA\u03C4\u03C5\u03B1\u03BA\u03CC \u03BC\u03B1\u03C2 \u03C4\u03CC\u03C0\u03BF, \u03B4\u03B9\u03B1\u03B2\u03AC\u03C3\u03C4\u03B5 \u03C4\u03B7 \u03B4\u03B9\u03B1\u03B4\u03B9\u03BA\u03B1\u03C3\u03AF\u03B1 \u03B5\u03C0\u03AF\u03BB\u03C5\u03C3\u03B7\u03C2 \u03C0\u03B1\u03C1\u03B1\u03C0\u03CC\u03BD\u03C9\u03BD \u03C0\u03BF\u03C5 \u03B2\u03C1\u03AF\u03C3\u03BA\u03B5\u03C4\u03B1\u03B9 \u03C3\u03C4\u03BF\u03BD \u03B4\u03B9\u03BA\u03C4\u03C5\u03B1\u03BA\u03CC \u03C4\u03CC\u03C0\u03BF."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"10. \u0391\u03C0\u03CC\u03C0\u03B5\u03B9\u03C1\u03B1 \u0394\u03CC\u03BB\u03BF\u03C5 \u03BA\u03B1\u03B9 \u0395\u03BE\u03B1\u03C0\u03AC\u03C4\u03B7\u03C3\u03B7\u03C2"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"\u03A3\u03B5 \u03BF\u03C0\u03BF\u03B9\u03B1\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03B7 \u03B5\u03C4\u03B1\u03B9\u03C1\u03B5\u03AF\u03B1 \u03BC\u03B1\u03C2 \u03B1\u03BD\u03C4\u03B9\u03BB\u03B7\u03C6\u03B8\u03B5\u03AF \u03B4\u03CC\u03BB\u03BF \u03AE \u03B1\u03C0\u03CC\u03C0\u03B5\u03B9\u03C1\u03B1 \u03B5\u03BE\u03B1\u03C0\u03AC\u03C4\u03B7\u03C3\u03B7\u03C2 \u03B1\u03C0\u03CC \u03C0\u03BB\u03B5\u03C5\u03C1\u03AC\u03C2 \u03B5\u03C0\u03B9\u03C3\u03BA\u03AD\u03C0\u03C4\u03B7/\u03C0\u03B5\u03BB\u03AC\u03C4\u03B7, \u03B4\u03B9\u03B1\u03C4\u03B7\u03C1\u03B5\u03AF \u03C4\u03BF \u03B4\u03B9\u03BA\u03B1\u03AF\u03C9\u03BC\u03B1 \u03BD\u03B1 \u03B1\u03BD\u03B1\u03C3\u03C4\u03B5\u03AF\u03BB\u03B5\u03B9 \u03AE \u03BD\u03B1 \u03B4\u03B9\u03B1\u03BA\u03CC\u03C8\u03B5\u03B9 \u03C4\u03B7\u03BD \u03BF\u03C0\u03BF\u03B9\u03B1\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03C0\u03C1\u03AC\u03BE\u03B7 \u03BA\u03B1\u03B9 \u03B8\u03B1 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03C3\u03C4\u03B7 \u03B4\u03B9\u03B1\u03BA\u03C1\u03B9\u03C4\u03B9\u03BA\u03AE \u03C4\u03BF\u03C5 \u03B5\u03C5\u03C7\u03AD\u03C1\u03B5\u03B9\u03B1 \u03BD\u03B1 \u03BA\u03B1\u03C4\u03B1\u03B3\u03B3\u03B5\u03AF\u03BB\u03B5\u03B9 \u03C4\u03BF \u03B3\u03B5\u03B3\u03BF\u03BD\u03CC\u03C2 \u03C3\u03C4\u03B9\u03C2 \u03B1\u03C1\u03BC\u03CC\u03B4\u03B9\u03B5\u03C2 \u03B1\u03C1\u03C7\u03AD\u03C2."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"11. \u03A4\u03C5\u03C0\u03BF\u03B3\u03C1\u03B1\u03C6\u03B9\u03BA\u03AC \u03C3\u03C6\u03AC\u03BB\u03BC\u03B1\u03C4\u03B1 \u03BA\u03B1\u03B9 \u03C3\u03C6\u03AC\u03BB\u03BC\u03B1\u03C4\u03B1 \u03C4\u03B9\u03BC\u03BF\u03BB\u03CC\u03B3\u03B7\u03C3\u03B7\u03C2"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"\u03A3\u03B5 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C0\u03BF\u03C5 \u03BF\u03C0\u03BF\u03B9\u03B1\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03B1 \u03AE \u03BF\u03B9 \u03C5\u03C0\u03B7\u03C1\u03B5\u03C3\u03AF\u03B5\u03C2 \u03B1\u03BD\u03B1\u03C6\u03AD\u03C1\u03BF\u03BD\u03C4\u03B1\u03B9 \u03BC\u03B5 \u03BB\u03AC\u03B8\u03BF\u03C2 \u03C4\u03B9\u03BC\u03AE \u03BB\u03CC\u03B3\u03C9 \u03C4\u03C5\u03C0\u03BF\u03B3\u03C1\u03B1\u03C6\u03B9\u03BA\u03BF\u03CD \u03C3\u03C6\u03AC\u03BB\u03BC\u03B1\u03C4\u03BF\u03C2 \u03AE \u03C3\u03C6\u03AC\u03BB\u03BC\u03B1\u03C4\u03BF\u03C2 \u03C3\u03C4\u03B1 \u03C3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03B1 \u03C4\u03B9\u03BC\u03BF\u03BB\u03CC\u03B3\u03B7\u03C3\u03B7\u03C2, \u03C4\u03BF kentro-jeans.gr \u03AD\u03C7\u03B5\u03B9 \u03C4\u03BF \u03B4\u03B9\u03BA\u03B1\u03AF\u03C9\u03BC\u03B1 \u03BD\u03B1 \u03B1\u03C1\u03BD\u03B7\u03B8\u03B5\u03AF \u03BD\u03B1 \u03B5\u03BA\u03C4\u03B5\u03BB\u03AD\u03C3\u03B5\u03B9 \u03AE \u03BD\u03B1 \u03B1\u03BA\u03C5\u03C1\u03CE\u03C3\u03B5\u03B9 \u03BF\u03C0\u03BF\u03B9\u03B1\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1 \u03B3\u03B9\u03B1 \u03C4\u03BF \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD \u03AE \u03C4\u03B7\u03BD \u03C5\u03C0\u03B7\u03C1\u03B5\u03C3\u03AF\u03B1 \u03B1\u03C5\u03C4\u03AE, \u03B1\u03BD\u03B5\u03BE\u03B1\u03C1\u03C4\u03AE\u03C4\u03C9\u03C2 \u03B5\u03AC\u03BD \u03AD\u03C7\u03B5\u03B9 \u03B5\u03C0\u03B9\u03B2\u03B5\u03B2\u03B1\u03B9\u03C9\u03B8\u03B5\u03AF \u03B7 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1 \u03BA\u03B1\u03B9 \u03AD\u03C7\u03B5\u03B9 \u03C7\u03C1\u03B5\u03C9\u03B8\u03B5\u03AF \u03B7 \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03AE \u03C3\u03B1\u03C2 \u03BA\u03AC\u03C1\u03C4\u03B1. \u0391\u03BD \u03AD\u03C7\u03B5\u03B9 \u03C7\u03C1\u03B5\u03C9\u03B8\u03B5\u03AF \u03B7 \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03AE \u03C3\u03B1\u03C2 \u03BA\u03AC\u03C1\u03C4\u03B1 \u03B3\u03B9\u03B1 \u03C4\u03B7\u03BD \u03B1\u03B3\u03BF\u03C1\u03AC \u03BA\u03B1\u03B9 \u03B1\u03BA\u03C5\u03C1\u03C9\u03B8\u03B5\u03AF \u03B7 \u03C0\u03B1\u03C1\u03B1\u03B3\u03B3\u03B5\u03BB\u03AF\u03B1 \u03C3\u03B1\u03C2, \u03B8\u03B1 \u03B5\u03BA\u03B4\u03BF\u03B8\u03B5\u03AF \u03C3\u03C4\u03BF\u03BD \u03C3\u03C5\u03BD\u03C4\u03BF\u03BC\u03CC\u03C4\u03B5\u03C1\u03BF \u03B4\u03C5\u03BD\u03B1\u03C4\u03CC \u03C7\u03C1\u03CC\u03BD\u03BF \u03B7 \u03C0\u03AF\u03C3\u03C4\u03C9\u03C3\u03B7 \u03C3\u03C4\u03BF \u03BB\u03BF\u03B3\u03B1\u03C1\u03B9\u03B1\u03C3\u03BC\u03CC \u03C4\u03B7\u03C2 \u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\u03AE\u03C2 \u03C3\u03B1\u03C2 \u03BA\u03AC\u03C1\u03C4\u03B1\u03C2 \u03AF\u03C3\u03B7 \u03BC\u03B5 \u03C4\u03BF \u03C0\u03BF\u03C3\u03CC \u03C4\u03B7\u03C2 \u03C7\u03C1\u03AD\u03C9\u03C3\u03B7\u03C2."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"12. \u0398\u03AD\u03BC\u03B1\u03C4\u03B1 \u03C0\u03AD\u03C1\u03B1\u03BD \u03C4\u03BF\u03C5 \u03B5\u03CD\u03BB\u03BF\u03B3\u03BF\u03C5 \u03B5\u03BB\u03AD\u03B3\u03C7\u03BF\u03C5 \u03BC\u03B1\u03C2 \u2013 \u0391\u03BD\u03CE\u03C4\u03B5\u03C1\u03B7 \u03B2\u03AF\u03B1"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"\u03A4\u03BF kentro-jeans.gr \u03B4\u03B5\u03BD \u03C6\u03AD\u03C1\u03B5\u03B9 \u03B5\u03C5\u03B8\u03CD\u03BD\u03B7 \u03B3\u03B9\u03B1 \u03BF\u03C0\u03BF\u03B9\u03B1\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03C0\u03B1\u03C1\u03B1\u03B2\u03AF\u03B1\u03C3\u03B7 \u03C4\u03B7\u03C2 \u03C0\u03B1\u03C1\u03BF\u03CD\u03C3\u03B1\u03C2 \u03A3\u03CD\u03BC\u03B2\u03B1\u03C3\u03B7\u03C2 \u03BB\u03CC\u03B3\u03C9 \u03C3\u03C5\u03BC\u03B2\u03AC\u03BD\u03C4\u03C9\u03BD \u03C0\u03AD\u03C1\u03B1\u03BD \u03C4\u03BF\u03C5 \u03B5\u03CD\u03BB\u03BF\u03B3\u03BF\u03C5 \u03B5\u03BB\u03AD\u03B3\u03C7\u03BF\u03C5 \u03C4\u03B7\u03C2, \u03BB\u03CC\u03B3\u03C9 \u03B1\u03BD\u03CE\u03C4\u03B5\u03C1\u03B7\u03C2 \u03B2\u03AF\u03B1\u03C2 \u03B5\u03BD \u03B3\u03AD\u03BD\u03B5\u03B9, \u03CC\u03C0\u03C9\u03C2 \u03B8\u03B5\u03BF\u03BC\u03B7\u03BD\u03AF\u03B5\u03C2, \u03C0\u03C5\u03C1\u03BA\u03B1\u03B3\u03B9\u03AC, \u03BA\u03B5\u03C1\u03B1\u03C5\u03BD\u03CC, \u03C0\u03BB\u03B7\u03BC\u03BC\u03CD\u03C1\u03B1 \u03AE \u03B1\u03BA\u03C1\u03B1\u03AF\u03B1 \u03BA\u03B1\u03B9\u03C1\u03B9\u03BA\u03AC \u03C6\u03B1\u03B9\u03BD\u03CC\u03BC\u03B5\u03BD\u03B1, \u03AD\u03BA\u03C1\u03B7\u03BE\u03B7, \u03C0\u03CC\u03BB\u03B5\u03BC\u03BF, \u03B1\u03BD\u03B1\u03C4\u03B1\u03C1\u03B1\u03C7\u03AD\u03C2, \u03B5\u03C1\u03B3\u03B1\u03C4\u03B9\u03BA\u03AD\u03C2 \u03B4\u03B9\u03B5\u03BD\u03AD\u03BE\u03B5\u03B9\u03C2 (\u03B5\u03AF\u03C4\u03B5 \u03B5\u03BC\u03C0\u03BB\u03AD\u03BA\u03BF\u03BD\u03C4\u03B1\u03B9 \u03C5\u03C0\u03AC\u03BB\u03BB\u03B7\u03BB\u03BF\u03B9 \u03B5\u03AF\u03C4\u03B5 \u03CC\u03C7\u03B9), \u03B5\u03BD\u03AD\u03C1\u03B3\u03B5\u03B9\u03B5\u03C2 \u03AE \u03C0\u03B1\u03C1\u03B1\u03BB\u03B5\u03AF\u03C8\u03B5\u03B9\u03C2 \u03C4\u03C9\u03BD \u03B5\u03C4\u03B1\u03B9\u03C1\u03B5\u03B9\u03CE\u03BD \u03C0\u03B1\u03C1\u03BF\u03C7\u03AE\u03C2 \u03C5\u03C0\u03B7\u03C1\u03B5\u03C3\u03B9\u03CE\u03BD web, \u03C0\u03B1\u03C1\u03B1\u03BB\u03B5\u03AF\u03C8\u03B5\u03B9\u03C2 \u03BA\u03B1\u03B9 \u03B1\u03B4\u03C5\u03BD\u03B1\u03BC\u03AF\u03B5\u03C2 \u03C0\u03B1\u03C1\u03AC\u03B4\u03BF\u03C3\u03B7\u03C2 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03C9\u03BD \u03B1\u03C0\u03CC \u03C4\u03BF\u03C5\u03C2 \u03C0\u03C1\u03BF\u03BC\u03B7\u03B8\u03B5\u03C5\u03C4\u03AD\u03C2 \u03B1\u03C0\u03CC \u03B1\u03BD\u03CE\u03C4\u03B5\u03C1\u03B7 \u03B2\u03AF\u03B1 \u03AE \u03B5\u03BD\u03AD\u03C1\u03B3\u03B5\u03B9\u03B5\u03C2 \u03C4\u03C9\u03BD \u03C4\u03BF\u03C0\u03B9\u03BA\u03CE\u03BD \u03AE \u03BA\u03B5\u03BD\u03C4\u03C1\u03B9\u03BA\u03CE\u03BD \u03B1\u03C1\u03C7\u03CE\u03BD \u03B4\u03B9\u03B1\u03BA\u03C5\u03B2\u03AD\u03C1\u03BD\u03B7\u03C3\u03B7\u03C2 \u03AE \u03AC\u03BB\u03BB\u03C9\u03BD \u03B1\u03C1\u03BC\u03CC\u03B4\u03B9\u03C9\u03BD \u03B1\u03C1\u03C7\u03CE\u03BD."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"13. \u0393\u03BB\u03CE\u03C3\u03C3\u03B1"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"\u0397 \u03B3\u03BB\u03CE\u03C3\u03C3\u03B1 \u03C4\u03B7\u03C2 \u03A3\u03CD\u03BC\u03B2\u03B1\u03C3\u03B7\u03C2 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03C4\u03B1 \u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC. \u039A\u03AC\u03B8\u03B5 \u03C3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03BF \u03C0\u03BF\u03C5 \u03B1\u03BD\u03B1\u03B3\u03C1\u03AC\u03C6\u03B5\u03C4\u03B1\u03B9 \u03C3\u03C4\u03B7\u03BD \u03B9\u03C3\u03C4\u03BF\u03C3\u03B5\u03BB\u03AF\u03B4\u03B1 \u03BC\u03B1\u03C2 \u03C3\u03B5 \u03B3\u03BB\u03CE\u03C3\u03C3\u03B1 \u03B4\u03B9\u03B1\u03C6\u03BF\u03C1\u03B5\u03C4\u03B9\u03BA\u03AE \u03B1\u03C0\u03CC \u03C4\u03B7\u03BD \u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AE \u03C7\u03C9\u03C1\u03AF\u03C2 \u03BC\u03B5\u03C4\u03AC\u03C6\u03C1\u03B1\u03C3\u03B7 \u03B8\u03B1 \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03B5\u03BA\u03BB\u03B1\u03BC\u03B2\u03AC\u03BD\u03B5\u03C4\u03B1\u03B9 \u03C9\u03C2 \u03AD\u03C7\u03B5\u03B9."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"14. \u0394\u03B9\u03B1\u03B9\u03C1\u03B5\u03C4\u03CC\u03C4\u03B7\u03C4\u03B1"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"\u03A3\u03B5 \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C0\u03BF\u03C5 \u03BF\u03C0\u03BF\u03B9\u03BF\u03C3\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03CC\u03C1\u03BF\u03C2 \u03C4\u03B7\u03C2 \u03C0\u03B1\u03C1\u03BF\u03CD\u03C3\u03B1\u03C2 \u03A3\u03CD\u03BC\u03B2\u03B1\u03C3\u03B7\u03C2 \u03BA\u03C1\u03B9\u03B8\u03B5\u03AF \u03AC\u03BA\u03C5\u03C1\u03BF\u03C2 \u03AE \u03BC\u03B7 \u03B5\u03C6\u03B1\u03C1\u03BC\u03CC\u03C3\u03B9\u03BC\u03BF\u03C2 \u03BC\u03B5 \u03B4\u03B9\u03BA\u03B1\u03C3\u03C4\u03B9\u03BA\u03AE \u03B5\u03BD\u03C4\u03BF\u03BB\u03AE \u03AE \u03B1\u03C0\u03CC\u03C6\u03B1\u03C3\u03B7, \u03BF\u03B9 \u03C5\u03C0\u03CC\u03BB\u03BF\u03B9\u03C0\u03BF\u03B9 \u03CC\u03C1\u03BF\u03B9 \u03B8\u03B1 \u03B5\u03BE\u03B1\u03BA\u03BF\u03BB\u03BF\u03C5\u03B8\u03BF\u03CD\u03BD \u03BD\u03B1 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03AD\u03B3\u03BA\u03C5\u03C1\u03BF\u03B9 \u03BA\u03B1\u03B9 \u03B5\u03C6\u03B1\u03C1\u03BC\u03CC\u03C3\u03B9\u03BC\u03BF\u03B9."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"15. \u03A0\u03BB\u03AE\u03C1\u03B7\u03C2 \u03A3\u03CD\u03BC\u03B2\u03B1\u03C3\u03B7"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"\u039F\u03B9 \u03C0\u03B1\u03C1\u03CC\u03BD\u03C4\u03B5\u03C2 \u038C\u03C1\u03BF\u03B9 \u03BA\u03B1\u03B9 \u03A0\u03C1\u03BF\u03CB\u03C0\u03BF\u03B8\u03B5\u03C3\u03B5\u03B9\u03C2 \u03C0\u03BF\u03C5 \u03B1\u03C0\u03BF\u03C4\u03B5\u03BB\u03BF\u03CD\u03BD, \u03CC\u03C0\u03C9\u03C2 \u03B1\u03BD\u03B1\u03C6\u03AD\u03C1\u03B8\u03B7\u03BA\u03B5, \u03C4\u03B7\u03BD \u03C0\u03B1\u03C1\u03BF\u03CD\u03C3\u03B1 \u03A3\u03CD\u03BC\u03B2\u03B1\u03C3\u03B7, \u03BC\u03B1\u03B6\u03AF \u03BC\u03B5 \u03C4\u03B9\u03C2 \u03A0\u03BF\u03BB\u03B9\u03C4\u03B9\u03BA\u03AD\u03C2 \u0391\u03C0\u03BF\u03C1\u03C1\u03AE\u03C4\u03BF\u03C5, \u03B1\u03C0\u03BF\u03C4\u03B5\u03BB\u03BF\u03CD\u03BD \u03C4\u03B7\u03BD \u03C0\u03BB\u03AE\u03C1\u03B7 \u03C3\u03C5\u03BC\u03C6\u03C9\u03BD\u03AF\u03B1 \u03BA\u03B1\u03B9 \u03C3\u03C5\u03BD\u03B5\u03BD\u03BD\u03CC\u03B7\u03C3\u03B7 \u03BC\u03B5\u03C4\u03B1\u03BE\u03CD \u03C4\u03C9\u03BD \u03BC\u03B5\u03C1\u03CE\u03BD \u03C3\u03C7\u03B5\u03C4\u03B9\u03BA\u03AC \u03BC\u03B5 \u03C4\u03BF \u03B1\u03BD\u03C4\u03B9\u03BA\u03B5\u03AF\u03BC\u03B5\u03BD\u03CC \u03C4\u03B7\u03C2 . \u0397 \u03C0\u03B1\u03C1\u03BF\u03CD\u03C3\u03B1 \u03BC\u03C0\u03BF\u03C1\u03B5\u03AF \u03BD\u03B1 \u03BC\u03B5\u03C4\u03B1\u03B2\u03BB\u03B7\u03B8\u03B5\u03AF \u03B1\u03BD\u03AC \u03C0\u03AC\u03C3\u03B1 \u03C3\u03C4\u03B9\u03B3\u03BC\u03AE \u03C7\u03C9\u03C1\u03AF\u03C2 \u03BA\u03B1\u03BC\u03BC\u03AF\u03B1 \u03C0\u03C1\u03BF\u03B5\u03B9\u03B4\u03BF\u03C0\u03BF\u03AF\u03B7\u03C3\u03B7 \u03B3\u03B9\u0384\u03B1\u03C5\u03C4\u03CC \u03BF\u03C6\u03B5\u03AF\u03BB\u03B5\u03C4\u03B5 \u03BD\u03B1 \u03C4\u03B7\u03BD \u03B4\u03B9\u03B1\u03B2\u03AC\u03B6\u03B5\u03C4\u03B5 \u03BA\u03AC\u03B8\u03B5 \u03C6\u03BF\u03C1\u03AC \u03C0\u03BF\u03C5 \u03B5\u03C0\u03B9\u03B2\u03B5\u03B2\u03B1\u03B9\u03CE\u03BD\u03B5\u03C4\u03B5 \u03C4\u03B7\u03BD \u03B1\u03B3\u03BF\u03C1\u03AC \u03B5\u03BD\u03CC\u03C2 \u03C0\u03C1\u03BF\u03CA\u03CC\u03BD\u03C4\u03CC\u03C2."
+		),
+		_react2.default.createElement(
+			"h4",
+			null,
+			"16. \u0394\u03AE\u03BB\u03C9\u03C3\u03B7 \u0391\u03C0\u03BF\u03C1\u03C1\u03AE\u03C4\u03BF\u03C5 \u03C4\u03BF\u03C5 kentro-jeans.gr"
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			"\u03A4\u03B1 \u0394\u03B5\u03B4\u03BF\u03BC\u03AD\u03BD\u03B1 \u0395\u03B3\u03B3\u03C1\u03B1\u03C6\u03AE\u03C2 \u03BA\u03B1\u03B9 \u03BF\u03C1\u03B9\u03C3\u03BC\u03AD\u03BD\u03B5\u03C2 \u03AC\u03BB\u03BB\u03B5\u03C2 \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03AF\u03B5\u03C2 \u03C3\u03C7\u03B5\u03C4\u03B9\u03BA\u03AC \u03BC\u03B5 \u03B5\u03C3\u03AC\u03C2 \u03C5\u03C0\u03CC\u03BA\u03B5\u03B9\u03BD\u03C4\u03B1\u03B9 \u03C3\u03C4\u03B7 \u0394\u03AE\u03BB\u03C9\u03C3\u03B7 \u0391\u03C0\u03BF\u03C1\u03C1\u03AE\u03C4\u03BF\u03C5 \u03BC\u03B1\u03C2. \u0393\u03B9\u03B1 \u03C0\u03B5\u03C1\u03B9\u03C3\u03C3\u03CC\u03C4\u03B5\u03C1\u03B5\u03C2 \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03AF\u03B5\u03C2, \u03C0\u03B1\u03C1\u03B1\u03BA\u03B1\u03BB\u03BF\u03CD\u03BC\u03B5 \u03B4\u03B9\u03B1\u03B2\u03AC\u03C3\u03B5\u03C4\u03B5 \u03C4\u03B7\u03BD \u03C0\u03BB\u03AE\u03C1\u03B7 \u03C0\u03BF\u03BB\u03B9\u03C4\u03B9\u03BA\u03AE \u03B1\u03C0\u03BF\u03C1\u03C1\u03AE\u03C4\u03BF\u03C5 \u03C4\u03B7\u03C2 \u03B5\u03C4\u03B1\u03B9\u03C1\u03B5\u03AF\u03B1\u03C2 \u03BC\u03B1\u03C2."
+		)
+	);
+};
+
+exports.default = Order;
+
+},{"react":230}],270:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38061,7 +38577,7 @@ var Message = function Message(_ref) {
 
 exports.default = Message;
 
-},{"react":230}],266:[function(require,module,exports){
+},{"react":230}],271:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38117,7 +38633,7 @@ var Order = function Order(_ref) {
 
 exports.default = Order;
 
-},{"react":230}],267:[function(require,module,exports){
+},{"react":230}],272:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38216,7 +38732,7 @@ var PopupCategory = function PopupCategory(_ref) {
 
 exports.default = PopupCategory;
 
-},{"react":230}],268:[function(require,module,exports){
+},{"react":230}],273:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39343,7 +39859,7 @@ var PopupProduct = function PopupProduct(_ref) {
 
 exports.default = PopupProduct;
 
-},{"react":230}],269:[function(require,module,exports){
+},{"react":230}],274:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39997,7 +40513,7 @@ var Products = function Products(_ref) {
 
 exports.default = Products;
 
-},{"react":230}],270:[function(require,module,exports){
+},{"react":230}],275:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -40271,7 +40787,7 @@ exports.update_cart_str = update_cart_str;
 exports.sort_products_str = sort_products_str;
 exports.clear_cart_str = clear_cart_str;
 
-},{}],271:[function(require,module,exports){
+},{}],276:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40426,7 +40942,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../history.js":287,"./Category.js":276,"ajax-query":1,"react":230,"react-redux":178}],272:[function(require,module,exports){
+},{"../actions.js":255,"../history.js":292,"./Category.js":281,"ajax-query":1,"react":230,"react-redux":178}],277:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40596,7 +41112,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/AdminCategories.js":256,"../components/Message.js":265,"../containers/PopupCategory.js":283,"ajax-query":1,"react":230,"react-redux":178}],273:[function(require,module,exports){
+},{"../actions.js":255,"../components/AdminCategories.js":256,"../components/Message.js":270,"../containers/PopupCategory.js":288,"ajax-query":1,"react":230,"react-redux":178}],278:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40831,7 +41347,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/AdminProducts.js":257,"../components/Message.js":265,"../containers/PopupProduct.js":284,"../history.js":287,"ajax-query":1,"react":230,"react-redux":178}],274:[function(require,module,exports){
+},{"../actions.js":255,"../components/AdminProducts.js":257,"../components/Message.js":270,"../containers/PopupProduct.js":289,"../history.js":292,"ajax-query":1,"react":230,"react-redux":178}],279:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40997,7 +41513,7 @@ var Cart = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Cart);
 
-},{"../actions.js":255,"../components/Cart.js":258,"../history.js":287,"react":230,"react-redux":178}],275:[function(require,module,exports){
+},{"../actions.js":255,"../components/Cart.js":258,"../history.js":292,"react":230,"react-redux":178}],280:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41084,7 +41600,7 @@ var Categories = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Categories);
 
-},{"../components/Categories.js":259,"./Header.js":280,"react":230,"react-redux":178}],276:[function(require,module,exports){
+},{"../components/Categories.js":259,"./Header.js":285,"react":230,"react-redux":178}],281:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41161,7 +41677,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../components/Category.js":260,"react":230,"react-redux":178}],277:[function(require,module,exports){
+},{"../components/Category.js":260,"react":230,"react-redux":178}],282:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41449,7 +41965,7 @@ var Checkout = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Checkout);
 
-},{"../actions.js":255,"../components/Checkout.js":261,"../history.js":287,"react":230,"react-redux":178}],278:[function(require,module,exports){
+},{"../actions.js":255,"../components/Checkout.js":261,"../history.js":292,"react":230,"react-redux":178}],283:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41707,7 +42223,7 @@ var Details = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Details);
 
-},{"../actions.js":255,"../components/Details.js":262,"react":230,"react-redux":178}],279:[function(require,module,exports){
+},{"../actions.js":255,"../components/Details.js":262,"react":230,"react-redux":178}],284:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41725,6 +42241,10 @@ var _reactRedux = require('react-redux');
 var _Footer = require('../components/Footer.js');
 
 var _Footer2 = _interopRequireDefault(_Footer);
+
+var _history = require('../history.js');
+
+var _history2 = _interopRequireDefault(_history);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41759,19 +42279,40 @@ var Footer = function (_Component) {
 	function Footer(props) {
 		_classCallCheck(this, Footer);
 
-		return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, props));
+
+		_this.delivery = _this.deliveryHandler.bind(_this);
+		_this.size = _this.sizeHandler.bind(_this);
+		_this.legal = _this.legalHandler.bind(_this);
+		return _this;
 	}
 
 	_createClass(Footer, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {}
 	}, {
+		key: 'deliveryHandler',
+		value: function deliveryHandler() {}
+	}, {
+		key: 'sizeHandler',
+		value: function sizeHandler() {}
+	}, {
+		key: 'legalHandler',
+		value: function legalHandler() {
+			_history2.default.push("/legal");
+		}
+	}, {
 		key: 'render',
 		value: function render() {
+			var delivery = this.delivery,
+			    size = this.size,
+			    legal = this.legal;
+
 			return _react2.default.createElement(
 				'div',
 				{ className: '' },
-				_react2.default.createElement(_Footer2.default, { lang: this.props.lang })
+				_react2.default.createElement(_Footer2.default, { lang: this.props.lang,
+					delivery: delivery, size: size, legal: legal })
 			);
 		}
 	}]);
@@ -41781,7 +42322,7 @@ var Footer = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Footer);
 
-},{"../components/Footer.js":263,"react":230,"react-redux":178}],280:[function(require,module,exports){
+},{"../components/Footer.js":263,"../history.js":292,"react":230,"react-redux":178}],285:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41871,9 +42412,16 @@ var Header = function (_Component) {
 		_this.delay = 0;
 		_this.items = _this.props.cartItems;
 
+		var check = false;
+		(function (a) {
+			if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+		})(navigator.userAgent || navigator.vendor || window.opera);
+
 		_this.state = {
-			langShow: false,
-			subShow: false,
+			mobile: check, //check if mobile device
+			showHead: false, //on mobile show categories
+			langShow: false, //show language menu
+			subShow: false, //show sub categories
 			anime: false
 		};
 
@@ -41881,6 +42429,7 @@ var Header = function (_Component) {
 		_this.clickEvent = _this.clickEventHandler.bind(_this);
 		_this.showSub = _this.showSubHandler.bind(_this);
 		_this.showLang = _this.showLangHandler.bind(_this);
+		_this.changeHead = _this.changeHeadHandler.bind(_this);
 		_this.changeLang = _this.changeLangHandler.bind(_this);
 		_this.clickCat = _this.clickCatHandler.bind(_this);
 		_this.clickSub = _this.clickSubHandler.bind(_this);
@@ -41967,6 +42516,14 @@ var Header = function (_Component) {
 			this.props.change_path("", "", this.props.categories);
 			_history2.default.push("/");
 		}
+		//click on bars (mobile only)
+
+	}, {
+		key: 'changeHeadHandler',
+		value: function changeHeadHandler() {
+			var flag = this.state.showHead;
+			this.setState({ showHead: !flag });
+		}
 		//click category
 
 	}, {
@@ -42032,6 +42589,7 @@ var Header = function (_Component) {
 			    changeLang = this.changeLang,
 			    showLang = this.showLang,
 			    showSub = this.showSub,
+			    changeHead = this.changeHead,
 			    clickCat = this.clickCat,
 			    clickSub = this.clickSub,
 			    showCart = this.showCart,
@@ -42046,7 +42604,7 @@ var Header = function (_Component) {
 					categoryIdx: categoryIdx, productIdx: productIdx,
 					clickEvent: clickEvent, cartItems: cartItems,
 					path: path, lang: lang, langIdx: langIdx, langStr: langStr, categories: categories,
-					clickSub: clickSub, clickCat: clickCat,
+					clickSub: clickSub, clickCat: clickCat, changeHead: changeHead,
 					cart: cart, showCart: showCart, cartFlag: cartFlag,
 					cartSizes: cartSizes, cartColors: cartColors, cartQuant: cartQuant,
 					onCart: onCart, onCheckout: onCheckout,
@@ -42060,7 +42618,7 @@ var Header = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Header);
 
-},{"../actions.js":255,"../components/Header.js":264,"../history.js":287,"react":230,"react-redux":178}],281:[function(require,module,exports){
+},{"../actions.js":255,"../components/Header.js":264,"../history.js":292,"react":230,"react-redux":178}],286:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42188,7 +42746,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../constants.js":270,"../containers/Footer":279,"./Header.js":280,"ajax-query":1,"react":230,"react-redux":178}],282:[function(require,module,exports){
+},{"../actions.js":255,"../constants.js":275,"../containers/Footer":284,"./Header.js":285,"ajax-query":1,"react":230,"react-redux":178}],287:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42280,7 +42838,7 @@ var Order = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Order);
 
-},{"../components/Order.js":266,"../history.js":287,"react":230,"react-redux":178}],283:[function(require,module,exports){
+},{"../components/Order.js":271,"../history.js":292,"react":230,"react-redux":178}],288:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42448,7 +43006,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/PopupCategory.js":267,"react":230,"react-redux":178}],284:[function(require,module,exports){
+},{"../actions.js":255,"../components/PopupCategory.js":272,"react":230,"react-redux":178}],289:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42846,7 +43404,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/PopupProduct.js":268,"../general/logic.js":286,"ajax-query":1,"react":230,"react-redux":178}],285:[function(require,module,exports){
+},{"../actions.js":255,"../components/PopupProduct.js":273,"../general/logic.js":291,"ajax-query":1,"react":230,"react-redux":178}],290:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43080,7 +43638,7 @@ var Categories = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Categories);
 
-},{"../actions.js":255,"../components/Products.js":269,"../history.js":287,"./Header.js":280,"react":230,"react-redux":178}],286:[function(require,module,exports){
+},{"../actions.js":255,"../components/Products.js":274,"../history.js":292,"./Header.js":285,"react":230,"react-redux":178}],291:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43434,7 +43992,7 @@ exports.updateCategory = updateCategory;
 exports.addProduct = addProduct;
 exports.updateProduct = updateProduct;
 
-},{"../constants.js":270,"ajax-query":1}],287:[function(require,module,exports){
+},{"../constants.js":275,"ajax-query":1}],292:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43449,7 +44007,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = (0, _createBrowserHistory2.default)();
 
-},{"history/createBrowserHistory":28}],288:[function(require,module,exports){
+},{"history/createBrowserHistory":28}],293:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -43510,6 +44068,10 @@ var _Order = require('./routes/Order');
 
 var _Order2 = _interopRequireDefault(_Order);
 
+var _Legal = require('./routes/Legal');
+
+var _Legal2 = _interopRequireDefault(_Legal);
+
 var _redux = require('redux');
 
 var _reducers = require('./reducers');
@@ -43539,13 +44101,14 @@ function desktop() {
 				_react2.default.createElement(_reactRouter.Route, { path: '/product/:title', component: _Details2.default }),
 				_react2.default.createElement(_reactRouter.Route, { path: '/cart', component: _Cart2.default }),
 				_react2.default.createElement(_reactRouter.Route, { path: '/checkout', component: _Checkout2.default }),
-				_react2.default.createElement(_reactRouter.Route, { path: '/order', component: _Order2.default })
+				_react2.default.createElement(_reactRouter.Route, { path: '/order', component: _Order2.default }),
+				_react2.default.createElement(_reactRouter.Route, { path: '/legal', component: _Legal2.default })
 			)
 		)
 	), document.getElementById('app'));
 }
 
-},{"./history.js":287,"./reducers":292,"./routes/Admin":296,"./routes/AdminCategories":297,"./routes/AdminProducts":298,"./routes/Cart":299,"./routes/Categories":300,"./routes/Checkout":301,"./routes/Details":302,"./routes/Main":303,"./routes/Order":304,"./routes/Products":305,"react":230,"react-dom":43,"react-redux":178,"react-router":201,"redux":237,"redux-thunk":231}],289:[function(require,module,exports){
+},{"./history.js":292,"./reducers":297,"./routes/Admin":301,"./routes/AdminCategories":302,"./routes/AdminProducts":303,"./routes/Cart":304,"./routes/Categories":305,"./routes/Checkout":306,"./routes/Details":307,"./routes/Legal":308,"./routes/Main":309,"./routes/Order":310,"./routes/Products":311,"react":230,"react-dom":43,"react-redux":178,"react-router":201,"redux":237,"redux-thunk":231}],294:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43619,7 +44182,7 @@ var products = [];
 
 exports.default = { main: main, categories: categories, products: products, popup: popup, general: general };
 
-},{"./constants.js":270}],290:[function(require,module,exports){
+},{"./constants.js":275}],295:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43660,7 +44223,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":270,"../general/logic.js":286,"../initialState":289}],291:[function(require,module,exports){
+},{"../constants.js":275,"../general/logic.js":291,"../initialState":294}],296:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43693,7 +44256,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":270,"../initialState":289}],292:[function(require,module,exports){
+},{"../constants.js":275,"../initialState":294}],297:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43734,7 +44297,7 @@ var reducer = (0, _redux.combineReducers)({
 
 exports.default = reducer;
 
-},{"./categories":290,"./general":291,"./main":293,"./popup":294,"./products":295,"redux":237}],293:[function(require,module,exports){
+},{"./categories":295,"./general":296,"./main":298,"./popup":299,"./products":300,"redux":237}],298:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43921,7 +44484,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":270,"../history.js":287,"../initialState":289}],294:[function(require,module,exports){
+},{"../constants.js":275,"../history.js":292,"../initialState":294}],299:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43963,7 +44526,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":270,"../general/logic.js":286,"../initialState":289}],295:[function(require,module,exports){
+},{"../constants.js":275,"../general/logic.js":291,"../initialState":294}],300:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43996,7 +44559,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":270,"../initialState":289}],296:[function(require,module,exports){
+},{"../constants.js":275,"../initialState":294}],301:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44023,7 +44586,7 @@ var Admin = function Admin() {
 
 exports.default = Admin;
 
-},{"../containers/Admin":271,"react":230}],297:[function(require,module,exports){
+},{"../containers/Admin":276,"react":230}],302:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44050,7 +44613,7 @@ var AdminCategories = function AdminCategories() {
 
 exports.default = AdminCategories;
 
-},{"../containers/AdminCategories":272,"react":230}],298:[function(require,module,exports){
+},{"../containers/AdminCategories":277,"react":230}],303:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44077,7 +44640,7 @@ var AdminProducts = function AdminProducts() {
 
 exports.default = AdminProducts;
 
-},{"../containers/AdminProducts":273,"react":230}],299:[function(require,module,exports){
+},{"../containers/AdminProducts":278,"react":230}],304:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44114,7 +44677,7 @@ var Cart = function Cart() {
 
 exports.default = Cart;
 
-},{"../containers/Cart":274,"../containers/Footer":279,"../containers/Header":280,"react":230}],300:[function(require,module,exports){
+},{"../containers/Cart":279,"../containers/Footer":284,"../containers/Header":285,"react":230}],305:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44146,7 +44709,7 @@ var Categories = function Categories() {
 
 exports.default = Categories;
 
-},{"../containers/Categories":275,"../containers/Header":280,"react":230}],301:[function(require,module,exports){
+},{"../containers/Categories":280,"../containers/Header":285,"react":230}],306:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44183,7 +44746,7 @@ var Checkout = function Checkout() {
 
 exports.default = Checkout;
 
-},{"../containers/Checkout":277,"../containers/Footer":279,"../containers/Header":280,"react":230}],302:[function(require,module,exports){
+},{"../containers/Checkout":282,"../containers/Footer":284,"../containers/Header":285,"react":230}],307:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44220,7 +44783,34 @@ var Details = function Details() {
 
 exports.default = Details;
 
-},{"../containers/Details":278,"../containers/Footer":279,"../containers/Header":280,"react":230}],303:[function(require,module,exports){
+},{"../containers/Details":283,"../containers/Footer":284,"../containers/Header":285,"react":230}],308:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Legal = require('../components/Legal');
+
+var _Legal2 = _interopRequireDefault(_Legal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Legal = function Legal() {
+	return _react2.default.createElement(
+		'div',
+		null,
+		_react2.default.createElement(_Legal2.default, null)
+	);
+};
+
+exports.default = Legal;
+
+},{"../components/Legal":269,"react":230}],309:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44256,7 +44846,7 @@ var Main = function Main() {
 
 exports.default = Main;
 
-},{"../containers/Footer":279,"../containers/Header":280,"../containers/Main":281,"react":230}],304:[function(require,module,exports){
+},{"../containers/Footer":284,"../containers/Header":285,"../containers/Main":286,"react":230}],310:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44283,7 +44873,7 @@ var Order = function Order() {
 
 exports.default = Order;
 
-},{"../containers/Order":282,"react":230}],305:[function(require,module,exports){
+},{"../containers/Order":287,"react":230}],311:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44320,4 +44910,4 @@ var Products = function Products() {
 
 exports.default = Products;
 
-},{"../containers/Footer":279,"../containers/Header":280,"../containers/Products":285,"react":230}]},{},[288]);
+},{"../containers/Footer":284,"../containers/Header":285,"../containers/Products":290,"react":230}]},{},[293]);
