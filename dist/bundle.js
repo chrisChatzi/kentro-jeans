@@ -35717,7 +35717,7 @@ module.exports = warning;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.popupProducts_status = exports.popupCategory_status = exports.update_category = exports.add_category = exports.delete_category = exports.rearrange_categories = exports.get_categories = exports.update_product = exports.add_product = exports.delete_product = exports.rearrange_products = exports.get_products = exports.clear_cart = exports.make_order = exports.change_quant = exports.delete_item = exports.show_cart = exports.sort_products_action = exports.sort_products = exports.update_cart = exports.selected_product = exports.fetch_products = exports.get_products_frontend = exports.change_path = exports.set_lang = exports.msg = exports.login_action = exports.login_user = undefined;
+exports.popupComments_status = exports.popupProducts_status = exports.popupCategory_status = exports.update_category = exports.add_category = exports.delete_category = exports.rearrange_categories = exports.get_categories = exports.update_product = exports.add_product = exports.delete_product = exports.rearrange_products = exports.get_products = exports.clear_cart = exports.make_order = exports.change_quant = exports.delete_item = exports.show_cart = exports.sort_products_action = exports.sort_products = exports.update_cart = exports.selected_product = exports.fetch_products = exports.get_products_frontend = exports.change_path = exports.set_lang = exports.msg = exports.login_action = exports.login_user = undefined;
 
 var _constants = require('./constants.js');
 
@@ -35970,8 +35970,15 @@ var popupProducts_status = exports.popupProducts_status = function popupProducts
         idx: idx
     };
 };
+var popupComments_status = exports.popupComments_status = function popupComments_status(show, idx) {
+    return {
+        type: _constants.popupComments_status_str,
+        show: show,
+        idx: idx
+    };
+};
 
-},{"./constants.js":275,"./general/logic.js":291}],256:[function(require,module,exports){
+},{"./constants.js":276,"./general/logic.js":293}],256:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36119,7 +36126,8 @@ var AdminCategories = function AdminCategories(_ref) {
 	    drag = _ref.drag,
 	    deleteC = _ref.deleteC,
 	    edit = _ref.edit,
-	    openPopup = _ref.openPopup;
+	    openPopup = _ref.openPopup,
+	    comments = _ref.comments;
 	return _react2.default.createElement(
 		"div",
 		{ className: "adminProducts" },
@@ -36296,7 +36304,14 @@ var AdminCategories = function AdminCategories(_ref) {
 							return deleteC(e, i);
 						} },
 					_react2.default.createElement("i", { className: "fa fa-trash product-del" })
-				)
+				),
+				v.comments && v.comments.length > 0 ? _react2.default.createElement(
+					"div",
+					{ className: "product-comments", onClick: function onClick(e) {
+							return comments(e, i);
+						} },
+					_react2.default.createElement("i", { className: "fa fa-comment product-comments" })
+				) : ""
 			) : "";
 		}) : _react2.default.createElement(
 			"div",
@@ -37610,7 +37625,7 @@ var Details = function Details(_ref) {
 						"span",
 						null,
 						" ",
-						product.comments ? product.comments.length : "0"
+						product.comments ? state.commNumber : "0"
 					)
 				),
 				_react2.default.createElement(
@@ -37636,7 +37651,7 @@ var Details = function Details(_ref) {
 					"div",
 					{ className: "commentsArea" },
 					product.comments && product.comments.length != 0 ? product.comments.map(function (v, i) {
-						return _react2.default.createElement(
+						return v.show ? _react2.default.createElement(
 							"div",
 							{ className: "commentBlock", key: i },
 							_react2.default.createElement(
@@ -37658,7 +37673,7 @@ var Details = function Details(_ref) {
 								{ className: "bot" },
 								v.txt
 							)
-						);
+						) : "";
 					}) : lang.noComments
 				)
 			)
@@ -37744,11 +37759,6 @@ var Footer = function Footer(_ref) {
 				"div",
 				{ className: "row", onClick: delivery },
 				lang.infoFooter[1]
-			),
-			_react2.default.createElement(
-				"div",
-				{ className: "row", onClick: size },
-				lang.infoFooter[2]
 			),
 			_react2.default.createElement(
 				"div",
@@ -38735,6 +38745,58 @@ var PopupCategory = function PopupCategory(_ref) {
 exports.default = PopupCategory;
 
 },{"react":230}],273:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var PopupComm = function PopupComm(_ref) {
+	var product = _ref.product,
+	    show = _ref.show;
+	return _react2.default.createElement(
+		"div",
+		{ className: "popup pop comment" },
+		product ? product.comments.map(function (v, i) {
+			return _react2.default.createElement(
+				"div",
+				{ key: i, className: "comm-item pop" },
+				_react2.default.createElement(
+					"div",
+					{ className: "comm-txt pop" },
+					"Ο " + v.name + " στις " + v.date[0] + "/" + v.date[1] + "/" + v.date[2] + " " + v.date[3] + ":" + v.date[4] + " έγραψε\n" + v.txt
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "comm-choose pop" },
+					v.show ? _react2.default.createElement(
+						"button",
+						{ className: "pop comm-show", onClick: function onClick() {
+								return show(false, i);
+							} },
+						"\u039F\u03C1\u03B1\u03C4\u03CC"
+					) : _react2.default.createElement(
+						"button",
+						{ className: "pop comm-hide", onClick: function onClick() {
+								return show(true, i);
+							} },
+						"\u039A\u03C1\u03C5\u03C6\u03CC"
+					)
+				)
+			);
+		}) : ""
+	);
+};
+
+exports.default = PopupComm;
+
+},{"react":230}],274:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39861,7 +39923,7 @@ var PopupProduct = function PopupProduct(_ref) {
 
 exports.default = PopupProduct;
 
-},{"react":230}],274:[function(require,module,exports){
+},{"react":230}],275:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -40519,7 +40581,7 @@ var Products = function Products(_ref) {
 
 exports.default = Products;
 
-},{"react":230}],275:[function(require,module,exports){
+},{"react":230}],276:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -40542,6 +40604,7 @@ var get_products_str = "GET_PRODUCTS";
 var rearrange_categories_str = "REARRANCE_CATEGORIES";
 var popupCategory_status_str = "POPUPCATEGORY_STATUS";
 var popupProducts_status_str = "POPUPPRODUCT_STATUS";
+var popupComments_status_str = "POPUPCOMMENTS_STATUS";
 var add_category_str = "ADD_CATEGORY";
 var msg_str = "MESSAGE";
 var popup_status_str = "POPUP_STATUS";
@@ -40626,6 +40689,7 @@ var el = {
 	noCart: "Δεν υπάρχουν προϊόντα στο καλάθι",
 	comments: "Σχόλια",
 	leaveComment: "Αφήστε ένα σχόλιο",
+	commSent: "Το σχόλιο σας εστάλη.\nΘα αναρτηθεί μετά από έγκριση του διαχειριστή",
 	name: "Όνομα",
 	send: "Αποστολή",
 	noComments: "Δεν υπάρχουν ακόμα σχόλια για αυτό το προϊόν",
@@ -40735,6 +40799,7 @@ var en = {
 	noCart: "There are no items in the cart",
 	comments: "Comments",
 	leaveComment: "Leave a comment",
+	commSent: "Your comment has been sent.\nIt will be posted after moderation",
 	name: "Name",
 	send: "Send",
 	noComments: "There are no comments for this product yet",
@@ -40780,6 +40845,7 @@ exports.get_products_str = get_products_str;
 exports.rearrange_categories_str = rearrange_categories_str;
 exports.popupCategory_status_str = popupCategory_status_str;
 exports.popupProducts_status_str = popupProducts_status_str;
+exports.popupComments_status_str = popupComments_status_str;
 exports.add_category_str = add_category_str;
 exports.msg_str = msg_str;
 exports.show_cart_str = show_cart_str;
@@ -40793,7 +40859,7 @@ exports.update_cart_str = update_cart_str;
 exports.sort_products_str = sort_products_str;
 exports.clear_cart_str = clear_cart_str;
 
-},{}],276:[function(require,module,exports){
+},{}],277:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40948,7 +41014,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../history.js":292,"./Category.js":281,"ajax-query":1,"react":230,"react-redux":178}],277:[function(require,module,exports){
+},{"../actions.js":255,"../history.js":294,"./Category.js":282,"ajax-query":1,"react":230,"react-redux":178}],278:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41118,7 +41184,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/AdminCategories.js":256,"../components/Message.js":270,"../containers/PopupCategory.js":288,"ajax-query":1,"react":230,"react-redux":178}],278:[function(require,module,exports){
+},{"../actions.js":255,"../components/AdminCategories.js":256,"../components/Message.js":270,"../containers/PopupCategory.js":289,"ajax-query":1,"react":230,"react-redux":178}],279:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41148,6 +41214,10 @@ var _Message2 = _interopRequireDefault(_Message);
 var _PopupProduct = require('../containers/PopupProduct.js');
 
 var _PopupProduct2 = _interopRequireDefault(_PopupProduct);
+
+var _PopupComm = require('../containers/PopupComm.js');
+
+var _PopupComm2 = _interopRequireDefault(_PopupComm);
 
 var _actions = require('../actions.js');
 
@@ -41189,8 +41259,14 @@ function mapDispatchToProps(dispatch) {
 		popupState: function popupState(idx) {
 			dispatch((0, _actions.popupProducts_status)(true, idx));
 		},
+		popupStateComm: function popupStateComm(idx) {
+			dispatch((0, _actions.popupComments_status)(true, idx));
+		},
 		closePopup: function closePopup(e) {
-			if (!e.target.classList.contains("pop")) dispatch((0, _actions.popupProducts_status)(false, ""));
+			if (!e.target.classList.contains("pop")) {
+				dispatch((0, _actions.popupProducts_status)(false, ""));
+				dispatch((0, _actions.popupComments_status)(false, ""));
+			}
 		}
 	};
 }
@@ -41222,6 +41298,7 @@ var Main = function (_Component) {
 		_this.drop = _this.dropHandler.bind(_this);
 		_this.drag = _this.dragHandler.bind(_this);
 		_this.openPopup = _this.openPopupHandler.bind(_this);
+		_this.comments = _this.commentsHandler.bind(_this);
 		return _this;
 	}
 
@@ -41283,22 +41360,30 @@ var Main = function (_Component) {
 			}
 			return txt;
 		}
+		//delete product
+
 	}, {
 		key: 'deleteHandler',
 		value: function deleteHandler(e, i) {
 			var res = confirm("Are you sure you want to delete '" + this.props.products[i].title + "'?");
 			if (res) this.props.deleteCategory(this.props.products[i]);
 		}
+		//open edit mode for product
+
 	}, {
 		key: 'editHandler',
 		value: function editHandler(e, i) {
-			if (!e.target.classList.contains("product-del")) this.props.popupState(i);
+			if (!e.target.classList.contains("product-del") && !e.target.classList.contains("product-comments")) this.props.popupState(i);
 		}
+		//category filter on top, change category
+
 	}, {
 		key: 'changeCategoryHandler',
 		value: function changeCategoryHandler(e) {
 			this.setState({ category: e.target.value });
 		}
+		//drag'n'drop
+
 	}, {
 		key: 'dropHandler',
 		value: function dropHandler(e, i) {
@@ -41309,10 +41394,19 @@ var Main = function (_Component) {
 		value: function dragHandler(e, i) {
 			this.setState({ dragged: i });
 		}
+		//new product click
+
 	}, {
 		key: 'openPopupHandler',
 		value: function openPopupHandler() {
 			this.props.popupState("");
+		}
+		//open comments
+
+	}, {
+		key: 'commentsHandler',
+		value: function commentsHandler(e, i) {
+			if (e.target.classList.contains("product-comments")) this.props.popupStateComm(i);
 		}
 	}, {
 		key: 'render',
@@ -41328,7 +41422,8 @@ var Main = function (_Component) {
 			    changeCategory = this.changeCategory,
 			    drop = this.drop,
 			    drag = this.drag,
-			    openPopup = this.openPopup;
+			    openPopup = this.openPopup,
+			    comments = this.comments;
 
 
 			return _react2.default.createElement(
@@ -41336,13 +41431,16 @@ var Main = function (_Component) {
 				null,
 				this.props.login ? _react2.default.createElement(
 					'div',
-					{ className: 'admin', onClick: popup.products ? this.props.closePopup : "" },
+					{ className: 'admin',
+						onClick: popup.products || popup.comments ? this.props.closePopup : "" },
 					msg ? _react2.default.createElement(_Message2.default, { text: msg }) : "",
 					_react2.default.createElement(_AdminProducts2.default, { products: products, getCategoryTxt: getCategoryTxt,
 						categories: categories, changeCategory: changeCategory,
+						comments: comments,
 						onClick: popup.products ? this.props.closePopup : "", deleteC: deleteC,
 						edit: edit, drop: drop, drag: drag, openPopup: openPopup, state: this.state }),
-					popup.products ? _react2.default.createElement(_PopupProduct2.default, { data: popup.productsIdx }) : ""
+					popup.products ? _react2.default.createElement(_PopupProduct2.default, { data: popup.productsIdx }) : "",
+					popup.comments ? _react2.default.createElement(_PopupComm2.default, { data: popup.commentsIdx }) : ""
 				) : ""
 			);
 		}
@@ -41353,7 +41451,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/AdminProducts.js":257,"../components/Message.js":270,"../containers/PopupProduct.js":289,"../history.js":292,"ajax-query":1,"react":230,"react-redux":178}],279:[function(require,module,exports){
+},{"../actions.js":255,"../components/AdminProducts.js":257,"../components/Message.js":270,"../containers/PopupComm.js":290,"../containers/PopupProduct.js":291,"../history.js":294,"ajax-query":1,"react":230,"react-redux":178}],280:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41519,7 +41617,7 @@ var Cart = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Cart);
 
-},{"../actions.js":255,"../components/Cart.js":258,"../history.js":292,"react":230,"react-redux":178}],280:[function(require,module,exports){
+},{"../actions.js":255,"../components/Cart.js":258,"../history.js":294,"react":230,"react-redux":178}],281:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41606,7 +41704,7 @@ var Categories = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Categories);
 
-},{"../components/Categories.js":259,"./Header.js":285,"react":230,"react-redux":178}],281:[function(require,module,exports){
+},{"../components/Categories.js":259,"./Header.js":286,"react":230,"react-redux":178}],282:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41683,7 +41781,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../components/Category.js":260,"react":230,"react-redux":178}],282:[function(require,module,exports){
+},{"../components/Category.js":260,"react":230,"react-redux":178}],283:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41971,7 +42069,7 @@ var Checkout = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Checkout);
 
-},{"../actions.js":255,"../components/Checkout.js":261,"../history.js":292,"react":230,"react-redux":178}],283:[function(require,module,exports){
+},{"../actions.js":255,"../components/Checkout.js":261,"../history.js":294,"react":230,"react-redux":178}],284:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42045,7 +42143,10 @@ var Details = function (_Component) {
 
 		_this.timeout = 0;
 
-		_this.state = {
+		var num = 0;
+		if (_this.props.product.comments) for (var i = 0; i < _this.props.product.comments.length; i++) {
+			if (_this.props.product.comments[i].show) num++;
+		}_this.state = {
 			hoverImg: false,
 			imgIdx: 0,
 			sizeIdx: -1,
@@ -42058,6 +42159,7 @@ var Details = function (_Component) {
 			commTxt: "",
 			commNameCheck: false,
 			commTxtCheck: false,
+			commNumber: num,
 			addedToCart: false
 		};
 
@@ -42185,10 +42287,12 @@ var Details = function (_Component) {
 				var comment = {
 					"name": this.state.commName,
 					"txt": this.state.commTxt,
-					"date": [d.getDate(), d.getMonth() + 1, d.getFullYear(), d.getHours(), d.getMinutes()]
+					"date": [d.getDate(), d.getMonth() + 1, d.getFullYear(), d.getHours(), d.getMinutes()],
+					"show": false
 				};
 				if (prodComm) prodComm.push(comment);else prodComm = [comment];
 				this.props.sendComment(this.props.product.id, this.props.product.title, this.props.product.title, this.props.product.price, this.props.product.category, this.props.product.descr, this.props.product.size, this.props.product.color, this.props.product.tag, this.props.product.fabric, this.props.product.qual, this.props.product.dims, this.props.product.img, prodComm);
+				alert(this.props.lang.commSent);
 			}
 		}
 	}, {
@@ -42229,7 +42333,7 @@ var Details = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Details);
 
-},{"../actions.js":255,"../components/Details.js":262,"react":230,"react-redux":178}],284:[function(require,module,exports){
+},{"../actions.js":255,"../components/Details.js":262,"react":230,"react-redux":178}],285:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42328,7 +42432,7 @@ var Footer = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Footer);
 
-},{"../components/Footer.js":263,"../history.js":292,"react":230,"react-redux":178}],285:[function(require,module,exports){
+},{"../components/Footer.js":263,"../history.js":294,"react":230,"react-redux":178}],286:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42624,7 +42728,7 @@ var Header = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Header);
 
-},{"../actions.js":255,"../components/Header.js":264,"../history.js":292,"react":230,"react-redux":178}],286:[function(require,module,exports){
+},{"../actions.js":255,"../components/Header.js":264,"../history.js":294,"react":230,"react-redux":178}],287:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42752,7 +42856,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../constants.js":275,"../containers/Footer":284,"./Header.js":285,"ajax-query":1,"react":230,"react-redux":178}],287:[function(require,module,exports){
+},{"../actions.js":255,"../constants.js":276,"../containers/Footer":285,"./Header.js":286,"ajax-query":1,"react":230,"react-redux":178}],288:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42844,7 +42948,7 @@ var Order = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Order);
 
-},{"../components/Order.js":271,"../history.js":292,"react":230,"react-redux":178}],288:[function(require,module,exports){
+},{"../components/Order.js":271,"../history.js":294,"react":230,"react-redux":178}],289:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43012,7 +43116,108 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/PopupCategory.js":272,"react":230,"react-redux":178}],289:[function(require,module,exports){
+},{"../actions.js":255,"../components/PopupCategory.js":272,"react":230,"react-redux":178}],290:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = require('react-redux');
+
+var _PopupComm = require('../components/PopupComm.js');
+
+var _PopupComm2 = _interopRequireDefault(_PopupComm);
+
+var _actions = require('../actions.js');
+
+var _ajaxQuery = require('ajax-query');
+
+var _ajaxQuery2 = _interopRequireDefault(_ajaxQuery);
+
+var _logic = require('../general/logic.js');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	Main component
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
+
+function mapStateToProps(state, ownProps) {
+	return {
+		data: ownProps.data,
+		categories: state.categories,
+		item: state.products[ownProps.data]
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		update_product: function update_product(id, oldName, name, price, category, descr, size, color, tag, fabric, quality, dims, img, comm) {
+			dispatch((0, _actions.update_product)(id, oldName, name, price, category, descr, size, color, tag, fabric, quality, dims, img, comm));
+		}
+	};
+}
+
+var Main = function (_Component) {
+	_inherits(Main, _Component);
+
+	_createClass(Main, null, [{
+		key: 'propTypes',
+		get: function get() {
+			return {};
+		}
+	}]);
+
+	function Main(props) {
+		_classCallCheck(this, Main);
+
+		var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
+
+		_this.show = _this.showHandler.bind(_this);
+		return _this;
+	}
+
+	_createClass(Main, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {}
+	}, {
+		key: 'showHandler',
+		value: function showHandler(flag, i) {
+			var comm = this.props.item.comments;
+			comm[i].show = flag;
+			this.props.update_product(this.props.item.id, this.props.item.title, this.props.item.title, this.props.item.price, this.props.item.category, this.props.item.descr, this.props.item.size, this.props.item.color, this.props.item.tag, this.props.item.fabric, this.props.item.qual, this.props.item.dims, this.props.item.img, comm);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var item = this.props.item;
+
+
+			return _react2.default.createElement(
+				'div',
+				{ className: 'main' },
+				_react2.default.createElement(_PopupComm2.default, { product: item, show: this.show })
+			);
+		}
+	}]);
+
+	return Main;
+}(_react.Component);
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
+
+},{"../actions.js":255,"../components/PopupComm.js":273,"../general/logic.js":293,"ajax-query":1,"react":230,"react-redux":178}],291:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43410,7 +43615,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/PopupProduct.js":273,"../general/logic.js":291,"ajax-query":1,"react":230,"react-redux":178}],290:[function(require,module,exports){
+},{"../actions.js":255,"../components/PopupProduct.js":274,"../general/logic.js":293,"ajax-query":1,"react":230,"react-redux":178}],292:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43649,7 +43854,7 @@ var Categories = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Categories);
 
-},{"../actions.js":255,"../components/Products.js":274,"../history.js":292,"./Header.js":285,"react":230,"react-redux":178}],291:[function(require,module,exports){
+},{"../actions.js":255,"../components/Products.js":275,"../history.js":294,"./Header.js":286,"react":230,"react-redux":178}],293:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44003,7 +44208,7 @@ exports.updateCategory = updateCategory;
 exports.addProduct = addProduct;
 exports.updateProduct = updateProduct;
 
-},{"../constants.js":275,"ajax-query":1}],292:[function(require,module,exports){
+},{"../constants.js":276,"ajax-query":1}],294:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44018,7 +44223,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = (0, _createBrowserHistory2.default)();
 
-},{"history/createBrowserHistory":28}],293:[function(require,module,exports){
+},{"history/createBrowserHistory":28}],295:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -44119,7 +44324,7 @@ function desktop() {
 	), document.getElementById('app'));
 }
 
-},{"./history.js":292,"./reducers":297,"./routes/Admin":301,"./routes/AdminCategories":302,"./routes/AdminProducts":303,"./routes/Cart":304,"./routes/Categories":305,"./routes/Checkout":306,"./routes/Details":307,"./routes/Legal":308,"./routes/Main":309,"./routes/Order":310,"./routes/Products":311,"react":230,"react-dom":43,"react-redux":178,"react-router":201,"redux":237,"redux-thunk":231}],294:[function(require,module,exports){
+},{"./history.js":294,"./reducers":299,"./routes/Admin":303,"./routes/AdminCategories":304,"./routes/AdminProducts":305,"./routes/Cart":306,"./routes/Categories":307,"./routes/Checkout":308,"./routes/Details":309,"./routes/Legal":310,"./routes/Main":311,"./routes/Order":312,"./routes/Products":313,"react":230,"react-dom":43,"react-redux":178,"react-router":201,"redux":237,"redux-thunk":231}],296:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44181,7 +44386,9 @@ var popup = {
 	categories: false,
 	categoriesIdx: "",
 	products: false,
-	productsIdx: ""
+	productsIdx: "",
+	comments: false,
+	commentsIdx: ""
 };
 
 var general = {
@@ -44193,7 +44400,7 @@ var products = [];
 
 exports.default = { main: main, categories: categories, products: products, popup: popup, general: general };
 
-},{"./constants.js":275}],295:[function(require,module,exports){
+},{"./constants.js":276}],297:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44234,7 +44441,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":275,"../general/logic.js":291,"../initialState":294}],296:[function(require,module,exports){
+},{"../constants.js":276,"../general/logic.js":293,"../initialState":296}],298:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44267,7 +44474,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":275,"../initialState":294}],297:[function(require,module,exports){
+},{"../constants.js":276,"../initialState":296}],299:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44308,7 +44515,7 @@ var reducer = (0, _redux.combineReducers)({
 
 exports.default = reducer;
 
-},{"./categories":295,"./general":296,"./main":298,"./popup":299,"./products":300,"redux":237}],298:[function(require,module,exports){
+},{"./categories":297,"./general":298,"./main":300,"./popup":301,"./products":302,"redux":237}],300:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44495,7 +44702,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":275,"../history.js":292,"../initialState":294}],299:[function(require,module,exports){
+},{"../constants.js":276,"../history.js":294,"../initialState":296}],301:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44530,6 +44737,12 @@ var state_update = function state_update() {
 				newstate.productsIdx = action.idx;
 				return newstate;
 			}
+		case _constants.popupComments_status_str:
+			{
+				newstate.comments = action.show;
+				newstate.commentsIdx = action.idx;
+				return newstate;
+			}
 		default:
 			return state || _initialState2.default.categories;
 	}
@@ -44537,7 +44750,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":275,"../general/logic.js":291,"../initialState":294}],300:[function(require,module,exports){
+},{"../constants.js":276,"../general/logic.js":293,"../initialState":296}],302:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44570,7 +44783,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":275,"../initialState":294}],301:[function(require,module,exports){
+},{"../constants.js":276,"../initialState":296}],303:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44597,7 +44810,7 @@ var Admin = function Admin() {
 
 exports.default = Admin;
 
-},{"../containers/Admin":276,"react":230}],302:[function(require,module,exports){
+},{"../containers/Admin":277,"react":230}],304:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44624,7 +44837,7 @@ var AdminCategories = function AdminCategories() {
 
 exports.default = AdminCategories;
 
-},{"../containers/AdminCategories":277,"react":230}],303:[function(require,module,exports){
+},{"../containers/AdminCategories":278,"react":230}],305:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44651,7 +44864,7 @@ var AdminProducts = function AdminProducts() {
 
 exports.default = AdminProducts;
 
-},{"../containers/AdminProducts":278,"react":230}],304:[function(require,module,exports){
+},{"../containers/AdminProducts":279,"react":230}],306:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44688,7 +44901,7 @@ var Cart = function Cart() {
 
 exports.default = Cart;
 
-},{"../containers/Cart":279,"../containers/Footer":284,"../containers/Header":285,"react":230}],305:[function(require,module,exports){
+},{"../containers/Cart":280,"../containers/Footer":285,"../containers/Header":286,"react":230}],307:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44720,7 +44933,7 @@ var Categories = function Categories() {
 
 exports.default = Categories;
 
-},{"../containers/Categories":280,"../containers/Header":285,"react":230}],306:[function(require,module,exports){
+},{"../containers/Categories":281,"../containers/Header":286,"react":230}],308:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44757,7 +44970,7 @@ var Checkout = function Checkout() {
 
 exports.default = Checkout;
 
-},{"../containers/Checkout":282,"../containers/Footer":284,"../containers/Header":285,"react":230}],307:[function(require,module,exports){
+},{"../containers/Checkout":283,"../containers/Footer":285,"../containers/Header":286,"react":230}],309:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44794,7 +45007,7 @@ var Details = function Details() {
 
 exports.default = Details;
 
-},{"../containers/Details":283,"../containers/Footer":284,"../containers/Header":285,"react":230}],308:[function(require,module,exports){
+},{"../containers/Details":284,"../containers/Footer":285,"../containers/Header":286,"react":230}],310:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44821,7 +45034,7 @@ var Legal = function Legal() {
 
 exports.default = Legal;
 
-},{"../components/Legal":269,"react":230}],309:[function(require,module,exports){
+},{"../components/Legal":269,"react":230}],311:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44857,7 +45070,7 @@ var Main = function Main() {
 
 exports.default = Main;
 
-},{"../containers/Footer":284,"../containers/Header":285,"../containers/Main":286,"react":230}],310:[function(require,module,exports){
+},{"../containers/Footer":285,"../containers/Header":286,"../containers/Main":287,"react":230}],312:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44884,7 +45097,7 @@ var Order = function Order() {
 
 exports.default = Order;
 
-},{"../containers/Order":287,"react":230}],311:[function(require,module,exports){
+},{"../containers/Order":288,"react":230}],313:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44921,4 +45134,4 @@ var Products = function Products() {
 
 exports.default = Products;
 
-},{"../containers/Footer":284,"../containers/Header":285,"../containers/Products":290,"react":230}]},{},[293]);
+},{"../containers/Footer":285,"../containers/Header":286,"../containers/Products":292,"react":230}]},{},[295]);
