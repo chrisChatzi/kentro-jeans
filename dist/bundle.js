@@ -35755,6 +35755,7 @@ var change_path = exports.change_path = function change_path(category, product, 
         category: category, product: product, categories: categories
     };
 };
+//get products for clicked category
 var get_products_frontend = exports.get_products_frontend = function get_products_frontend(category, product) {
     var idx = (0, _logic.getCategoryIdx)(category, product);
     return function (dispatch) {
@@ -35774,6 +35775,7 @@ var fetch_products = exports.fetch_products = function fetch_products(products, 
         products: products, tags: tags
     };
 };
+//
 var selected_product = exports.selected_product = function selected_product(product) {
     return {
         type: _constants.selected_product_str,
@@ -40506,7 +40508,11 @@ var Products = function Products(_ref) {
 						" \u20AC"
 					)
 				) : "" : "" : "";
-			}) : lang.noProducts
+			}) : _react2.default.createElement(
+				"div",
+				{ id: "result" },
+				_react2.default.createElement("i", { className: "fa fa-spinner fa-pulse fa-3x fa-fw" })
+			)
 		)
 	);
 };
@@ -43450,6 +43456,7 @@ function mapStateToProps(state, ownProps) {
 		prodIdx: state.main.selectedProduct.idx,
 		catIdx: state.main.selectedCategory.idx,
 		products: state.main.products,
+		noProducts: state.main.noProducts,
 		tags: state.main.tags,
 		lang: state.main.lang,
 		langIdx: state.main.langIdx
@@ -43485,7 +43492,10 @@ var Categories = function (_Component) {
 
 		var _this = _possibleConstructorReturn(this, (Categories.__proto__ || Object.getPrototypeOf(Categories)).call(this, props));
 
+		_this.prodNum = _this.props.products.length;
+
 		_this.state = {
+			productsRecieved: false,
 			sortShow: false,
 			sorted: "",
 			filterShow: false,
@@ -43516,6 +43526,7 @@ var Categories = function (_Component) {
 	}, {
 		key: 'componentDidUpdate',
 		value: function componentDidUpdate() {
+			if (this.props.products.length == 0) document.getElementById("result").innerHTML = this.props.lang.noProducts;
 			var line = document.getElementById('line');
 			var wSort = document.getElementById('sort').offsetWidth;
 			var wFilter = document.getElementById('filter').offsetWidth;

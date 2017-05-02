@@ -49,6 +49,9 @@ var mongoLib = require("./server/mongoLib.js");
                 app.use('/admin', express.static((path.join(__dirname,'./dist'))));
                 app.use('/admin/products', express.static((path.join(__dirname,'./dist'))));
                 app.use('/order', express.static((path.join(__dirname,'./dist'))));
+                app.use('/cart', express.static((path.join(__dirname,'../dist'))));
+                app.use('/checkout', express.static((path.join(__dirname,'../dist'))));
+                app.use('/legal', express.static((path.join(__dirname,'../dist'))));
             //ajax
                 app.get('/categories', function (req, res) {
                     mongoObj.setCollection('categories');
