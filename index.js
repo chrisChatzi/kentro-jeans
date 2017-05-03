@@ -108,6 +108,30 @@ var mongoLib = require("./server/mongoLib.js");
                     });
                 });
                 app.post('/updateProduct', function (req, res) {
+                    if(req.body.notify){
+                        let transporter = mail.createTransport({
+                            service: 'yahoo',
+                            auth: {
+                                user: 'xchris777@yahoo.com',
+                                pass: 'ca21d3yh7'
+                            }
+                        });
+                        let mailOptions = {
+                            from: 'Κέντρο Jeans<xchris777@yahoo.com>',
+                            to: 'xchris777@yahoo.com',
+                            subject: 'Νέο σχόλιο στο προϊόν με ID: '+
+                                        req.body.id+", όνομα: "+req.body.title[0],
+                            text: 'https://kentro-jeans.herokuapp.com/admin',
+                            html: '<a href="https://kentro-jeans.herokuapp.com/admin"></a>'
+                        };
+
+                        transporter.sendMail(mailOptions, (error, info) => {
+                            if (error) {
+                                return console.log(error);
+                            }
+                            console.log('Message %s sent: %s', info.messageId, info.response);
+                        });
+                    }
                     mongoObj.setCollection('products');
                     mongoObj.update("title", req.body.oldName[0], req.body, function (result){
                         res.send(JSON.stringify({ res : true }));

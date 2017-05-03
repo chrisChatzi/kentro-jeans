@@ -35879,9 +35879,9 @@ var add_product = exports.add_product = function add_product(id, name, price, ca
         });
     };
 };
-var update_product = exports.update_product = function update_product(id, oldName, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments) {
+var update_product = exports.update_product = function update_product(id, oldName, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments, notify) {
     return function (dispatch) {
-        (0, _logic.updateProduct)(id, oldName, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments, function (flag) {
+        (0, _logic.updateProduct)(id, oldName, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments, notify, function (flag) {
             if (flag) {
                 (0, _logic.getItems)("products", function (res) {
                     dispatch(get_products(res.products));
@@ -42121,7 +42121,7 @@ function mapDispatchToProps(dispatch) {
 			dispatch((0, _actions.update_cart)(product, true, size, color));
 		},
 		sendComment: function sendComment(id, oldName, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments) {
-			dispatch((0, _actions.update_product)(id, oldName, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments));
+			dispatch((0, _actions.update_product)(id, oldName, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments, true));
 		}
 	};
 }
@@ -43980,7 +43980,7 @@ function updateCategory(oldName, oldDescr, oldImg, name, descr, img, callback) {
 }
 
 //products
-function addProduct(id, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments, callback) {
+function addProduct(id, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments, notify, callback) {
 	var p1 = new Promise(function (resolve, reject) {
 		getItems("products", function (res) {
 			var check = false;
@@ -44010,7 +44010,8 @@ function addProduct(id, name, price, category, descr, size, color, tag, fabric, 
 				"quality": qual,
 				"dims": dims,
 				"img": img,
-				"comments": comments
+				"comments": comments,
+				"notify": notify
 			}
 		};
 		_ajaxQuery2.default.ajaxRequest(options, function (res) {
@@ -44020,7 +44021,7 @@ function addProduct(id, name, price, category, descr, size, color, tag, fabric, 
 		alert("Name or ID already exists");
 	});
 }
-function updateProduct(id, oldName, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments, callback) {
+function updateProduct(id, oldName, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments, notify, callback) {
 	var p1 = new Promise(function (resolve, reject) {
 		getItems("products", function (res) {
 			var check = false;
@@ -44051,7 +44052,8 @@ function updateProduct(id, oldName, name, price, category, descr, size, color, t
 				"quality": qual,
 				"dims": dims,
 				"img": img,
-				"comments": comments
+				"comments": comments,
+				"notify": notify
 			}
 		};
 		_ajaxQuery2.default.ajaxRequest(options, function (res) {
