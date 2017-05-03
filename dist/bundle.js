@@ -35731,24 +35731,28 @@ var login_user = exports.login_user = function login_user(item) {
         });
     };
 };
+//login
 var login_action = exports.login_action = function login_action(res) {
     return {
         type: _constants.login_str,
         res: res
     };
 };
+//message
 var msg = exports.msg = function msg(text) {
     return {
         type: _constants.msg_str,
         text: text
     };
 };
+//change language
 var set_lang = exports.set_lang = function set_lang(lang) {
     return {
         type: _constants.set_lang_str,
         lang: lang
     };
 };
+//change path
 var change_path = exports.change_path = function change_path(category, product, categories) {
     return {
         type: _constants.change_path_str,
@@ -35759,14 +35763,28 @@ var change_path = exports.change_path = function change_path(category, product, 
 var get_products_frontend = exports.get_products_frontend = function get_products_frontend(category, product) {
     var idx = (0, _logic.getCategoryIdx)(category, product);
     return function (dispatch) {
-        (0, _logic.getItems)("products", function (res) {
-            var products = [];
-            res.products.map(function (v) {
-                if (v.category === idx.toString()) products.push(v);
+        var cached = localStorage.getItem("sub-" + category + "-" + product);
+        if (cached != null) {
+            var cachedParsed = JSON.parse(cached);
+            dispatch(fetch_products(cachedParsed.products, cachedParsed.tags));
+        } else {
+            (0, _logic.getItems)("products", function (res) {
+                var products = [];
+                res.products.map(function (v) {
+                    if (v.category === idx.toString()) {
+                        products.push(v);
+                    }
+                });
+                var tags = (0, _logic.getTags)(category, product);
+
+                var obj = {
+                    products: products, tags: tags
+                };
+                localStorage.setItem("sub-" + category + "-" + product, JSON.stringify(obj));
+
+                dispatch(fetch_products(products, tags));
             });
-            var tags = (0, _logic.getTags)(category, product);
-            dispatch(fetch_products(products, tags));
-        });
+        }
     };
 };
 var fetch_products = exports.fetch_products = function fetch_products(products, tags) {
@@ -35782,12 +35800,14 @@ var selected_product = exports.selected_product = function selected_product(prod
         product: product
     };
 };
+//update cart
 var update_cart = exports.update_cart = function update_cart(product, flag, size, color) {
     return {
         type: _constants.update_cart_str,
         product: product, flag: flag, size: size, color: color
     };
 };
+//sort products
 var sort_products = exports.sort_products = function sort_products(products, by, v) {
     return function (dispatch) {
         var res = (0, _logic.sortArray)(products, by, v);
@@ -35829,6 +35849,7 @@ var make_order = exports.make_order = function make_order(obj) {
         });
     };
 };
+//clear cart
 var clear_cart = exports.clear_cart = function clear_cart() {
     return {
         type: _constants.clear_cart_str
@@ -36755,7 +36776,7 @@ var Checkout = function Checkout(_ref) {
 								_react2.default.createElement(
 									"div",
 									{ className: "bot" },
-									_react2.default.createElement("input", { value: state.phone,
+									_react2.default.createElement("input", { value: state.phone, maxLength: "10",
 										className: state.deliveryErrors[3] ? "error" : "",
 										onChange: function onChange(e) {
 											return delivery(e, "phone");
@@ -40612,9 +40633,9 @@ var add_contact_str = "ADD_CONTACT";
 var edit_data_str = "EDIT_DATA";
 var edit_contact_str = "EDIT_CONTACT";
 var delete_contact_str = "DELETE_CONTACT";
-
+//tags
 var tags = ["skinny", "slim", "regular", "classic", "printed", "round", "v", "polo", "winter", "spring", "jean", "formal", "casual", "heavy", "light", "fit", "loose", "ripped", "chinno", "jogger"];
-
+//languages
 var el = {
 	search: "Αναζήτηση",
 	categories: ["ΜΠΛΟYΖΕΣ", "ΖΑΚEΤΕΣ", "ΠΟΥΚAΜΙΣΑ", "ΜΠΟΥΦAΝ", "ΠΑΝΤΕΛOΝΙΑ"],
@@ -44246,6 +44267,8 @@ var _history = require('./history.js');
 
 var _history2 = _interopRequireDefault(_history);
 
+var _constants = require('./constants.js');
+
 var _Main = require('./routes/Main');
 
 var _Main2 = _interopRequireDefault(_Main);
@@ -44300,6 +44323,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 
+//clear cache
+for (var i = 0; i < _constants.en.categories.length; i++) {
+	for (var j = 0; j < _constants.en.sub[i].length; j++) {
+		localStorage.setItem("sub-" + _constants.en.categories[i].toLowerCase() + "-" + _constants.en.sub[i][j].toLowerCase(), "");
+	}
+}
+
 desktop();
 function desktop() {
 	(0, _reactDom.render)(_react2.default.createElement(
@@ -44326,7 +44356,7 @@ function desktop() {
 	), document.getElementById('app'));
 }
 
-},{"./history.js":294,"./reducers":299,"./routes/Admin":303,"./routes/AdminCategories":304,"./routes/AdminProducts":305,"./routes/Cart":306,"./routes/Categories":307,"./routes/Checkout":308,"./routes/Details":309,"./routes/Legal":310,"./routes/Main":311,"./routes/Order":312,"./routes/Products":313,"react":230,"react-dom":43,"react-redux":178,"react-router":201,"redux":237,"redux-thunk":231}],296:[function(require,module,exports){
+},{"./constants.js":276,"./history.js":294,"./reducers":299,"./routes/Admin":303,"./routes/AdminCategories":304,"./routes/AdminProducts":305,"./routes/Cart":306,"./routes/Categories":307,"./routes/Checkout":308,"./routes/Details":309,"./routes/Legal":310,"./routes/Main":311,"./routes/Order":312,"./routes/Products":313,"react":230,"react-dom":43,"react-redux":178,"react-router":201,"redux":237,"redux-thunk":231}],296:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
