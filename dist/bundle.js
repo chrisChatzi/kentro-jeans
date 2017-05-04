@@ -35763,6 +35763,7 @@ var change_path = exports.change_path = function change_path(category, product, 
 var get_products_frontend = exports.get_products_frontend = function get_products_frontend(category, product) {
     var idx = (0, _logic.getCategoryIdx)(category, product);
     return function (dispatch) {
+        //try to cache the request and use cached data if they exist
         var cached = localStorage.getItem("sub-" + category + "-" + product);
         if (cached != null) {
             var cachedParsed = JSON.parse(cached);
@@ -36506,15 +36507,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Categories = function Categories(_ref) {
 	var lang = _ref.lang,
 	    categories = _ref.categories,
-	    selectedCategory = _ref.selectedCategory;
+	    selectedCategory = _ref.selectedCategory,
+	    clickCategory = _ref.clickCategory;
 	return _react2.default.createElement(
 		"div",
 		{ className: "categories" },
 		categories.map(function (v, i) {
 			return _react2.default.createElement(
 				"div",
-				{ className: "section",
-					key: i,
+				{ className: "section animated zoomIn",
+					key: i, onClick: function onClick() {
+						return clickCategory(i);
+					},
 					style: { backgroundImage: "url('../img/categories/" + selectedCategory.idx + "/" + v + ".jpg')" } },
 				_react2.default.createElement(
 					"div",
@@ -37412,7 +37416,7 @@ var Details = function Details(_ref) {
 				{ className: "main" },
 				_react2.default.createElement(
 					"div",
-					{ className: "img" },
+					{ className: "img animated zoomIn" },
 					_react2.default.createElement("img", { className: "imgMain", src: product.img[state.imgIdx], onClick: function onClick() {
 							return clickImg(true);
 						},
@@ -37453,7 +37457,7 @@ var Details = function Details(_ref) {
 					{ className: "info" },
 					_react2.default.createElement(
 						"div",
-						{ className: "row title" },
+						{ className: "row title animated fadeIn" },
 						product.title[langIdx].toUpperCase()
 					),
 					_react2.default.createElement(
@@ -39987,8 +39991,9 @@ var Products = function Products(_ref) {
 			{ className: "options" },
 			_react2.default.createElement(
 				"div",
-				{ id: "sort", className: state.sortShow ? "sort on" : "sort", onClick: sortClick },
+				{ id: "sort", className: state.sortShow ? "sort headOn" : "sort", onClick: sortClick },
 				lang.sort,
+				state.sorted != "" ? _react2.default.createElement("i", { className: "dot fa fa-circle" }) : "",
 				" ",
 				_react2.default.createElement("i", { className: state.sortShow ? "fa fa-chevron-up" : "fa fa-chevron-down" })
 			),
@@ -39999,8 +40004,9 @@ var Products = function Products(_ref) {
 			),
 			_react2.default.createElement(
 				"div",
-				{ id: "filter", className: state.filterShow ? "filter on" : "filter", onClick: filterClick },
+				{ id: "filter", className: state.filterShow ? "filter headOn" : "filter", onClick: filterClick },
 				lang.filter,
+				state.color.length > 0 || state.size.length > 0 || state.tag.length > 0 ? _react2.default.createElement("i", { className: "dot fa fa-circle" }) : "",
 				" ",
 				_react2.default.createElement("i", { className: state.filterShow ? "fa fa-chevron-up" : "fa fa-chevron-down" })
 			),
@@ -40637,10 +40643,14 @@ var delete_contact_str = "DELETE_CONTACT";
 var tags = ["skinny", "slim", "regular", "classic", "printed", "round", "v", "polo", "winter", "spring", "jean", "formal", "casual", "heavy", "light", "fit", "loose", "ripped", "chinno", "jogger"];
 //languages
 var el = {
+	//head
 	search: "Αναζήτηση",
 	categories: ["ΜΠΛΟYΖΕΣ", "ΖΑΚEΤΕΣ", "ΠΟΥΚAΜΙΣΑ", "ΜΠΟΥΦAΝ", "ΠΑΝΤΕΛOΝΙΑ"],
 	sub: [["ΚΟΝΤΟΜΑΝΙΚΕΣ", "ΜΑΚΡΥΜΑΝΙΚΕΣ", "ΠΛΕΚΤΕΣ", "ΑΜΑΝΙΚΕΣ"], ["ΠΛΕΚΤΕΣ", "ΦΟΥΤΕΡ"], ["ΚΟΝΤΟΜΑΝΙΚΑ", "ΜΑΚΡΥΜΑΝΙΚΑ"], ["ΑΜΑΝΙΚΑ", "ΜΠΟΥΦΑΝ"], ["ΤΖΙΝΣ", "ΚΑΠΑΡΝΤΙΝΕ", "ΦΟΥΤΕΡ", "ΒΕΡΜΟΥΔΕΣ"]],
+	//main
 	home1: "Πιο φθηνά, πουθενά",
+	homeInfo: ["Παράδοση εντός 3 ημέρων με ___ courrier", "\u0394\u03C9\u03C1\u03B5\u03AC\u03BD \u03BC\u03B5\u03C4\u03B1\u03C6\u03BF\u03C1\u03B9\u03BA\u03AC \u03BC\u03B5 \u03B1\u03B3\u03BF\u03C1\u03AD\u03C2 \u03AC\u03BD\u03C9 \u03C4\u03C9\u03BD 30 \u20AC", "Επιστροφές εντός 7 ημερών", "Δυνατότητα παραλαβής από το κατάστημα"],
+	//products
 	products: "προϊόντα",
 	sort: "Ταξινόμηση",
 	sortDefault: "Χωρίς",
@@ -40694,6 +40704,7 @@ var el = {
 		"black": "Μαύρο"
 	},
 	noProducts: "Δεν υπάρχουν προϊόντα",
+	// product details
 	addCart: "Προσθήκη στο καλάθι",
 	addedCart: "Προστέθηκε στο καλάθι",
 	imgLabel: "Πατήστε για μεγέθυνση",
@@ -40715,6 +40726,7 @@ var el = {
 	send: "Αποστολή",
 	noComments: "Δεν υπάρχουν ακόμα σχόλια για αυτό το προϊόν",
 	productInCart: "Το συγκεκριμένο προϊόν σε αυτό το μέγεθος και χρώμα έχει ήδη προστεθεί στο καλάθι",
+	//checkout
 	personal: "Στοιχεία",
 	delivery: "Αποστολή",
 	billing: "Πληρωμή",
@@ -40743,14 +40755,19 @@ var el = {
 	orderInfo2: "(Εάν μας δώσατε το email σας)",
 	orderTY: "Ευχαριστούμε",
 	orderBack: "Πίσω στην αρχική σελίδα",
+	//footer
 	contact: "Επικοινωνία",
 	infoFooter: ["Πληροφορίες", "Παραγγελίες/Παραδόσεις", "Οδηγός μεγέθους", "Όροι χρήσης"]
 };
 var en = {
+	//header
 	search: "Search",
 	categories: ["TOPS", "CARDIGANS", "SHIRTS", "JACKETS", "TROUSERS"],
 	sub: [["SHORT SLEEVE", "LONG SLEEVE", "KNITWEAR", "TANKTOP"], ["KNITWEAR", "HOODIES"], ["SHORT SLEEVE", "LONG SLEEVE"], ["TANKTOP", "NORMAL"], ["JEANS", "CHINNOS", "JOGGERS", "SHORTS"]],
-	home1: "Cheap as fuck",
+	// main
+	home1: "Really cheap",
+	homeInfo: ["Delivery within 3 days with ___ courrier", "Free delivery on orders over 30 \u20AC", "Return within 7 days", "Pick up at the store"],
+	//products
 	products: "products",
 	sort: "Sort",
 	sortDefault: "Default",
@@ -40825,6 +40842,7 @@ var en = {
 	send: "Send",
 	noComments: "There are no comments for this product yet",
 	productInCart: "This product in this size and color has already been added to the cart",
+	//product details
 	personal: "Details",
 	delivery: "Delivery",
 	billing: "Billing",
@@ -40853,9 +40871,12 @@ var en = {
 	orderInfo2: "(If you're given one)",
 	orderTY: "Thank you",
 	orderBack: "Back to home page",
+	// footer
 	contact: "Contact",
 	infoFooter: ["Info", "Help", "Guide", "Legal"]
 };
+
+var sub = [["SHORT", "LONG", "KNITWEAR", "TANKTOP"], ["KNITWEAR", "HOODIES"], ["SHORT", "LONG"], ["TANKTOP", "NORMAL"], ["JEANS", "CHINNOS", "JOGGERS", "SHORTS"]];
 
 exports.login_str = login_str;
 exports.set_lang_str = set_lang_str;
@@ -40875,6 +40896,7 @@ exports.change_quant_str = change_quant_str;
 exports.el = el;
 exports.en = en;
 exports.tags = tags;
+exports.sub = sub;
 exports.get_products_frontend_str = get_products_frontend_str;
 exports.update_cart_str = update_cart_str;
 exports.sort_products_str = sort_products_str;
@@ -41661,6 +41683,14 @@ var _Header = require('./Header.js');
 
 var _Header2 = _interopRequireDefault(_Header);
 
+var _actions = require('../actions.js');
+
+var _history = require('../history.js');
+
+var _history2 = _interopRequireDefault(_history);
+
+var _constants = require('../constants.js');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41676,12 +41706,18 @@ function mapStateToProps(state, ownProps) {
 		path: state.main.path,
 		lang: state.main.lang,
 		selectedCategory: state.main.selectedCategory,
-		categories: state.main.subCategories
+		categories: state.main.categories,
+		sub: state.main.subCategories
 	};
 }
 
 function mapDispatchToProps(dispatch) {
-	return {};
+	return {
+		change_path: function change_path(category, product, categories) {
+			if (product) dispatch((0, _actions.get_products_frontend)(category, product));
+			dispatch((0, _actions.change_path)(category, product, categories));
+		}
+	};
 }
 
 var Categories = function (_Component) {
@@ -41697,25 +41733,36 @@ var Categories = function (_Component) {
 	function Categories(props) {
 		_classCallCheck(this, Categories);
 
-		return _possibleConstructorReturn(this, (Categories.__proto__ || Object.getPrototypeOf(Categories)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (Categories.__proto__ || Object.getPrototypeOf(Categories)).call(this, props));
+
+		_this.clickCategory = _this.clickCategoryHandler.bind(_this);
+		return _this;
 	}
 
 	_createClass(Categories, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {}
 	}, {
+		key: 'clickCategoryHandler',
+		value: function clickCategoryHandler(i) {
+			this.props.change_path(this.props.selectedCategory.name, this.props.sub[i], this.props.categories);
+			_history2.default.push("/products");
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var _props = this.props,
 			    lang = _props.lang,
-			    categories = _props.categories,
+			    sub = _props.sub,
 			    selectedCategory = _props.selectedCategory;
+			var clickCategory = this.clickCategory;
 
 
 			return _react2.default.createElement(
 				'div',
 				{ className: '' },
-				_react2.default.createElement(_Categories2.default, { lang: lang, categories: categories, selectedCategory: selectedCategory })
+				_react2.default.createElement(_Categories2.default, { lang: lang, categories: sub,
+					selectedCategory: selectedCategory, clickCategory: clickCategory })
 			);
 		}
 	}]);
@@ -41725,7 +41772,7 @@ var Categories = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Categories);
 
-},{"../components/Categories.js":259,"./Header.js":286,"react":230,"react-redux":178}],282:[function(require,module,exports){
+},{"../actions.js":255,"../components/Categories.js":259,"../constants.js":276,"../history.js":294,"./Header.js":286,"react":230,"react-redux":178}],282:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42678,7 +42725,9 @@ var Header = function (_Component) {
 	}, {
 		key: 'showCartHandler',
 		value: function showCartHandler(flag) {
-			this.props.showCart(flag);
+			if (flag) {
+				if (this.props.cart.length > 0) this.props.showCart(flag);
+			} else this.props.showCart(flag);
 		}
 		//go to cart
 
@@ -42866,6 +42915,66 @@ var Main = function (_Component) {
 						'div',
 						{ className: 'best' },
 						lang.home1
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'infos' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'info' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'top' },
+								_react2.default.createElement('i', { className: 'fa fa-truck' })
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'bot' },
+								lang.homeInfo[0]
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'info' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'top' },
+								_react2.default.createElement('i', { className: 'fa fa-euro' })
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'bot' },
+								lang.homeInfo[1]
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'info' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'top' },
+								_react2.default.createElement('i', { className: 'fa fa-undo' })
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'bot' },
+								lang.homeInfo[2]
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'info' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'top' },
+								_react2.default.createElement('i', { className: 'fa fa-shopping-bag' })
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'bot' },
+								lang.homeInfo[3]
+							)
+						)
 					)
 				)
 			);
@@ -43767,6 +43876,8 @@ var Categories = function (_Component) {
 				line.style.width = wFilter + "px";
 			} else line.style.opacity = 0;
 		}
+		//helper func to get array of if filters are applied(true) per filter type
+
 	}, {
 		key: 'checkFilter',
 		value: function checkFilter(type) {
@@ -43782,18 +43893,24 @@ var Categories = function (_Component) {
 			});
 			return array;
 		}
+		//click on product
+
 	}, {
 		key: 'productClickHandler',
 		value: function productClickHandler(v) {
 			this.props.selectedProduct(v);
 			_history2.default.push("/product/:" + v._id);
 		}
+		//sort action
+
 	}, {
 		key: 'sortActionHandler',
 		value: function sortActionHandler(by, type) {
 			this.props.sortProducts(this.props.products, by, type);
 			this.setState({ sorted: type });
 		}
+		//show sort div
+
 	}, {
 		key: 'sortClickHandler',
 		value: function sortClickHandler() {
@@ -43802,6 +43919,8 @@ var Categories = function (_Component) {
 				filterShow: false
 			});
 		}
+		//show filter div
+
 	}, {
 		key: 'filterClickHandler',
 		value: function filterClickHandler() {
@@ -43810,6 +43929,8 @@ var Categories = function (_Component) {
 				filterShow: !this.state.filterShow
 			});
 		}
+		// filter color click
+
 	}, {
 		key: 'colorClickHandler',
 		value: function colorClickHandler(v) {
@@ -43818,6 +43939,8 @@ var Categories = function (_Component) {
 			this.setState({ color: array });
 			this.setState({ colorFlag: this.checkFilter("color") });
 		}
+		// filter size click
+
 	}, {
 		key: 'sizeClickHandler',
 		value: function sizeClickHandler(v) {
@@ -43826,13 +43949,15 @@ var Categories = function (_Component) {
 			this.setState({ size: array });
 			this.setState({ sizeFlag: this.checkFilter("size") });
 		}
+		// filter tag click
+
 	}, {
 		key: 'tagClickHandler',
 		value: function tagClickHandler(v) {
 			var array = this.state.tag;
 			if (array.indexOf(v) < 0) array.push(v);else array.splice(array.indexOf(v), 1);
 			this.setState({ tag: array });
-			this.setState({ sizeFlag: this.checkFilter("tag") });
+			this.setState({ tagFlag: this.checkFilter("tag") });
 		}
 	}, {
 		key: 'render',
@@ -44952,6 +45077,10 @@ var _Categories = require('../containers/Categories');
 
 var _Categories2 = _interopRequireDefault(_Categories);
 
+var _Footer = require('../containers/Footer');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Categories = function Categories() {
@@ -44959,13 +45088,14 @@ var Categories = function Categories() {
 		'div',
 		null,
 		_react2.default.createElement(_Header2.default, null),
-		_react2.default.createElement(_Categories2.default, null)
+		_react2.default.createElement(_Categories2.default, null),
+		_react2.default.createElement(_Footer2.default, null)
 	);
 };
 
 exports.default = Categories;
 
-},{"../containers/Categories":281,"../containers/Header":286,"react":230}],308:[function(require,module,exports){
+},{"../containers/Categories":281,"../containers/Footer":285,"../containers/Header":286,"react":230}],308:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45096,7 +45226,8 @@ var Main = function Main() {
 		'div',
 		null,
 		_react2.default.createElement(_Header2.default, null),
-		_react2.default.createElement(_Main2.default, null)
+		_react2.default.createElement(_Main2.default, null),
+		_react2.default.createElement(_Footer2.default, null)
 	);
 };
 
