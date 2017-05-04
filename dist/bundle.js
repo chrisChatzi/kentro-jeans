@@ -38614,6 +38614,11 @@ var Main = function Main(_ref) {
 			{ className: "content" },
 			_react2.default.createElement(
 				"div",
+				{ className: "best" },
+				lang.home1
+			),
+			_react2.default.createElement(
+				"div",
 				{ className: "show" },
 				_react2.default.createElement("img", { id: "carousel", src: "../img/carousel/" + state.carousel + ".jpg" }),
 				_react2.default.createElement(
@@ -42969,15 +42974,16 @@ var Main = function (_Component) {
 		value: function componentDidMount() {
 			var _this2 = this;
 
+			//carousel
 			this.timer = setInterval(function () {
 				setTimeout(function () {
 					document.getElementById("carousel").classList.remove("animated");
 					document.getElementById("carousel").classList.remove("fadeIn");
 					document.getElementById("carousel-tag").classList.remove("animated");
-					document.getElementById("carousel-tag").classList.remove("lightSpeedIn");
+					document.getElementById("carousel-tag").classList.remove("pulse");
 				}, 1000);
 				document.getElementById("carousel").className += " animated fadeIn";
-				document.getElementById("carousel-tag").className += " animated lightSpeedIn";
+				document.getElementById("carousel-tag").className += " animated pulse";
 				var idx = _this2.state.carousel;
 				idx++;
 				if (idx == 4) idx = 1;
