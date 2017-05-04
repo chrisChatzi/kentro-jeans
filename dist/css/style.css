@@ -120,15 +120,15 @@ button {
   color: #fff; }
 
 /*reused divs*/
-.mainframe, .header .headerMenu, .header .subMenu, .main, .categories, .details {
+.mainframe, .header .headerMenu, .header .subMenu, .mainPage, .categories, .details {
   width: 80%;
   padding: 10px 10%; }
   @media (max-width: 1100px) {
-    .mainframe, .header .headerMenu, .header .subMenu, .main, .categories, .details {
+    .mainframe, .header .headerMenu, .header .subMenu, .mainPage, .categories, .details {
       width: 90%;
       padding: 10px 5%; } }
   @media (max-width: 700px) {
-    .mainframe, .header .headerMenu, .header .subMenu, .main, .categories, .details {
+    .mainframe, .header .headerMenu, .header .subMenu, .mainPage, .categories, .details {
       width: 100%;
       padding: 10px 0; } }
 
@@ -235,10 +235,10 @@ button {
       padding: 0 14px; }
 
 /*content of main pages*/
-.contentMain, .main, .main .content, .categories, .products, .details, .cart, .checkout {
+.contentMain, .mainPage, .mainPage .content, .categories, .products, .details, .cart, .checkout {
   margin-top: 100px; }
   @media (max-width: 700px) {
-    .contentMain, .main, .main .content, .categories, .products, .details, .cart, .checkout {
+    .contentMain, .mainPage, .mainPage .content, .categories, .products, .details, .cart, .checkout {
       margin-top: 60px; } }
 
 /*MESSAGE*/
@@ -841,9 +841,9 @@ button {
       color: #005792; }
 
 /*MAIN*/
-.main {
+.mainPage {
   overflow: auto; }
-  .main .content {
+  .mainPage .content {
     margin-top: 5px;
     left: 0;
     right: 0;
@@ -852,12 +852,12 @@ button {
     width: 90%;
     padding: 5px 5%; }
     @media (max-width: 1100px) {
-      .main .content {
+      .mainPage .content {
         /*padding: 10px 5%;*/ } }
     @media (max-width: 700px) {
-      .main .content {
+      .mainPage .content {
         /*padding: 10px 0;*/ } }
-    .main .content .best {
+    .mainPage .content .best {
       width: 80%;
       height: 100px;
       line-height: 100px;
@@ -866,10 +866,38 @@ button {
       font-size: 24px;
       letter-spacing: 0.25rem;
       background: rgba(0, 0, 0, 0.25); }
-    .main .content .infos {
+      @media (max-width: 900px) {
+        .mainPage .content .best {
+          width: 100%;
+          margin: 10px 0; } }
+    .mainPage .content .show {
+      position: relative;
+      min-height: 400px;
+      max-height: 500px;
+      margin: 20px 0; }
+      .mainPage .content .show img {
+        width: 100%;
+        height: 500px;
+        max-height: 500px; }
+      .mainPage .content .show .show-title {
+        position: absolute;
+        top: auto;
+        bottom: 40px;
+        left: auto;
+        right: 15px;
+        width: auto;
+        height: 30px;
+        line-height: 30px;
+        padding: 2px 10px;
+        /*background: rgba(0,0,0,0.25);*/
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+        font-size: 28px;
+        letter-spacing: 0.1em;
+        font-weight: bold; }
+    .mainPage .content .infos {
       overflow: auto;
       margin: 20px 0; }
-      .main .content .infos .info {
+      .mainPage .content .infos .info {
         float: left;
         width: 23%;
         height: 90px;
@@ -878,17 +906,17 @@ button {
         border: 2px solid #fff;
         box-sizing: border-box;
         background: rgba(0, 0, 0, 0.25); }
-        .main .content .infos .info .top {
+        .mainPage .content .infos .info .top {
           height: 30px;
           line-height: 30px; }
-        .main .content .infos .info .bot {
+        .mainPage .content .infos .info .bot {
           white-space: pre-wrap;
           margin: 5px 0; }
         @media (max-width: 900px) {
-          .main .content .infos .info {
+          .mainPage .content .infos .info {
             width: 48%; } }
         @media (max-width: 500px) {
-          .main .content .infos .info {
+          .mainPage .content .infos .info {
             width: 98%; } }
 
 /*CATEGORIES*/

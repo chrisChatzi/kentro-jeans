@@ -36000,7 +36000,7 @@ var popupComments_status = exports.popupComments_status = function popupComments
     };
 };
 
-},{"./constants.js":276,"./general/logic.js":293}],256:[function(require,module,exports){
+},{"./constants.js":277,"./general/logic.js":294}],256:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38603,6 +38603,104 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var Main = function Main(_ref) {
+	var lang = _ref.lang,
+	    state = _ref.state;
+	return _react2.default.createElement(
+		"div",
+		{ className: "mainPage" },
+		_react2.default.createElement(
+			"div",
+			{ className: "content" },
+			_react2.default.createElement(
+				"div",
+				{ className: "show" },
+				_react2.default.createElement("img", { id: "carousel", src: "../img/carousel/" + state.carousel + ".jpg" }),
+				_react2.default.createElement(
+					"div",
+					{ id: "carousel-tag", className: "show-title" },
+					lang.carousel[state.carousel - 1]
+				)
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "infos" },
+				_react2.default.createElement(
+					"div",
+					{ className: "info" },
+					_react2.default.createElement(
+						"div",
+						{ className: "top" },
+						_react2.default.createElement("i", { className: "fa fa-truck" })
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "bot" },
+						lang.homeInfo[0]
+					)
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "info" },
+					_react2.default.createElement(
+						"div",
+						{ className: "top" },
+						_react2.default.createElement("i", { className: "fa fa-euro" })
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "bot" },
+						lang.homeInfo[1]
+					)
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "info" },
+					_react2.default.createElement(
+						"div",
+						{ className: "top" },
+						_react2.default.createElement("i", { className: "fa fa-undo" })
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "bot" },
+						lang.homeInfo[2]
+					)
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "info" },
+					_react2.default.createElement(
+						"div",
+						{ className: "top" },
+						_react2.default.createElement("i", { className: "fa fa-shopping-bag" })
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "bot" },
+						lang.homeInfo[3]
+					)
+				)
+			)
+		)
+	);
+};
+
+exports.default = Main;
+
+},{"react":230}],271:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var Message = function Message(_ref) {
 	var text = _ref.text;
 	return _react2.default.createElement(
@@ -38614,7 +38712,7 @@ var Message = function Message(_ref) {
 
 exports.default = Message;
 
-},{"react":230}],271:[function(require,module,exports){
+},{"react":230}],272:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38670,7 +38768,7 @@ var Order = function Order(_ref) {
 
 exports.default = Order;
 
-},{"react":230}],272:[function(require,module,exports){
+},{"react":230}],273:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38769,7 +38867,7 @@ var PopupCategory = function PopupCategory(_ref) {
 
 exports.default = PopupCategory;
 
-},{"react":230}],273:[function(require,module,exports){
+},{"react":230}],274:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38821,7 +38919,7 @@ var PopupComm = function PopupComm(_ref) {
 
 exports.default = PopupComm;
 
-},{"react":230}],274:[function(require,module,exports){
+},{"react":230}],275:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39948,7 +40046,7 @@ var PopupProduct = function PopupProduct(_ref) {
 
 exports.default = PopupProduct;
 
-},{"react":230}],275:[function(require,module,exports){
+},{"react":230}],276:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -40608,7 +40706,7 @@ var Products = function Products(_ref) {
 
 exports.default = Products;
 
-},{"react":230}],276:[function(require,module,exports){
+},{"react":230}],277:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -40650,6 +40748,7 @@ var el = {
 	//main
 	home1: "Πιο φθηνά, πουθενά",
 	homeInfo: ["Παράδοση εντός 3 ημέρων με ___ courrier", "\u0394\u03C9\u03C1\u03B5\u03AC\u03BD \u03BC\u03B5\u03C4\u03B1\u03C6\u03BF\u03C1\u03B9\u03BA\u03AC \u03BC\u03B5 \u03B1\u03B3\u03BF\u03C1\u03AD\u03C2 \u03AC\u03BD\u03C9 \u03C4\u03C9\u03BD 30 \u20AC", "Επιστροφές εντός 7 ημερών", "Δυνατότητα παραλαβής από το κατάστημα"],
+	carousel: ["\u039C\u03C0\u03BB\u03BF\u03CD\u03B6\u03B5\u03C2 \u03BA\u03BF\u03BD\u03C4\u03BF\u03BC\u03AC\u03BD\u03B9\u03BA\u03B5\u03C2 \u03B1\u03C0\u03BF 7 \u20AC", "\u03A4\u03B6\u03B9\u03BD \u03C0\u03B1\u03BD\u03C4\u03B5\u03BB\u03CC\u03BD\u03B9\u03B1 \u03B1\u03C0\u03BF 19 \u20AC", "qweqweqweqwewqe"],
 	//products
 	products: "προϊόντα",
 	sort: "Ταξινόμηση",
@@ -40767,6 +40866,7 @@ var en = {
 	// main
 	home1: "Really cheap",
 	homeInfo: ["Delivery within 3 days with ___ courrier", "Free delivery on orders over 30 \u20AC", "Return within 7 days", "Pick up at the store"],
+	carousel: ["\u039C\u03C0\u03BB\u03BF\u03CD\u03B6\u03B5\u03C2 \u03BA\u03BF\u03BD\u03C4\u03BF\u03BC\u03AC\u03BD\u03B9\u03BA\u03B5\u03C2 \u03B1\u03C0\u03BF 7 \u20AC", "\u03A4\u03B6\u03B9\u03BD \u03C0\u03B1\u03BD\u03C4\u03B5\u03BB\u03CC\u03BD\u03B9\u03B1 \u03B1\u03C0\u03BF 19 \u20AC", "qweqweqweqwewqe"],
 	//products
 	products: "products",
 	sort: "Sort",
@@ -40902,7 +41002,7 @@ exports.update_cart_str = update_cart_str;
 exports.sort_products_str = sort_products_str;
 exports.clear_cart_str = clear_cart_str;
 
-},{}],277:[function(require,module,exports){
+},{}],278:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41057,7 +41157,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../history.js":294,"./Category.js":282,"ajax-query":1,"react":230,"react-redux":178}],278:[function(require,module,exports){
+},{"../actions.js":255,"../history.js":295,"./Category.js":283,"ajax-query":1,"react":230,"react-redux":178}],279:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41227,7 +41327,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/AdminCategories.js":256,"../components/Message.js":270,"../containers/PopupCategory.js":289,"ajax-query":1,"react":230,"react-redux":178}],279:[function(require,module,exports){
+},{"../actions.js":255,"../components/AdminCategories.js":256,"../components/Message.js":271,"../containers/PopupCategory.js":290,"ajax-query":1,"react":230,"react-redux":178}],280:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41494,7 +41594,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/AdminProducts.js":257,"../components/Message.js":270,"../containers/PopupComm.js":290,"../containers/PopupProduct.js":291,"../history.js":294,"ajax-query":1,"react":230,"react-redux":178}],280:[function(require,module,exports){
+},{"../actions.js":255,"../components/AdminProducts.js":257,"../components/Message.js":271,"../containers/PopupComm.js":291,"../containers/PopupProduct.js":292,"../history.js":295,"ajax-query":1,"react":230,"react-redux":178}],281:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41660,7 +41760,7 @@ var Cart = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Cart);
 
-},{"../actions.js":255,"../components/Cart.js":258,"../history.js":294,"react":230,"react-redux":178}],281:[function(require,module,exports){
+},{"../actions.js":255,"../components/Cart.js":258,"../history.js":295,"react":230,"react-redux":178}],282:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41772,7 +41872,7 @@ var Categories = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Categories);
 
-},{"../actions.js":255,"../components/Categories.js":259,"../constants.js":276,"../history.js":294,"./Header.js":286,"react":230,"react-redux":178}],282:[function(require,module,exports){
+},{"../actions.js":255,"../components/Categories.js":259,"../constants.js":277,"../history.js":295,"./Header.js":287,"react":230,"react-redux":178}],283:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41849,7 +41949,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../components/Category.js":260,"react":230,"react-redux":178}],283:[function(require,module,exports){
+},{"../components/Category.js":260,"react":230,"react-redux":178}],284:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42137,7 +42237,7 @@ var Checkout = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Checkout);
 
-},{"../actions.js":255,"../components/Checkout.js":261,"../history.js":294,"react":230,"react-redux":178}],284:[function(require,module,exports){
+},{"../actions.js":255,"../components/Checkout.js":261,"../history.js":295,"react":230,"react-redux":178}],285:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42401,7 +42501,7 @@ var Details = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Details);
 
-},{"../actions.js":255,"../components/Details.js":262,"react":230,"react-redux":178}],285:[function(require,module,exports){
+},{"../actions.js":255,"../components/Details.js":262,"react":230,"react-redux":178}],286:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42500,7 +42600,7 @@ var Footer = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Footer);
 
-},{"../components/Footer.js":263,"../history.js":294,"react":230,"react-redux":178}],286:[function(require,module,exports){
+},{"../components/Footer.js":263,"../history.js":295,"react":230,"react-redux":178}],287:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42798,7 +42898,7 @@ var Header = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Header);
 
-},{"../actions.js":255,"../components/Header.js":264,"../history.js":294,"react":230,"react-redux":178}],287:[function(require,module,exports){
+},{"../actions.js":255,"../components/Header.js":264,"../history.js":295,"react":230,"react-redux":178}],288:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42813,17 +42913,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = require('react-redux');
 
-var _Header = require('./Header.js');
+var _Main = require('../components/Main.js');
 
-var _Header2 = _interopRequireDefault(_Header);
-
-var _actions = require('../actions.js');
-
-var _constants = require('../constants.js');
-
-var _ajaxQuery = require('ajax-query');
-
-var _ajaxQuery2 = _interopRequireDefault(_ajaxQuery);
+var _Main2 = _interopRequireDefault(_Main);
 
 var _Footer = require('../containers/Footer');
 
@@ -42841,18 +42933,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function mapStateToProps(state) {
 	return {
-		path: state.main.path,
-		lang: state.main.lang,
-		categories: state.categories
+		lang: state.main.lang
 	};
 }
 
 function mapDispatchToProps(dispatch) {
-	return {
-		getData: function getData(res) {
-			dispatch((0, _actions.get_categories)(res));
-		}
-	};
+	return {};
 }
 
 var Main = function (_Component) {
@@ -42861,10 +42947,7 @@ var Main = function (_Component) {
 	_createClass(Main, null, [{
 		key: 'propTypes',
 		get: function get() {
-			return {
-				path: _react.PropTypes.string.isRequired,
-				categories: _react.PropTypes.array.isRequired
-			};
+			return {};
 		}
 	}]);
 
@@ -42873,7 +42956,11 @@ var Main = function (_Component) {
 
 		var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
 
-		_this.addContactHandler = _this.addContactHandlerFunc.bind(_this);
+		_this.timer = 0;
+
+		_this.state = {
+			carousel: 1
+		};
 		return _this;
 	}
 
@@ -42882,101 +42969,33 @@ var Main = function (_Component) {
 		value: function componentDidMount() {
 			var _this2 = this;
 
-			var options = {
-				url: "/categories",
-				type: "GET"
-			};
-			_ajaxQuery2.default.ajaxRequest(options, function (res) {
-				if (res.type == "ok") _this2.props.getData(res.categories);
-			});
+			this.timer = setInterval(function () {
+				setTimeout(function () {
+					document.getElementById("carousel").classList.remove("animated");
+					document.getElementById("carousel").classList.remove("fadeIn");
+					document.getElementById("carousel-tag").classList.remove("animated");
+					document.getElementById("carousel-tag").classList.remove("lightSpeedIn");
+				}, 1000);
+				document.getElementById("carousel").className += " animated fadeIn";
+				document.getElementById("carousel-tag").className += " animated lightSpeedIn";
+				var idx = _this2.state.carousel;
+				idx++;
+				if (idx == 4) idx = 1;
+				_this2.setState({ carousel: idx });
+			}, 5000);
 		}
 	}, {
-		key: 'addContactHandlerFunc',
-		value: function addContactHandlerFunc() {
-			this.props.addContact();
+		key: 'componentWillUnmount',
+		value: function componentWillUnmount() {
+			clearInterval(this.timer);
 		}
 	}, {
 		key: 'render',
 		value: function render() {
-			var _props = this.props,
-			    path = _props.path,
-			    lang = _props.lang,
-			    categories = _props.categories;
-			var addContactHandler = this.addContactHandler;
-
-
 			return _react2.default.createElement(
 				'div',
-				{ className: 'main' },
-				_react2.default.createElement(
-					'div',
-					{ className: 'content' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'best' },
-						lang.home1
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'infos' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'info' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'top' },
-								_react2.default.createElement('i', { className: 'fa fa-truck' })
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'bot' },
-								lang.homeInfo[0]
-							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'info' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'top' },
-								_react2.default.createElement('i', { className: 'fa fa-euro' })
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'bot' },
-								lang.homeInfo[1]
-							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'info' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'top' },
-								_react2.default.createElement('i', { className: 'fa fa-undo' })
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'bot' },
-								lang.homeInfo[2]
-							)
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'info' },
-							_react2.default.createElement(
-								'div',
-								{ className: 'top' },
-								_react2.default.createElement('i', { className: 'fa fa-shopping-bag' })
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'bot' },
-								lang.homeInfo[3]
-							)
-						)
-					)
-				)
+				null,
+				_react2.default.createElement(_Main2.default, { lang: this.props.lang, state: this.state })
 			);
 		}
 	}]);
@@ -42986,7 +43005,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../constants.js":276,"../containers/Footer":285,"./Header.js":286,"ajax-query":1,"react":230,"react-redux":178}],288:[function(require,module,exports){
+},{"../components/Main.js":270,"../containers/Footer":286,"react":230,"react-redux":178}],289:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43078,7 +43097,7 @@ var Order = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Order);
 
-},{"../components/Order.js":271,"../history.js":294,"react":230,"react-redux":178}],289:[function(require,module,exports){
+},{"../components/Order.js":272,"../history.js":295,"react":230,"react-redux":178}],290:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43246,7 +43265,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/PopupCategory.js":272,"react":230,"react-redux":178}],290:[function(require,module,exports){
+},{"../actions.js":255,"../components/PopupCategory.js":273,"react":230,"react-redux":178}],291:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43347,7 +43366,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/PopupComm.js":273,"../general/logic.js":293,"ajax-query":1,"react":230,"react-redux":178}],291:[function(require,module,exports){
+},{"../actions.js":255,"../components/PopupComm.js":274,"../general/logic.js":294,"ajax-query":1,"react":230,"react-redux":178}],292:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43745,7 +43764,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/PopupProduct.js":274,"../general/logic.js":293,"ajax-query":1,"react":230,"react-redux":178}],292:[function(require,module,exports){
+},{"../actions.js":255,"../components/PopupProduct.js":275,"../general/logic.js":294,"ajax-query":1,"react":230,"react-redux":178}],293:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44000,7 +44019,7 @@ var Categories = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Categories);
 
-},{"../actions.js":255,"../components/Products.js":275,"../history.js":294,"./Header.js":286,"react":230,"react-redux":178}],293:[function(require,module,exports){
+},{"../actions.js":255,"../components/Products.js":276,"../history.js":295,"./Header.js":287,"react":230,"react-redux":178}],294:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44356,7 +44375,7 @@ exports.updateCategory = updateCategory;
 exports.addProduct = addProduct;
 exports.updateProduct = updateProduct;
 
-},{"../constants.js":276,"ajax-query":1}],294:[function(require,module,exports){
+},{"../constants.js":277,"ajax-query":1}],295:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44371,7 +44390,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = (0, _createBrowserHistory2.default)();
 
-},{"history/createBrowserHistory":28}],295:[function(require,module,exports){
+},{"history/createBrowserHistory":28}],296:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -44481,7 +44500,7 @@ function desktop() {
 	), document.getElementById('app'));
 }
 
-},{"./constants.js":276,"./history.js":294,"./reducers":299,"./routes/Admin":303,"./routes/AdminCategories":304,"./routes/AdminProducts":305,"./routes/Cart":306,"./routes/Categories":307,"./routes/Checkout":308,"./routes/Details":309,"./routes/Legal":310,"./routes/Main":311,"./routes/Order":312,"./routes/Products":313,"react":230,"react-dom":43,"react-redux":178,"react-router":201,"redux":237,"redux-thunk":231}],296:[function(require,module,exports){
+},{"./constants.js":277,"./history.js":295,"./reducers":300,"./routes/Admin":304,"./routes/AdminCategories":305,"./routes/AdminProducts":306,"./routes/Cart":307,"./routes/Categories":308,"./routes/Checkout":309,"./routes/Details":310,"./routes/Legal":311,"./routes/Main":312,"./routes/Order":313,"./routes/Products":314,"react":230,"react-dom":43,"react-redux":178,"react-router":201,"redux":237,"redux-thunk":231}],297:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44557,7 +44576,7 @@ var products = [];
 
 exports.default = { main: main, categories: categories, products: products, popup: popup, general: general };
 
-},{"./constants.js":276}],297:[function(require,module,exports){
+},{"./constants.js":277}],298:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44598,7 +44617,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":276,"../general/logic.js":293,"../initialState":296}],298:[function(require,module,exports){
+},{"../constants.js":277,"../general/logic.js":294,"../initialState":297}],299:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44631,7 +44650,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":276,"../initialState":296}],299:[function(require,module,exports){
+},{"../constants.js":277,"../initialState":297}],300:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44672,7 +44691,7 @@ var reducer = (0, _redux.combineReducers)({
 
 exports.default = reducer;
 
-},{"./categories":297,"./general":298,"./main":300,"./popup":301,"./products":302,"redux":237}],300:[function(require,module,exports){
+},{"./categories":298,"./general":299,"./main":301,"./popup":302,"./products":303,"redux":237}],301:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44859,7 +44878,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":276,"../history.js":294,"../initialState":296}],301:[function(require,module,exports){
+},{"../constants.js":277,"../history.js":295,"../initialState":297}],302:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44907,7 +44926,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":276,"../general/logic.js":293,"../initialState":296}],302:[function(require,module,exports){
+},{"../constants.js":277,"../general/logic.js":294,"../initialState":297}],303:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44940,7 +44959,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":276,"../initialState":296}],303:[function(require,module,exports){
+},{"../constants.js":277,"../initialState":297}],304:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44967,7 +44986,7 @@ var Admin = function Admin() {
 
 exports.default = Admin;
 
-},{"../containers/Admin":277,"react":230}],304:[function(require,module,exports){
+},{"../containers/Admin":278,"react":230}],305:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44994,7 +45013,7 @@ var AdminCategories = function AdminCategories() {
 
 exports.default = AdminCategories;
 
-},{"../containers/AdminCategories":278,"react":230}],305:[function(require,module,exports){
+},{"../containers/AdminCategories":279,"react":230}],306:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45021,7 +45040,7 @@ var AdminProducts = function AdminProducts() {
 
 exports.default = AdminProducts;
 
-},{"../containers/AdminProducts":279,"react":230}],306:[function(require,module,exports){
+},{"../containers/AdminProducts":280,"react":230}],307:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45058,7 +45077,7 @@ var Cart = function Cart() {
 
 exports.default = Cart;
 
-},{"../containers/Cart":280,"../containers/Footer":285,"../containers/Header":286,"react":230}],307:[function(require,module,exports){
+},{"../containers/Cart":281,"../containers/Footer":286,"../containers/Header":287,"react":230}],308:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45095,7 +45114,7 @@ var Categories = function Categories() {
 
 exports.default = Categories;
 
-},{"../containers/Categories":281,"../containers/Footer":285,"../containers/Header":286,"react":230}],308:[function(require,module,exports){
+},{"../containers/Categories":282,"../containers/Footer":286,"../containers/Header":287,"react":230}],309:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45132,7 +45151,7 @@ var Checkout = function Checkout() {
 
 exports.default = Checkout;
 
-},{"../containers/Checkout":283,"../containers/Footer":285,"../containers/Header":286,"react":230}],309:[function(require,module,exports){
+},{"../containers/Checkout":284,"../containers/Footer":286,"../containers/Header":287,"react":230}],310:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45169,7 +45188,7 @@ var Details = function Details() {
 
 exports.default = Details;
 
-},{"../containers/Details":284,"../containers/Footer":285,"../containers/Header":286,"react":230}],310:[function(require,module,exports){
+},{"../containers/Details":285,"../containers/Footer":286,"../containers/Header":287,"react":230}],311:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45196,7 +45215,7 @@ var Legal = function Legal() {
 
 exports.default = Legal;
 
-},{"../components/Legal":269,"react":230}],311:[function(require,module,exports){
+},{"../components/Legal":269,"react":230}],312:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45233,7 +45252,7 @@ var Main = function Main() {
 
 exports.default = Main;
 
-},{"../containers/Footer":285,"../containers/Header":286,"../containers/Main":287,"react":230}],312:[function(require,module,exports){
+},{"../containers/Footer":286,"../containers/Header":287,"../containers/Main":288,"react":230}],313:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45260,7 +45279,7 @@ var Order = function Order() {
 
 exports.default = Order;
 
-},{"../containers/Order":288,"react":230}],313:[function(require,module,exports){
+},{"../containers/Order":289,"react":230}],314:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45297,4 +45316,4 @@ var Products = function Products() {
 
 exports.default = Products;
 
-},{"../containers/Footer":285,"../containers/Header":286,"../containers/Products":292,"react":230}]},{},[295]);
+},{"../containers/Footer":286,"../containers/Header":287,"../containers/Products":293,"react":230}]},{},[296]);
