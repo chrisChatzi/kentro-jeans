@@ -241,6 +241,12 @@ button {
     .contentMain, .mainPage, .mainPage .content, .categories, .products, .details, .cart, .checkout {
       margin-top: 60px; } }
 
+/*active*/
+.activeEl, .header .headerMenu .active, .header .subMenu .active, .mainPage .content .infos .info:hover, .products .on, .details .main .info .selected, .details .main .info .on {
+  color: #c0392b;
+  font-weight: bold;
+  background: #f5f5f5; }
+
 /*MESSAGE*/
 .message {
   position: absolute;
@@ -661,8 +667,8 @@ button {
       width: 250px;
       height: 100%;
       margin-left: -125px;
-      border: 1px solid #ccc;
-      box-sizing: border-box; }
+      cursor: pointer;
+      font-size: 22px; }
     .header .headerMain .right {
       float: right; }
       .header .headerMain .right .item {
@@ -736,7 +742,7 @@ button {
       cursor: pointer; }
       .header .headerMenu .item:not(.active):hover {
         transition: 0.25s;
-        background: #abb7b7;
+        background: #213132;
         color: #fff;
         /*background: #f5f5f5;*/ }
       @media (max-width: 700px) {
@@ -745,9 +751,9 @@ button {
           height: 40px;
           line-height: 40px; } }
     .header .headerMenu .active {
-      color: #c0392b;
-      box-sizing: border-box;
-      background: #f5f5f5; }
+      /*color: $mainRed;
+				box-sizing: border-box;
+				background: #f5f5f5;*/ }
 
 @keyframes slideDown {
   from {
@@ -773,9 +779,9 @@ button {
       float: left;
       width: 20%; }
     .header .subMenu .active {
-      color: #c0392b;
-      box-sizing: border-box;
-      background: #f5f5f5; }
+      /*color: $mainRed;
+				box-sizing: border-box;
+				background: #f5f5f5;*/ }
     .header .subMenu .row {
       font-size: 14px;
       height: 40px;
@@ -783,7 +789,7 @@ button {
       cursor: pointer; }
       .header .subMenu .row:not(.active):hover {
         transition: 0.25s;
-        background: #abb7b7;
+        background: #213132;
         color: #fff; }
   @media (max-width: 700px) {
     .header {
@@ -842,7 +848,9 @@ button {
 
 /*MAIN*/
 .mainPage {
-  overflow: auto; }
+  overflow: auto;
+  background: #fff;
+  color: #242428; }
   .mainPage .content {
     margin-top: 5px;
     left: 0;
@@ -862,40 +870,40 @@ button {
       height: 100px;
       line-height: 100px;
       margin: 10px 0;
-      border: 3px solid #fff;
+      border: 3px solid #242428;
       font-size: 24px;
       letter-spacing: 0.25rem;
-      background: rgba(0, 0, 0, 0.25); }
+      /*background: rgba(0,0,0,0.25);*/ }
       @media (max-width: 900px) {
         .mainPage .content .best {
           width: 100%;
           margin: 10px 0; } }
     .mainPage .content .show {
       position: relative;
-      /*min-height: 400px;*/
       max-height: 500px;
-      margin: 20px 0; }
+      margin: 20px 0;
+      cursor: pointer; }
       .mainPage .content .show img {
         width: 100%;
         height: auto;
-        /*height: 500px;*/
         max-height: 500px; }
       .mainPage .content .show .show-title {
         position: absolute;
         top: 50%;
         bottom: auto;
-        left: auto;
-        right: 15px;
+        left: 50%;
+        right: auto;
         width: auto;
         height: 40px;
         line-height: 40px;
         margin-top: -10px;
         padding: 0 10px;
         /*background: rgba(0,0,0,0.25);*/
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-        font-size: 28px;
+        text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
+        font-size: 4vw;
         letter-spacing: 0.1em;
-        font-weight: bold; }
+        font-weight: bold;
+        color: #fff; }
     .mainPage .content .infos {
       overflow: auto;
       margin: 20px 0; }
@@ -905,9 +913,10 @@ button {
         height: 90px;
         margin: 5px 1%;
         padding: 5px 10px;
-        border: 2px solid #fff;
+        border: 2px solid #242428;
         box-sizing: border-box;
-        background: rgba(0, 0, 0, 0.25); }
+        /*background: rgba(0,0,0,0.25);*/
+        cursor: pointer; }
         .mainPage .content .infos .info .top {
           height: 30px;
           line-height: 30px; }
@@ -920,6 +929,10 @@ button {
         @media (max-width: 500px) {
           .mainPage .content .infos .info {
             width: 98%; } }
+        .mainPage .content .infos .info:hover {
+          transition: 0.75s;
+          /*background: rgba(0,0,0,0.5);*/
+          /*text-shadow: 3px 3px 3px rgba(0,0,0,0.5);*/ }
 
 /*CATEGORIES*/
 .categories {
@@ -1200,6 +1213,9 @@ button {
       height: 50px;
       margin: 0;
       margin-left: -100px; }
+      @media (max-width: 480px) {
+        .products .options h3 {
+          display: none; } }
     .products .options .line {
       position: absolute;
       top: auto;
@@ -1225,8 +1241,7 @@ button {
     cursor: pointer; }
     .products .sort:hover {
       transition: 0.75s;
-      background: #abb7b7;
-      color: #fff; }
+      background: #f5f5f5; }
   .products .sort-view {
     border: 2px solid #242428;
     overflow: auto;
@@ -1237,9 +1252,9 @@ button {
       height: 40px;
       line-height: 40px;
       cursor: pointer; }
-      .products .sort-view .row:hover {
+      .products .sort-view .row:not(.on):hover {
         transition: 0.75s;
-        background: #abb7b7;
+        background: #213132;
         color: #fff; }
   .products .filter {
     float: right;
@@ -1252,8 +1267,7 @@ button {
     cursor: pointer; }
     .products .filter:hover {
       transition: 0.75s;
-      background: #abb7b7;
-      color: #fff; }
+      background: #f5f5f5; }
   .products .filter-view {
     border: 2px solid #242428;
     overflow: auto;
@@ -1280,9 +1294,9 @@ button {
         margin: 10px 1% 5px 1%;
         position: relative;
         cursor: pointer; }
-        .products .filter-view .grid .block:hover {
+        .products .filter-view .grid .block:not(.on):hover {
           transition: 0.75s;
-          background: #abb7b7;
+          background: #213132;
           color: #fff; }
         .products .filter-view .grid .block .color {
           position: absolute;
@@ -1337,20 +1351,17 @@ button {
         width: 46%;
         height: 40px;
         line-height: 40px;
-        margin: 5px 2%;
+        margin: 10px 1% 5px 1%;
         /*border: 1px solid #242428;*/
         position: relative;
         cursor: pointer; }
-        .products .filter-view .grid .tag:hover {
+        .products .filter-view .grid .tag:not(.on):hover {
           transition: 0.75s;
-          background: #abb7b7;
+          background: #213132;
           color: #fff; }
   .products .on {
-    color: #fff;
-    background: #abb7b7;
-    border: 1px solid #abb7b7;
-    box-sizing: border-box;
-    /*font-weight: 900;*/ }
+    border: 1px solid #c0392b;
+    box-sizing: border-box; }
   .products .off {
     display: none; }
   .products .hide {
@@ -1472,8 +1483,8 @@ button {
       .details .main .info .dims .dims-val:last-of-type {
         border-right: 0; }
     .details .main .info .selected {
-      color: #c0392b;
-      background: #f5f5f5; }
+      /*color: $mainRed;
+					background: #f5f5f5;*/ }
     .details .main .info .dims:last-of-type {
       border-bottom: 0; }
     .details .main .info .addCart {
@@ -1504,12 +1515,7 @@ button {
         transition: 0.75s;
         opacity: 0.75; }
     .details .main .info .on {
-      /*background: $headerMain;*/
-      /*color: #fff;*/
-      color: #c0392b;
-      border-color: #c0392b;
-      box-sizing: border-box;
-      background: #f5f5f5; }
+      border-color: #c0392b; }
     .details .main .info .out {
       overflow: auto;
       float: left;
@@ -2012,5 +2018,11 @@ button {
     .order .fb a {
       color: #fff;
       text-decoration: none; }
+
+/*LEGAL, DELIVERY*/
+.legal, .delivery {
+  background: #fff;
+  color: #242428;
+  padding: 10px; }
 
 /*# sourceMappingURL=style.css.map */

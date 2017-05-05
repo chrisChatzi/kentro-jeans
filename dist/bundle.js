@@ -36000,7 +36000,7 @@ var popupComments_status = exports.popupComments_status = function popupComments
     };
 };
 
-},{"./constants.js":277,"./general/logic.js":294}],256:[function(require,module,exports){
+},{"./constants.js":278,"./general/logic.js":296}],256:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37382,6 +37382,63 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var Delivery = function Delivery(_ref) {
+	var lang = _ref.lang,
+	    langIdx = _ref.langIdx;
+	return _react2.default.createElement(
+		"div",
+		{ className: "delivery" },
+		_react2.default.createElement(
+			"h3",
+			null,
+			lang.deliHead[0]
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			lang.deliTxt[0]
+		),
+		_react2.default.createElement("br", null),
+		_react2.default.createElement(
+			"h3",
+			null,
+			lang.deliHead[1]
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			lang.deliTxt[1]
+		),
+		_react2.default.createElement("br", null),
+		_react2.default.createElement(
+			"h3",
+			null,
+			lang.deliHead[2]
+		),
+		_react2.default.createElement(
+			"p",
+			null,
+			lang.deliTxt[2]
+		),
+		_react2.default.createElement("br", null)
+	);
+};
+
+exports.default = Delivery;
+
+},{"react":230}],263:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var Details = function Details(_ref) {
 	var state = _ref.state,
 	    product = _ref.product,
@@ -37719,7 +37776,7 @@ var Details = function Details(_ref) {
 
 exports.default = Details;
 
-},{"react":230}],263:[function(require,module,exports){
+},{"react":230}],264:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37839,7 +37896,7 @@ var Footer = function Footer(_ref) {
 
 exports.default = Footer;
 
-},{"react":230}],264:[function(require,module,exports){
+},{"react":230}],265:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37916,7 +37973,7 @@ var Header = function Header(_ref) {
 				_react2.default.createElement(
 					'div',
 					{ className: 'mid', onClick: home },
-					'logo'
+					'\u039A\u03AD\u03BD\u03C4\u03C1\u03BF Jeans'
 				),
 				_react2.default.createElement(
 					'div',
@@ -38025,7 +38082,7 @@ var Header = function Header(_ref) {
 
 exports.default = Header;
 
-},{"./HeaderCart.js":265,"./HeaderCategories.js":266,"./HeaderLanguage.js":267,"./HeaderSub.js":268,"react":230}],265:[function(require,module,exports){
+},{"./HeaderCart.js":266,"./HeaderCategories.js":267,"./HeaderLanguage.js":268,"./HeaderSub.js":269,"react":230}],266:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38130,7 +38187,7 @@ var Cart = function Cart(_ref) {
 
 exports.default = Cart;
 
-},{"react":230}],266:[function(require,module,exports){
+},{"react":230}],267:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38172,7 +38229,7 @@ var Categories = function Categories(_ref) {
 
 exports.default = Categories;
 
-},{"react":230}],267:[function(require,module,exports){
+},{"react":230}],268:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38224,7 +38281,7 @@ var Order = function Order(_ref) {
 
 exports.default = Order;
 
-},{"react":230}],268:[function(require,module,exports){
+},{"react":230}],269:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38275,7 +38332,7 @@ var Sub = function Sub(_ref) {
 
 exports.default = Sub;
 
-},{"react":230}],269:[function(require,module,exports){
+},{"react":230}],270:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38294,7 +38351,7 @@ var Order = function Order(_ref) {
 	    home = _ref.home;
 	return _react2.default.createElement(
 		"div",
-		{ className: "" },
+		{ className: "legal" },
 		_react2.default.createElement(
 			"h3",
 			null,
@@ -38590,7 +38647,7 @@ var Order = function Order(_ref) {
 
 exports.default = Order;
 
-},{"react":230}],270:[function(require,module,exports){
+},{"react":230}],271:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38605,7 +38662,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Main = function Main(_ref) {
 	var lang = _ref.lang,
-	    state = _ref.state;
+	    state = _ref.state,
+	    open = _ref.open;
 	return _react2.default.createElement(
 		"div",
 		{ className: "mainPage" },
@@ -38619,7 +38677,7 @@ var Main = function Main(_ref) {
 			),
 			_react2.default.createElement(
 				"div",
-				{ className: "show" },
+				{ className: "show", onClick: open },
 				_react2.default.createElement("img", { id: "carousel", src: "../img/carousel/" + state.carousel + ".jpg" }),
 				_react2.default.createElement(
 					"div",
@@ -38693,7 +38751,7 @@ var Main = function Main(_ref) {
 
 exports.default = Main;
 
-},{"react":230}],271:[function(require,module,exports){
+},{"react":230}],272:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38717,7 +38775,7 @@ var Message = function Message(_ref) {
 
 exports.default = Message;
 
-},{"react":230}],272:[function(require,module,exports){
+},{"react":230}],273:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38773,7 +38831,7 @@ var Order = function Order(_ref) {
 
 exports.default = Order;
 
-},{"react":230}],273:[function(require,module,exports){
+},{"react":230}],274:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38872,7 +38930,7 @@ var PopupCategory = function PopupCategory(_ref) {
 
 exports.default = PopupCategory;
 
-},{"react":230}],274:[function(require,module,exports){
+},{"react":230}],275:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38924,7 +38982,7 @@ var PopupComm = function PopupComm(_ref) {
 
 exports.default = PopupComm;
 
-},{"react":230}],275:[function(require,module,exports){
+},{"react":230}],276:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -40051,7 +40109,7 @@ var PopupProduct = function PopupProduct(_ref) {
 
 exports.default = PopupProduct;
 
-},{"react":230}],276:[function(require,module,exports){
+},{"react":230}],277:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -40711,7 +40769,7 @@ var Products = function Products(_ref) {
 
 exports.default = Products;
 
-},{"react":230}],277:[function(require,module,exports){
+},{"react":230}],278:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -40751,9 +40809,9 @@ var el = {
 	categories: ["ΜΠΛΟYΖΕΣ", "ΖΑΚEΤΕΣ", "ΠΟΥΚAΜΙΣΑ", "ΜΠΟΥΦAΝ", "ΠΑΝΤΕΛOΝΙΑ"],
 	sub: [["ΚΟΝΤΟΜΑΝΙΚΕΣ", "ΜΑΚΡΥΜΑΝΙΚΕΣ", "ΠΛΕΚΤΕΣ", "ΑΜΑΝΙΚΕΣ"], ["ΠΛΕΚΤΕΣ", "ΦΟΥΤΕΡ"], ["ΚΟΝΤΟΜΑΝΙΚΑ", "ΜΑΚΡΥΜΑΝΙΚΑ"], ["ΑΜΑΝΙΚΑ", "ΜΠΟΥΦΑΝ"], ["ΤΖΙΝΣ", "ΚΑΠΑΡΝΤΙΝΕ", "ΦΟΥΤΕΡ", "ΒΕΡΜΟΥΔΕΣ"]],
 	//main
-	home1: "Πιο φθηνά, πουθενά",
-	homeInfo: ["Παράδοση εντός 3 ημέρων με ___ courrier", "\u0394\u03C9\u03C1\u03B5\u03AC\u03BD \u03BC\u03B5\u03C4\u03B1\u03C6\u03BF\u03C1\u03B9\u03BA\u03AC \u03BC\u03B5 \u03B1\u03B3\u03BF\u03C1\u03AD\u03C2 \u03AC\u03BD\u03C9 \u03C4\u03C9\u03BD 30 \u20AC", "Επιστροφές εντός 7 ημερών", "Δυνατότητα παραλαβής από το κατάστημα"],
-	carousel: ["\u039C\u03C0\u03BB\u03BF\u03CD\u03B6\u03B5\u03C2 \u03BA\u03BF\u03BD\u03C4\u03BF\u03BC\u03AC\u03BD\u03B9\u03BA\u03B5\u03C2 \u03B1\u03C0\u03BF 7 \u20AC", "\u03A4\u03B6\u03B9\u03BD \u03C0\u03B1\u03BD\u03C4\u03B5\u03BB\u03CC\u03BD\u03B9\u03B1 \u03B1\u03C0\u03BF 19 \u20AC", "qweqweqweqwewqe"],
+	home1: "Τόσο φθηνά, όσο πουθενά",
+	homeInfo: ["Παράδοση εντός 3 ημέρων με ___ courrier", "\u0394\u03C9\u03C1\u03B5\u03AC\u03BD \u03BC\u03B5\u03C4\u03B1\u03C6\u03BF\u03C1\u03B9\u03BA\u03AC \u03BC\u03B5 \u03B1\u03B3\u03BF\u03C1\u03AD\u03C2 \u03AC\u03BD\u03C9 \u03C4\u03C9\u03BD 30\u20AC", "Επιστροφές εντός 7 ημερών", "Δυνατότητα παραλαβής από το κατάστημα"],
+	carousel: ["\u039C\u03C0\u03BB\u03BF\u03CD\u03B6\u03B5\u03C2 \u03BA\u03BF\u03BD\u03C4\u03BF\u03BC\u03AC\u03BD\u03B9\u03BA\u03B5\u03C2 \u03B1\u03C0\u03BF 7\u20AC", "\u03A4\u03B6\u03B9\u03BD \u03C0\u03B1\u03BD\u03C4\u03B5\u03BB\u03CC\u03BD\u03B9\u03B1 \u03B1\u03C0\u03BF 19\u20AC", "qweqweqweqwewqe"],
 	//products
 	products: "προϊόντα",
 	sort: "Ταξινόμηση",
@@ -40808,7 +40866,7 @@ var el = {
 		"black": "Μαύρο"
 	},
 	noProducts: "Δεν υπάρχουν προϊόντα",
-	// product details
+	//product details
 	addCart: "Προσθήκη στο καλάθι",
 	addedCart: "Προστέθηκε στο καλάθι",
 	imgLabel: "Πατήστε για μεγέθυνση",
@@ -40861,7 +40919,10 @@ var el = {
 	orderBack: "Πίσω στην αρχική σελίδα",
 	//footer
 	contact: "Επικοινωνία",
-	infoFooter: ["Πληροφορίες", "Παραγγελίες/Παραδόσεις", "Οδηγός μεγέθους", "Όροι χρήσης"]
+	infoFooter: ["Πληροφορίες", "Παραγγελίες/Παραδόσεις", "Οδηγός μεγέθους", "Όροι χρήσης"],
+	//delivery
+	deliHead: ["Παραδόσεις", "Παραγγελίες", ";ςε;ςε"],
+	deliTxt: ["Οι παραδόσεις πραγματοποιούνται με χχχ courrier και εντός 1 με 3 ημερών.", "Οι παραγγελίες ...", ";ςε;ςε;ςε"]
 };
 var en = {
 	//header
@@ -40870,8 +40931,8 @@ var en = {
 	sub: [["SHORT SLEEVE", "LONG SLEEVE", "KNITWEAR", "TANKTOP"], ["KNITWEAR", "HOODIES"], ["SHORT SLEEVE", "LONG SLEEVE"], ["TANKTOP", "NORMAL"], ["JEANS", "CHINNOS", "JOGGERS", "SHORTS"]],
 	// main
 	home1: "Really cheap",
-	homeInfo: ["Delivery within 3 days with ___ courrier", "Free delivery on orders over 30 \u20AC", "Return within 7 days", "Pick up at the store"],
-	carousel: ["\u039C\u03C0\u03BB\u03BF\u03CD\u03B6\u03B5\u03C2 \u03BA\u03BF\u03BD\u03C4\u03BF\u03BC\u03AC\u03BD\u03B9\u03BA\u03B5\u03C2 \u03B1\u03C0\u03BF 7 \u20AC", "\u03A4\u03B6\u03B9\u03BD \u03C0\u03B1\u03BD\u03C4\u03B5\u03BB\u03CC\u03BD\u03B9\u03B1 \u03B1\u03C0\u03BF 19 \u20AC", "qweqweqweqwewqe"],
+	homeInfo: ["Delivery within 3 days with ___ courrier", "Free delivery on orders over 30\u20AC", "Return within 7 days", "Pick up at the store"],
+	carousel: ["T-shirts from 7\u20AC", "Jeans from 19\u20AC", "rtyrtyrtyrty"],
 	//products
 	products: "products",
 	sort: "Sort",
@@ -40978,7 +41039,10 @@ var en = {
 	orderBack: "Back to home page",
 	// footer
 	contact: "Contact",
-	infoFooter: ["Info", "Help", "Guide", "Legal"]
+	infoFooter: ["Info", "Help", "Guide", "Legal"],
+	//delivery
+	deliHead: ["Delivery", "Order", "qweqweqwe"],
+	deliTxt: ["Οι παραδόσεις πραγματοποιούνται με χχχ courrier και εντός 1 με 3 ημερών.", "Οι παραγγελίες ...", "qweqweqwwe"]
 };
 
 var sub = [["SHORT", "LONG", "KNITWEAR", "TANKTOP"], ["KNITWEAR", "HOODIES"], ["SHORT", "LONG"], ["TANKTOP", "NORMAL"], ["JEANS", "CHINNOS", "JOGGERS", "SHORTS"]];
@@ -41007,7 +41071,7 @@ exports.update_cart_str = update_cart_str;
 exports.sort_products_str = sort_products_str;
 exports.clear_cart_str = clear_cart_str;
 
-},{}],278:[function(require,module,exports){
+},{}],279:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41162,7 +41226,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../history.js":295,"./Category.js":283,"ajax-query":1,"react":230,"react-redux":178}],279:[function(require,module,exports){
+},{"../actions.js":255,"../history.js":297,"./Category.js":284,"ajax-query":1,"react":230,"react-redux":178}],280:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41332,7 +41396,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/AdminCategories.js":256,"../components/Message.js":271,"../containers/PopupCategory.js":290,"ajax-query":1,"react":230,"react-redux":178}],280:[function(require,module,exports){
+},{"../actions.js":255,"../components/AdminCategories.js":256,"../components/Message.js":272,"../containers/PopupCategory.js":292,"ajax-query":1,"react":230,"react-redux":178}],281:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41599,7 +41663,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/AdminProducts.js":257,"../components/Message.js":271,"../containers/PopupComm.js":291,"../containers/PopupProduct.js":292,"../history.js":295,"ajax-query":1,"react":230,"react-redux":178}],281:[function(require,module,exports){
+},{"../actions.js":255,"../components/AdminProducts.js":257,"../components/Message.js":272,"../containers/PopupComm.js":293,"../containers/PopupProduct.js":294,"../history.js":297,"ajax-query":1,"react":230,"react-redux":178}],282:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41765,7 +41829,7 @@ var Cart = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Cart);
 
-},{"../actions.js":255,"../components/Cart.js":258,"../history.js":295,"react":230,"react-redux":178}],282:[function(require,module,exports){
+},{"../actions.js":255,"../components/Cart.js":258,"../history.js":297,"react":230,"react-redux":178}],283:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41877,7 +41941,7 @@ var Categories = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Categories);
 
-},{"../actions.js":255,"../components/Categories.js":259,"../constants.js":277,"../history.js":295,"./Header.js":287,"react":230,"react-redux":178}],283:[function(require,module,exports){
+},{"../actions.js":255,"../components/Categories.js":259,"../constants.js":278,"../history.js":297,"./Header.js":289,"react":230,"react-redux":178}],284:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41954,7 +42018,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../components/Category.js":260,"react":230,"react-redux":178}],284:[function(require,module,exports){
+},{"../components/Category.js":260,"react":230,"react-redux":178}],285:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42242,7 +42306,84 @@ var Checkout = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Checkout);
 
-},{"../actions.js":255,"../components/Checkout.js":261,"../history.js":295,"react":230,"react-redux":178}],285:[function(require,module,exports){
+},{"../actions.js":255,"../components/Checkout.js":261,"../history.js":297,"react":230,"react-redux":178}],286:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = require('react-redux');
+
+var _Delivery = require('../components/Delivery.js');
+
+var _Delivery2 = _interopRequireDefault(_Delivery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	Main component
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
+
+function mapStateToProps(state, ownProps) {
+	return {
+		lang: state.main.lang,
+		langIdx: state.main.langIdx
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {};
+}
+
+var Delivery = function (_Component) {
+	_inherits(Delivery, _Component);
+
+	_createClass(Delivery, null, [{
+		key: 'propTypes',
+		get: function get() {
+			return {};
+		}
+	}]);
+
+	function Delivery(props) {
+		_classCallCheck(this, Delivery);
+
+		return _possibleConstructorReturn(this, (Delivery.__proto__ || Object.getPrototypeOf(Delivery)).call(this, props));
+	}
+
+	_createClass(Delivery, [{
+		key: 'render',
+		value: function render() {
+			var _props = this.props,
+			    lang = _props.lang,
+			    langIdx = _props.langIdx;
+
+
+			return _react2.default.createElement(
+				'div',
+				{ className: '' },
+				_react2.default.createElement(_Delivery2.default, { lang: lang, langIdx: langIdx })
+			);
+		}
+	}]);
+
+	return Delivery;
+}(_react.Component);
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Delivery);
+
+},{"../components/Delivery.js":262,"react":230,"react-redux":178}],287:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42506,7 +42647,7 @@ var Details = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Details);
 
-},{"../actions.js":255,"../components/Details.js":262,"react":230,"react-redux":178}],286:[function(require,module,exports){
+},{"../actions.js":255,"../components/Details.js":263,"react":230,"react-redux":178}],288:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42575,7 +42716,9 @@ var Footer = function (_Component) {
 		value: function componentDidMount() {}
 	}, {
 		key: 'deliveryHandler',
-		value: function deliveryHandler() {}
+		value: function deliveryHandler() {
+			_history2.default.push("/delivery");
+		}
 	}, {
 		key: 'sizeHandler',
 		value: function sizeHandler() {}
@@ -42605,7 +42748,7 @@ var Footer = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Footer);
 
-},{"../components/Footer.js":263,"../history.js":295,"react":230,"react-redux":178}],287:[function(require,module,exports){
+},{"../components/Footer.js":264,"../history.js":297,"react":230,"react-redux":178}],289:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42730,17 +42873,20 @@ var Header = function (_Component) {
 	}, {
 		key: 'componentWillUnmount',
 		value: function componentWillUnmount() {
-			// const unlisten = history.listen((location, action) => {
-			// 	if(action == "POP"){
-			// 		let path = location.pathname;
-			// 		if(path == "/") path = ""
-			// 		if(path.indexOf("categories") >= 0){
-			// 			path = path.substring(path.lastIndexOf(":")+1, path.length);
-			// 		}
-			// 		this.props.change_path(path, this.props.categories);
-			// 		unlisten()
-			// 	}
-			// });
+			var _this2 = this;
+
+			var path = location.pathname;
+			var unlisten = _history2.default.listen(function (location, action) {
+				if (action == "POP") {
+
+					if (path == "/") path = "";
+					// if(path.indexOf("categories") >= 0){
+					// 	path = path.substring(path.lastIndexOf(":")+1, path.length);
+					// }
+					if (path == "/") _this2.props.change_path(path, _this2.props.categories);
+					unlisten();
+				}
+			});
 		}
 	}, {
 		key: 'componentDidUpdate',
@@ -42764,11 +42910,11 @@ var Header = function (_Component) {
 	}, {
 		key: 'showSubHandler',
 		value: function showSubHandler(flag, type) {
-			var _this2 = this;
+			var _this3 = this;
 
 			if (flag && type && this.state.subShow) {
 				this.flag = setTimeout(function () {
-					_this2.setState({ subShow: flag });
+					_this3.setState({ subShow: flag });
 				}, 500);
 			} else {
 				clearTimeout(this.flag);
@@ -42903,7 +43049,7 @@ var Header = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Header);
 
-},{"../actions.js":255,"../components/Header.js":264,"../history.js":295,"react":230,"react-redux":178}],288:[function(require,module,exports){
+},{"../actions.js":255,"../components/Header.js":265,"../history.js":297,"react":230,"react-redux":178}],290:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42926,6 +43072,12 @@ var _Footer = require('../containers/Footer');
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
+var _actions = require('../actions.js');
+
+var _history = require('../history.js');
+
+var _history2 = _interopRequireDefault(_history);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -42938,12 +43090,18 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function mapStateToProps(state) {
 	return {
-		lang: state.main.lang
+		lang: state.main.lang,
+		categories: state.main.categories
 	};
 }
 
 function mapDispatchToProps(dispatch) {
-	return {};
+	return {
+		change_path: function change_path(category, product, categories) {
+			if (product) dispatch((0, _actions.get_products_frontend)(category, product));
+			dispatch((0, _actions.change_path)(category, product, categories));
+		}
+	};
 }
 
 var Main = function (_Component) {
@@ -42966,6 +43124,8 @@ var Main = function (_Component) {
 		_this.state = {
 			carousel: 1
 		};
+
+		_this.open = _this.openHandler.bind(_this);
 		return _this;
 	}
 
@@ -42975,19 +43135,9 @@ var Main = function (_Component) {
 			var _this2 = this;
 
 			//carousel
+			this.carouselLoop();
 			this.timer = setInterval(function () {
-				setTimeout(function () {
-					document.getElementById("carousel").classList.remove("animated");
-					document.getElementById("carousel").classList.remove("fadeIn");
-					document.getElementById("carousel-tag").classList.remove("animated");
-					document.getElementById("carousel-tag").classList.remove("pulse");
-				}, 1000);
-				document.getElementById("carousel").className += " animated fadeIn";
-				document.getElementById("carousel-tag").className += " animated pulse";
-				var idx = _this2.state.carousel;
-				idx++;
-				if (idx == 4) idx = 1;
-				_this2.setState({ carousel: idx });
+				_this2.carouselLoop();
 			}, 5000);
 		}
 	}, {
@@ -42996,12 +43146,49 @@ var Main = function (_Component) {
 			clearInterval(this.timer);
 		}
 	}, {
+		key: 'carouselLoop',
+		value: function carouselLoop() {
+			var carEl = document.getElementById("carousel");
+			var carTagEl = document.getElementById("carousel-tag");
+			setTimeout(function () {
+				carEl.classList.remove("animated");
+				carEl.classList.remove("fadeIn");
+				carTagEl.classList.remove("animated");
+				carTagEl.classList.remove("pulse");
+			}, 1000);
+			carEl.className += " animated fadeIn";
+			carTagEl.className += " animated pulse";
+			var idx = this.state.carousel;
+			idx++;
+			if (idx == 4) idx = 1;
+			this.setState({ carousel: idx });
+			carTagEl.style.marginLeft = -(carTagEl.offsetWidth / 2) + "px";
+		}
+		//open carousel on img click
+
+	}, {
+		key: 'openHandler',
+		value: function openHandler() {
+			switch (this.state.carousel) {
+				case 1:
+					this.props.change_path("tops", "short", this.props.categories);
+					break;
+				case 2:
+					this.props.change_path("trousers", "jeans", this.props.categories);
+					break;
+				case 3:
+					this.props.change_path("shirts", "long", this.props.categories);
+					break;
+			}
+			_history2.default.push("/products");
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
 				'div',
 				null,
-				_react2.default.createElement(_Main2.default, { lang: this.props.lang, state: this.state })
+				_react2.default.createElement(_Main2.default, { lang: this.props.lang, state: this.state, open: this.open })
 			);
 		}
 	}]);
@@ -43011,7 +43198,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../components/Main.js":270,"../containers/Footer":286,"react":230,"react-redux":178}],289:[function(require,module,exports){
+},{"../actions.js":255,"../components/Main.js":271,"../containers/Footer":288,"../history.js":297,"react":230,"react-redux":178}],291:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43103,7 +43290,7 @@ var Order = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Order);
 
-},{"../components/Order.js":272,"../history.js":295,"react":230,"react-redux":178}],290:[function(require,module,exports){
+},{"../components/Order.js":273,"../history.js":297,"react":230,"react-redux":178}],292:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43271,7 +43458,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/PopupCategory.js":273,"react":230,"react-redux":178}],291:[function(require,module,exports){
+},{"../actions.js":255,"../components/PopupCategory.js":274,"react":230,"react-redux":178}],293:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43372,7 +43559,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/PopupComm.js":274,"../general/logic.js":294,"ajax-query":1,"react":230,"react-redux":178}],292:[function(require,module,exports){
+},{"../actions.js":255,"../components/PopupComm.js":275,"../general/logic.js":296,"ajax-query":1,"react":230,"react-redux":178}],294:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43770,7 +43957,7 @@ var Main = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
-},{"../actions.js":255,"../components/PopupProduct.js":275,"../general/logic.js":294,"ajax-query":1,"react":230,"react-redux":178}],293:[function(require,module,exports){
+},{"../actions.js":255,"../components/PopupProduct.js":276,"../general/logic.js":296,"ajax-query":1,"react":230,"react-redux":178}],295:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44025,7 +44212,7 @@ var Categories = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Categories);
 
-},{"../actions.js":255,"../components/Products.js":276,"../history.js":295,"./Header.js":287,"react":230,"react-redux":178}],294:[function(require,module,exports){
+},{"../actions.js":255,"../components/Products.js":277,"../history.js":297,"./Header.js":289,"react":230,"react-redux":178}],296:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44381,7 +44568,7 @@ exports.updateCategory = updateCategory;
 exports.addProduct = addProduct;
 exports.updateProduct = updateProduct;
 
-},{"../constants.js":277,"ajax-query":1}],295:[function(require,module,exports){
+},{"../constants.js":278,"ajax-query":1}],297:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44396,7 +44583,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = (0, _createBrowserHistory2.default)();
 
-},{"history/createBrowserHistory":28}],296:[function(require,module,exports){
+},{"history/createBrowserHistory":28}],298:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -44463,6 +44650,10 @@ var _Legal = require('./routes/Legal');
 
 var _Legal2 = _interopRequireDefault(_Legal);
 
+var _Delivery = require('./routes/Delivery');
+
+var _Delivery2 = _interopRequireDefault(_Delivery);
+
 var _redux = require('redux');
 
 var _reducers = require('./reducers');
@@ -44474,9 +44665,25 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 
 //clear cache
-for (var i = 0; i < _constants.en.categories.length; i++) {
-	for (var j = 0; j < _constants.en.sub[i].length; j++) {
-		localStorage.setItem("sub-" + _constants.en.categories[i].toLowerCase() + "-" + _constants.en.sub[i][j].toLowerCase(), "");
+var categories = [{
+	id: "tops",
+	sub: ["short", "long", "knitwear", "tanktop"]
+}, {
+	id: "cardigans",
+	sub: ["knitwear", "hoodies"]
+}, {
+	id: "shirts",
+	sub: ["short", "long"]
+}, {
+	id: "jackets",
+	sub: ["tanktop", "normal"]
+}, {
+	id: "trousers",
+	sub: ["jeans", "chinos", "joggers", "shorts"]
+}];
+for (var i = 0; i < categories.length; i++) {
+	for (var j = 0; j < categories[i].sub.length; j++) {
+		localStorage.removeItem("sub-" + categories[i].id + "-" + categories[i].sub[j].toLowerCase());
 	}
 }
 
@@ -44500,13 +44707,14 @@ function desktop() {
 				_react2.default.createElement(_reactRouter.Route, { path: '/cart', component: _Cart2.default }),
 				_react2.default.createElement(_reactRouter.Route, { path: '/checkout', component: _Checkout2.default }),
 				_react2.default.createElement(_reactRouter.Route, { path: '/order', component: _Order2.default }),
-				_react2.default.createElement(_reactRouter.Route, { path: '/legal', component: _Legal2.default })
+				_react2.default.createElement(_reactRouter.Route, { path: '/legal', component: _Legal2.default }),
+				_react2.default.createElement(_reactRouter.Route, { path: '/delivery', component: _Delivery2.default })
 			)
 		)
 	), document.getElementById('app'));
 }
 
-},{"./constants.js":277,"./history.js":295,"./reducers":300,"./routes/Admin":304,"./routes/AdminCategories":305,"./routes/AdminProducts":306,"./routes/Cart":307,"./routes/Categories":308,"./routes/Checkout":309,"./routes/Details":310,"./routes/Legal":311,"./routes/Main":312,"./routes/Order":313,"./routes/Products":314,"react":230,"react-dom":43,"react-redux":178,"react-router":201,"redux":237,"redux-thunk":231}],297:[function(require,module,exports){
+},{"./constants.js":278,"./history.js":297,"./reducers":302,"./routes/Admin":306,"./routes/AdminCategories":307,"./routes/AdminProducts":308,"./routes/Cart":309,"./routes/Categories":310,"./routes/Checkout":311,"./routes/Delivery":312,"./routes/Details":313,"./routes/Legal":314,"./routes/Main":315,"./routes/Order":316,"./routes/Products":317,"react":230,"react-dom":43,"react-redux":178,"react-router":201,"redux":237,"redux-thunk":231}],299:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44582,7 +44790,7 @@ var products = [];
 
 exports.default = { main: main, categories: categories, products: products, popup: popup, general: general };
 
-},{"./constants.js":277}],298:[function(require,module,exports){
+},{"./constants.js":278}],300:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44623,7 +44831,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":277,"../general/logic.js":294,"../initialState":297}],299:[function(require,module,exports){
+},{"../constants.js":278,"../general/logic.js":296,"../initialState":299}],301:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44656,7 +44864,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":277,"../initialState":297}],300:[function(require,module,exports){
+},{"../constants.js":278,"../initialState":299}],302:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44697,7 +44905,7 @@ var reducer = (0, _redux.combineReducers)({
 
 exports.default = reducer;
 
-},{"./categories":298,"./general":299,"./main":301,"./popup":302,"./products":303,"redux":237}],301:[function(require,module,exports){
+},{"./categories":300,"./general":301,"./main":303,"./popup":304,"./products":305,"redux":237}],303:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44884,7 +45092,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":277,"../history.js":295,"../initialState":297}],302:[function(require,module,exports){
+},{"../constants.js":278,"../history.js":297,"../initialState":299}],304:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44932,7 +45140,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":277,"../general/logic.js":294,"../initialState":297}],303:[function(require,module,exports){
+},{"../constants.js":278,"../general/logic.js":296,"../initialState":299}],305:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44965,7 +45173,7 @@ var state_update = function state_update() {
 
 exports.default = state_update;
 
-},{"../constants.js":277,"../initialState":297}],304:[function(require,module,exports){
+},{"../constants.js":278,"../initialState":299}],306:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44992,7 +45200,7 @@ var Admin = function Admin() {
 
 exports.default = Admin;
 
-},{"../containers/Admin":278,"react":230}],305:[function(require,module,exports){
+},{"../containers/Admin":279,"react":230}],307:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45019,7 +45227,7 @@ var AdminCategories = function AdminCategories() {
 
 exports.default = AdminCategories;
 
-},{"../containers/AdminCategories":279,"react":230}],306:[function(require,module,exports){
+},{"../containers/AdminCategories":280,"react":230}],308:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45046,7 +45254,7 @@ var AdminProducts = function AdminProducts() {
 
 exports.default = AdminProducts;
 
-},{"../containers/AdminProducts":280,"react":230}],307:[function(require,module,exports){
+},{"../containers/AdminProducts":281,"react":230}],309:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45083,7 +45291,7 @@ var Cart = function Cart() {
 
 exports.default = Cart;
 
-},{"../containers/Cart":281,"../containers/Footer":286,"../containers/Header":287,"react":230}],308:[function(require,module,exports){
+},{"../containers/Cart":282,"../containers/Footer":288,"../containers/Header":289,"react":230}],310:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45120,7 +45328,7 @@ var Categories = function Categories() {
 
 exports.default = Categories;
 
-},{"../containers/Categories":282,"../containers/Footer":286,"../containers/Header":287,"react":230}],309:[function(require,module,exports){
+},{"../containers/Categories":283,"../containers/Footer":288,"../containers/Header":289,"react":230}],311:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45157,7 +45365,34 @@ var Checkout = function Checkout() {
 
 exports.default = Checkout;
 
-},{"../containers/Checkout":284,"../containers/Footer":286,"../containers/Header":287,"react":230}],310:[function(require,module,exports){
+},{"../containers/Checkout":285,"../containers/Footer":288,"../containers/Header":289,"react":230}],312:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Delivery = require('../containers/Delivery');
+
+var _Delivery2 = _interopRequireDefault(_Delivery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Delivery = function Delivery() {
+	return _react2.default.createElement(
+		'div',
+		null,
+		_react2.default.createElement(_Delivery2.default, null)
+	);
+};
+
+exports.default = Delivery;
+
+},{"../containers/Delivery":286,"react":230}],313:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45194,7 +45429,7 @@ var Details = function Details() {
 
 exports.default = Details;
 
-},{"../containers/Details":285,"../containers/Footer":286,"../containers/Header":287,"react":230}],311:[function(require,module,exports){
+},{"../containers/Details":287,"../containers/Footer":288,"../containers/Header":289,"react":230}],314:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45221,7 +45456,7 @@ var Legal = function Legal() {
 
 exports.default = Legal;
 
-},{"../components/Legal":269,"react":230}],312:[function(require,module,exports){
+},{"../components/Legal":270,"react":230}],315:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45258,7 +45493,7 @@ var Main = function Main() {
 
 exports.default = Main;
 
-},{"../containers/Footer":286,"../containers/Header":287,"../containers/Main":288,"react":230}],313:[function(require,module,exports){
+},{"../containers/Footer":288,"../containers/Header":289,"../containers/Main":290,"react":230}],316:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45285,7 +45520,7 @@ var Order = function Order() {
 
 exports.default = Order;
 
-},{"../containers/Order":289,"react":230}],314:[function(require,module,exports){
+},{"../containers/Order":291,"react":230}],317:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45322,4 +45557,4 @@ var Products = function Products() {
 
 exports.default = Products;
 
-},{"../containers/Footer":286,"../containers/Header":287,"../containers/Products":293,"react":230}]},{},[296]);
+},{"../containers/Footer":288,"../containers/Header":289,"../containers/Products":295,"react":230}]},{},[298]);
