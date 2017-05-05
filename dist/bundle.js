@@ -35717,7 +35717,7 @@ module.exports = warning;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.popupComments_status = exports.popupProducts_status = exports.popupCategory_status = exports.update_category = exports.add_category = exports.delete_category = exports.rearrange_categories = exports.get_categories = exports.update_product = exports.add_product = exports.delete_product = exports.rearrange_products = exports.get_products = exports.clear_cart = exports.make_order = exports.change_quant = exports.delete_item = exports.show_cart = exports.sort_products_action = exports.sort_products = exports.update_cart = exports.selected_product = exports.fetch_products = exports.get_products_frontend = exports.change_path = exports.set_lang = exports.msg = exports.login_action = exports.login_user = undefined;
+exports.popupComments_status = exports.popupProducts_status = exports.popupCategory_status = exports.update_category = exports.add_category = exports.delete_category = exports.rearrange_categories = exports.get_categories = exports.update_product = exports.add_product = exports.delete_product = exports.rearrange_products = exports.get_products = exports.clear_cart = exports.make_order = exports.change_quant = exports.delete_item = exports.show_cart = exports.sort_products_action = exports.sort_products = exports.update_cart = exports.selected_product = exports.fetch_products = exports.get_products_frontend = exports.change_path = exports.set_lang = exports.search_item_action = exports.search_item = exports.msg = exports.login_action = exports.login_user = undefined;
 
 var _constants = require('./constants.js');
 
@@ -35743,6 +35743,27 @@ var msg = exports.msg = function msg(text) {
     return {
         type: _constants.msg_str,
         text: text
+    };
+};
+//search item
+var search_item = exports.search_item = function search_item(val, langIdx) {
+    return function (dispatch) {
+        (0, _logic.getItems)("products", function (res) {
+            var products = [];
+            res.products.map(function (v) {
+                if (v.title[langIdx].indexOf(val) >= 0) {
+                    products.push(v);
+                }
+            });
+            if (val == "") products = [];
+            dispatch(search_item_action(products));
+        });
+    };
+};
+var search_item_action = exports.search_item_action = function search_item_action(products) {
+    return {
+        type: _constants.search_item_str,
+        products: products
     };
 };
 //change language
@@ -35887,7 +35908,7 @@ var delete_product = exports.delete_product = function delete_product(item) {
 };
 var add_product = exports.add_product = function add_product(id, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments) {
     return function (dispatch) {
-        (0, _logic.addProduct)(id, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments, function (flag) {
+        (0, _logic.addProduct)(id, name, price, category, descr, size, color, tag, fabric, qual, dims, img, comments, "", function (flag) {
             if (flag) {
                 (0, _logic.getItems)("products", function (res) {
                     dispatch(get_products(res.products));
@@ -37939,6 +37960,8 @@ var Header = function Header(_ref) {
 	    clickSub = _ref.clickSub,
 	    categoryIdx = _ref.categoryIdx,
 	    productIdx = _ref.productIdx,
+	    productSearch = _ref.productSearch,
+	    searchIds = _ref.searchIds,
 	    cartFlag = _ref.cartFlag,
 	    showCart = _ref.showCart,
 	    cart = _ref.cart,
@@ -37950,7 +37973,10 @@ var Header = function Header(_ref) {
 	    changeLang = _ref.changeLang,
 	    showLang = _ref.showLang,
 	    showSub = _ref.showSub,
-	    changeHead = _ref.changeHead;
+	    changeHead = _ref.changeHead,
+	    changeSearch = _ref.changeSearch,
+	    loseFocus = _ref.loseFocus,
+	    searchClick = _ref.searchClick;
 	return _react2.default.createElement(
 		'div',
 		{ className: 'header' },
@@ -37963,7 +37989,8 @@ var Header = function Header(_ref) {
 				_react2.default.createElement(
 					'div',
 					{ className: 'left' },
-					_react2.default.createElement('input', { placeholder: lang.search }),
+					_react2.default.createElement('input', { placeholder: lang.search, value: state.searchVal,
+						onChange: changeSearch, onBlur: loseFocus }),
 					_react2.default.createElement(
 						'button',
 						null,
@@ -38010,6 +38037,28 @@ var Header = function Header(_ref) {
 						)
 					)
 				)
+			),
+			_react2.default.createElement(
+				'div',
+				{ className: productSearch.length > 0 ? "search" : "search off" },
+				productSearch.length > 0 ? productSearch.map(function (v, i) {
+					return _react2.default.createElement(
+						'div',
+						{ key: i, className: 'row', onClick: function onClick() {
+								return searchClick(v);
+							} },
+						_react2.default.createElement(
+							'span',
+							null,
+							v.title[langIdx]
+						),
+						_react2.default.createElement(
+							'span',
+							{ className: 'grey' },
+							" - " + lang.sub[searchIds(v.category)[0]][searchIds(v.category)[1]] + " " + lang.categories[searchIds(v.category)[0]]
+						)
+					);
+				}) : ""
 			),
 			_react2.default.createElement(_HeaderLanguage2.default, { state: state, langStr: langStr, showLang: showLang, changeLang: changeLang }),
 			_react2.default.createElement(_HeaderCart2.default, { cartFlag: cartFlag, showCart: showCart, lang: lang, langIdx: langIdx,
@@ -38672,7 +38721,7 @@ var Main = function Main(_ref) {
 			{ className: "content" },
 			_react2.default.createElement(
 				"div",
-				{ className: "best" },
+				{ className: "best animated fadeInDown" },
 				lang.home1
 			),
 			_react2.default.createElement(
@@ -40145,7 +40194,7 @@ var Products = function Products(_ref) {
 		_react2.default.createElement(
 			"div",
 			{ className: "head" },
-			lang.sub[catIdx][prodIdx]
+			lang.sub[catIdx][prodIdx] + " " + lang.categories[catIdx]
 		),
 		_react2.default.createElement(
 			"div",
@@ -40760,7 +40809,7 @@ var Products = function Products(_ref) {
 				) : "" : "" : "";
 			}) : _react2.default.createElement(
 				"div",
-				{ id: "result" },
+				{ className: "noProducts", id: "result" },
 				_react2.default.createElement("i", { className: "fa fa-spinner fa-pulse fa-3x fa-fw" })
 			)
 		)
@@ -40786,6 +40835,7 @@ var show_cart_str = "SHOW_CART";
 var delete_item_str = "DELETE_ITEM_FROM_CART";
 var change_quant_str = "CHANGE_QUANTITY";
 var clear_cart_str = "CLEAR_CART";
+var search_item_str = "SEARCH_ITEM";
 // admin
 var get_categories_str = "GET_CATEGORIES";
 var get_products_str = "GET_PRODUCTS";
@@ -40811,7 +40861,7 @@ var el = {
 	//main
 	home1: "Τόσο φθηνά, όσο πουθενά",
 	homeInfo: ["Παράδοση εντός 3 ημέρων με ___ courrier", "\u0394\u03C9\u03C1\u03B5\u03AC\u03BD \u03BC\u03B5\u03C4\u03B1\u03C6\u03BF\u03C1\u03B9\u03BA\u03AC \u03BC\u03B5 \u03B1\u03B3\u03BF\u03C1\u03AD\u03C2 \u03AC\u03BD\u03C9 \u03C4\u03C9\u03BD 30\u20AC", "Επιστροφές εντός 7 ημερών", "Δυνατότητα παραλαβής από το κατάστημα"],
-	carousel: ["\u039C\u03C0\u03BB\u03BF\u03CD\u03B6\u03B5\u03C2 \u03BA\u03BF\u03BD\u03C4\u03BF\u03BC\u03AC\u03BD\u03B9\u03BA\u03B5\u03C2 \u03B1\u03C0\u03BF 7\u20AC", "\u03A4\u03B6\u03B9\u03BD \u03C0\u03B1\u03BD\u03C4\u03B5\u03BB\u03CC\u03BD\u03B9\u03B1 \u03B1\u03C0\u03BF 19\u20AC", "qweqweqweqwewqe"],
+	carousel: ["\u039C\u03C0\u03BB\u03BF\u03CD\u03B6\u03B5\u03C2 \u03BA\u03BF\u03BD\u03C4\u03BF\u03BC\u03AC\u03BD\u03B9\u03BA\u03B5\u03C2 \u03B1\u03C0\u03BF 7\u20AC", "\u03A4\u03B6\u03B9\u03BD \u03C0\u03B1\u03BD\u03C4\u03B5\u03BB\u03CC\u03BD\u03B9\u03B1 \u03B1\u03C0\u03BF 19\u20AC", "\u0392\u03B5\u03C1\u03BC\u03BF\u03CD\u03B4\u03B5\u03C2 \u03B1\u03C0\u03CC 14\u20AC"],
 	//products
 	products: "προϊόντα",
 	sort: "Ταξινόμηση",
@@ -40929,10 +40979,10 @@ var en = {
 	search: "Search",
 	categories: ["TOPS", "CARDIGANS", "SHIRTS", "JACKETS", "TROUSERS"],
 	sub: [["SHORT SLEEVE", "LONG SLEEVE", "KNITWEAR", "TANKTOP"], ["KNITWEAR", "HOODIES"], ["SHORT SLEEVE", "LONG SLEEVE"], ["TANKTOP", "NORMAL"], ["JEANS", "CHINNOS", "JOGGERS", "SHORTS"]],
-	// main
+	//main
 	home1: "Really cheap",
 	homeInfo: ["Delivery within 3 days with ___ courrier", "Free delivery on orders over 30\u20AC", "Return within 7 days", "Pick up at the store"],
-	carousel: ["T-shirts from 7\u20AC", "Jeans from 19\u20AC", "rtyrtyrtyrty"],
+	carousel: ["T-shirts from 7\u20AC", "Jeans from 19\u20AC", "Shorts from 14\u20AC"],
 	//products
 	products: "products",
 	sort: "Sort",
@@ -41037,7 +41087,7 @@ var en = {
 	orderInfo2: "(If you're given one)",
 	orderTY: "Thank you",
 	orderBack: "Back to home page",
-	// footer
+	//footer
 	contact: "Contact",
 	infoFooter: ["Info", "Help", "Guide", "Legal"],
 	//delivery
@@ -41051,6 +41101,7 @@ exports.login_str = login_str;
 exports.set_lang_str = set_lang_str;
 exports.change_path_str = change_path_str;
 exports.selected_product_str = selected_product_str;
+exports.search_item_str = search_item_str;
 exports.get_categories_str = get_categories_str;
 exports.get_products_str = get_products_str;
 exports.rearrange_categories_str = rearrange_categories_str;
@@ -42797,7 +42848,8 @@ function mapStateToProps(state, ownProps) {
 		cartSizes: state.main.cartSizes,
 		cartColors: state.main.cartColors,
 		cartQuant: state.main.cartQuant,
-		cartFlag: state.main.showCart
+		cartFlag: state.main.showCart,
+		productSearch: state.main.productSearch
 	};
 }
 
@@ -42812,6 +42864,13 @@ function mapDispatchToProps(dispatch) {
 		},
 		showCart: function showCart(flag) {
 			dispatch((0, _actions.show_cart)(flag));
+		},
+		searchItem: function searchItem(val, langIdx) {
+			dispatch((0, _actions.search_item)(val, langIdx));
+		},
+		selectedProduct: function selectedProduct(v, category, product, categories) {
+			dispatch((0, _actions.selected_product)(v));
+			dispatch((0, _actions.change_path)(category, product, categories));
 		}
 	};
 }
@@ -42848,7 +42907,9 @@ var Header = function (_Component) {
 			showHead: false, //on mobile show categories
 			langShow: false, //show language menu
 			subShow: false, //show sub categories
-			anime: false
+			anime: false,
+			searchVal: "", //search string
+			searchIdx: [0, 0] //search category and product (sub) ids
 		};
 
 		_this.home = _this.homeHandler.bind(_this);
@@ -42862,6 +42923,9 @@ var Header = function (_Component) {
 		_this.showCart = _this.showCartHandler.bind(_this);
 		_this.onCart = _this.onCartHandler.bind(_this);
 		_this.onCheckout = _this.onCheckoutHandler.bind(_this);
+		_this.changeSearch = _this.changeSearchHandler.bind(_this);
+		_this.loseFocus = _this.loseFocusHandler.bind(_this);
+		_this.searchClick = _this.searchClickHandler.bind(_this);
 		return _this;
 	}
 
@@ -42878,7 +42942,6 @@ var Header = function (_Component) {
 			var path = location.pathname;
 			var unlisten = _history2.default.listen(function (location, action) {
 				if (action == "POP") {
-
 					if (path == "/") path = "";
 					// if(path.indexOf("categories") >= 0){
 					// 	path = path.substring(path.lastIndexOf(":")+1, path.length);
@@ -42905,6 +42968,44 @@ var Header = function (_Component) {
 	}, {
 		key: 'clickEventHandler',
 		value: function clickEventHandler() {}
+		//get category product id
+
+	}, {
+		key: 'searchIds',
+		value: function searchIds(val) {
+			var array = [0, 0];
+			switch (val) {
+				case "0":
+					array = [0, 0, "tops", "short"];break;
+				case "1":
+					array = [0, 1, "tops", "long"];break;
+				case "2":
+					array = [0, 2, "tops", "knitwear"];break;
+				case "3":
+					array = [0, 3, "tops", "tanktop"];break;
+				case "4":
+					array = [1, 0, "cardigans", "knitwear"];break;
+				case "5":
+					array = [1, 1, "cardigans", "hoodies"];break;
+				case "6":
+					array = [2, 0, "shirts", "short"];break;
+				case "7":
+					array = [2, 1, "shirts", "long"];break;
+				case "8":
+					array = [3, 0, "jackets", "tanktop"];break;
+				case "9":
+					array = [3, 1, "jackets", "normal"];break;
+				case "10":
+					array = [4, 0, "trousers", "jeans"];break;
+				case "11":
+					array = [4, 1, "trousers", "chinos"];break;
+				case "12":
+					array = [4, 2, "trousers", "joggers"];break;
+				case "13":
+					array = [4, 2, "trousers", "shorts"];break;
+			}
+			return array;
+		}
 		//show/hide sub categories
 
 	}, {
@@ -42998,6 +43099,31 @@ var Header = function (_Component) {
 			this.props.change_path(0, 0, this.props.categories);
 			_history2.default.push("/checkout");
 		}
+		//search
+
+	}, {
+		key: 'changeSearchHandler',
+		value: function changeSearchHandler(e) {
+			var val = e.target.value;
+			this.setState({ searchVal: val });
+			this.props.searchItem(val, this.props.langIdx);
+		}
+		//loseFocusHandler
+
+	}, {
+		key: 'loseFocusHandler',
+		value: function loseFocusHandler() {
+			this.setState({ searchVal: "" });
+			this.props.searchItem("", this.props.langIdx);
+		}
+		//click search item
+
+	}, {
+		key: 'searchClickHandler',
+		value: function searchClickHandler(v) {
+			this.props.selectedProduct(v, this.searchIds(v.category)[2], this.searchIds(v.category)[3], this.props.categories);
+			_history2.default.push("/product/:" + v._id);
+		}
 	}, {
 		key: 'render',
 		value: function render() {
@@ -43014,7 +43140,8 @@ var Header = function (_Component) {
 			    cartQuant = _props.cartQuant,
 			    categories = _props.categories,
 			    categoryIdx = _props.categoryIdx,
-			    productIdx = _props.productIdx;
+			    productIdx = _props.productIdx,
+			    productSearch = _props.productSearch;
 			var home = this.home,
 			    clickEvent = this.clickEvent,
 			    changeLang = this.changeLang,
@@ -43025,7 +43152,10 @@ var Header = function (_Component) {
 			    clickSub = this.clickSub,
 			    showCart = this.showCart,
 			    onCart = this.onCart,
-			    onCheckout = this.onCheckout;
+			    onCheckout = this.onCheckout,
+			    changeSearch = this.changeSearch,
+			    loseFocus = this.loseFocus,
+			    searchClick = this.searchClick;
 
 
 			return _react2.default.createElement(
@@ -43034,11 +43164,13 @@ var Header = function (_Component) {
 				_react2.default.createElement(_Header2.default, { state: this.state, home: home,
 					categoryIdx: categoryIdx, productIdx: productIdx,
 					clickEvent: clickEvent, cartItems: cartItems,
+					productSearch: productSearch, searchIds: this.searchIds,
 					path: path, lang: lang, langIdx: langIdx, langStr: langStr, categories: categories,
 					clickSub: clickSub, clickCat: clickCat, changeHead: changeHead,
 					cart: cart, showCart: showCart, cartFlag: cartFlag,
 					cartSizes: cartSizes, cartColors: cartColors, cartQuant: cartQuant,
 					onCart: onCart, onCheckout: onCheckout,
+					changeSearch: changeSearch, loseFocus: loseFocus, searchClick: searchClick,
 					changeLang: changeLang, showLang: showLang, showSub: showSub })
 			);
 		}
@@ -44088,7 +44220,7 @@ var Categories = function (_Component) {
 				line.style.width = wFilter + "px";
 			} else line.style.opacity = 0;
 		}
-		//helper func to get array of if filters are applied(true) per filter type
+		//helper func to get array of filters applied(if applied) per filter type
 
 	}, {
 		key: 'checkFilter',
@@ -44738,6 +44870,7 @@ var main = {
 		name: ""
 	},
 	product: {}, //product opened in page
+	productSearch: [], //products returned after search
 	categories: [{
 		id: "tops",
 		img: "./img/categories/blouzes.jpg",
@@ -44930,16 +45063,19 @@ var state_update = function state_update() {
 
 	var newstate = Object.assign({}, state);
 	switch (action.type) {
+		//login (not there)
 		case _constants.login_str:
 			{
 				newstate.login = action.res.flag;
 				return newstate;
 			}
+		//show cart on hover
 		case _constants.show_cart_str:
 			{
 				newstate.showCart = action.flag;
 				return newstate;
 			}
+		//set language
 		case _constants.set_lang_str:
 			{
 				var lang = void 0;
@@ -44963,6 +45099,7 @@ var state_update = function state_update() {
 				newstate.lang = lang;
 				return newstate;
 			}
+		//change path
 		case _constants.change_path_str:
 			{
 				var sub = [];
@@ -44992,23 +45129,33 @@ var state_update = function state_update() {
 				newstate.selectedProduct.name = name;
 				return newstate;
 			}
+		//get products
 		case _constants.get_products_frontend_str:
 			{
 				newstate.products = action.products;
 				newstate.tags = action.tags;
 				return newstate;
 			}
+		//select one product
 		case _constants.selected_product_str:
 			{
 				newstate.product = action.product;
 				return newstate;
 			}
+		//sort
 		case _constants.sort_products_str:
 			{
 				var array = action.products.slice(0, action.products.length);
 				newstate.products = array;
 				return newstate;
 			}
+		//search
+		case _constants.search_item_str:
+			{
+				newstate.productSearch = action.products;
+				return newstate;
+			}
+		//update cart
 		case _constants.update_cart_str:
 			{
 				var _array = newstate.cart.slice();
@@ -45034,6 +45181,7 @@ var state_update = function state_update() {
 				newstate.cartItems = c;
 				return newstate;
 			}
+		//delete item from cart
 		case _constants.delete_item_str:
 			{
 				var _array2 = newstate.cart.slice();
@@ -45058,6 +45206,7 @@ var state_update = function state_update() {
 				newstate.cartItems = _c;
 				return newstate;
 			}
+		//change quantity of item in cart
 		case _constants.change_quant_str:
 			{
 				var _array3 = newstate.cartQuant;
@@ -45074,6 +45223,7 @@ var state_update = function state_update() {
 				}newstate.cartTotal = _total2;
 				return newstate;
 			}
+		//clear cart
 		case _constants.clear_cart_str:
 			{
 				var _array4 = [];
