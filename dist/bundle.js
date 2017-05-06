@@ -35751,7 +35751,7 @@ var search_item = exports.search_item = function search_item(val, langIdx) {
         (0, _logic.getItems)("products", function (res) {
             var products = [];
             res.products.map(function (v) {
-                if (v.title[langIdx].indexOf(val) >= 0) {
+                if (v.title[langIdx].toLowerCase().indexOf(val.toLowerCase()) >= 0) {
                     products.push(v);
                 }
             });
@@ -36533,6 +36533,11 @@ var Categories = function Categories(_ref) {
 	return _react2.default.createElement(
 		"div",
 		{ className: "categories" },
+		_react2.default.createElement(
+			"div",
+			{ className: "head" },
+			lang.categories[selectedCategory.idx]
+		),
 		categories.map(function (v, i) {
 			return _react2.default.createElement(
 				"div",
@@ -38726,12 +38731,17 @@ var Main = function Main(_ref) {
 			),
 			_react2.default.createElement(
 				"div",
-				{ className: "show", onClick: open },
+				{ className: "show" },
 				_react2.default.createElement("img", { id: "carousel", src: "../img/carousel/" + state.carousel + ".jpg" }),
 				_react2.default.createElement(
 					"div",
 					{ id: "carousel-tag", className: "show-title" },
 					lang.carousel[state.carousel - 1]
+				),
+				_react2.default.createElement(
+					"div",
+					{ id: "carousel-button", className: "show-button", onClick: open },
+					lang.moreInfo
 				)
 			),
 			_react2.default.createElement(
@@ -40861,7 +40871,8 @@ var el = {
 	//main
 	home1: "Τόσο φθηνά, όσο πουθενά",
 	homeInfo: ["Παράδοση εντός 3 ημέρων με ___ courrier", "\u0394\u03C9\u03C1\u03B5\u03AC\u03BD \u03BC\u03B5\u03C4\u03B1\u03C6\u03BF\u03C1\u03B9\u03BA\u03AC \u03BC\u03B5 \u03B1\u03B3\u03BF\u03C1\u03AD\u03C2 \u03AC\u03BD\u03C9 \u03C4\u03C9\u03BD 30\u20AC", "Επιστροφές εντός 7 ημερών", "Δυνατότητα παραλαβής από το κατάστημα"],
-	carousel: ["\u039C\u03C0\u03BB\u03BF\u03CD\u03B6\u03B5\u03C2 \u03BA\u03BF\u03BD\u03C4\u03BF\u03BC\u03AC\u03BD\u03B9\u03BA\u03B5\u03C2 \u03B1\u03C0\u03BF 7\u20AC", "\u03A4\u03B6\u03B9\u03BD \u03C0\u03B1\u03BD\u03C4\u03B5\u03BB\u03CC\u03BD\u03B9\u03B1 \u03B1\u03C0\u03BF 19\u20AC", "\u0392\u03B5\u03C1\u03BC\u03BF\u03CD\u03B4\u03B5\u03C2 \u03B1\u03C0\u03CC 14\u20AC"],
+	carousel: ["\u039C\u03C0\u03BB\u03BF\u03CD\u03B6\u03B5\u03C2 \u03BA\u03BF\u03BD\u03C4\u03BF\u03BC\u03AC\u03BD\u03B9\u03BA\u03B5\u03C2 \u03B1\u03C0\u03BF 7\u20AC", "\u03A4\u03B6\u03B9\u03BD \u03C0\u03B1\u03BD\u03C4\u03B5\u03BB\u03CC\u03BD\u03B9\u03B1 \u03B1\u03C0\u03BF 19\u20AC", "\u039C\u03C0\u03BB\u03BF\u03CD\u03B6\u03B5\u03C2 \u03B1\u03C0\u03CC 14\u20AC"],
+	moreInfo: "Δες περισσότερα",
 	//products
 	products: "προϊόντα",
 	sort: "Ταξινόμηση",
@@ -40982,7 +40993,8 @@ var en = {
 	//main
 	home1: "Really cheap",
 	homeInfo: ["Delivery within 3 days with ___ courrier", "Free delivery on orders over 30\u20AC", "Return within 7 days", "Pick up at the store"],
-	carousel: ["T-shirts from 7\u20AC", "Jeans from 19\u20AC", "Shorts from 14\u20AC"],
+	carousel: ["T-shirts from 7\u20AC", "Jeans from 19\u20AC", "Tops from 14\u20AC"],
+	moreInfo: "Check it out",
 	//products
 	products: "products",
 	sort: "Sort",
@@ -41805,6 +41817,7 @@ var Cart = function (_Component) {
 	_createClass(Cart, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {
+			window.scrollTo(0, 0);
 			var h = window.innerHeight;
 			document.getElementById("cartBody").style.minHeight = h + "px";
 		}
@@ -41961,7 +41974,9 @@ var Categories = function (_Component) {
 
 	_createClass(Categories, [{
 		key: 'componentDidMount',
-		value: function componentDidMount() {}
+		value: function componentDidMount() {
+			window.scrollTo(0, 0);
+		}
 	}, {
 		key: 'clickCategoryHandler',
 		value: function clickCategoryHandler(i) {
@@ -42176,6 +42191,7 @@ var Checkout = function (_Component) {
 	_createClass(Checkout, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {
+			window.scrollTo(0, 0);
 			var h = window.innerHeight;
 			document.getElementById("checkoutBody").style.minHeight = h + "px";
 		}
@@ -42544,6 +42560,7 @@ var Details = function (_Component) {
 	_createClass(Details, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {
+			window.scrollTo(0, 0);
 			var h = window.innerHeight;
 			document.getElementById("detailsBody").style.minHeight = h + "px";
 		}
@@ -43266,6 +43283,7 @@ var Main = function (_Component) {
 		value: function componentDidMount() {
 			var _this2 = this;
 
+			window.scrollTo(0, 0);
 			//carousel
 			this.carouselLoop();
 			this.timer = setInterval(function () {
@@ -43282,6 +43300,7 @@ var Main = function (_Component) {
 		value: function carouselLoop() {
 			var carEl = document.getElementById("carousel");
 			var carTagEl = document.getElementById("carousel-tag");
+			var carButtonEl = document.getElementById("carousel-button");
 			setTimeout(function () {
 				carEl.classList.remove("animated");
 				carEl.classList.remove("fadeIn");
@@ -43294,7 +43313,9 @@ var Main = function (_Component) {
 			idx++;
 			if (idx == 4) idx = 1;
 			this.setState({ carousel: idx });
+
 			carTagEl.style.marginLeft = -(carTagEl.offsetWidth / 2) + "px";
+			carButtonEl.style.marginLeft = -(carButtonEl.offsetWidth / 2) + "px";
 		}
 		//open carousel on img click
 
@@ -43303,13 +43324,13 @@ var Main = function (_Component) {
 		value: function openHandler() {
 			switch (this.state.carousel) {
 				case 1:
-					this.props.change_path("tops", "short", this.props.categories);
+					this.props.change_path("trousers", "short", this.props.categories);
 					break;
 				case 2:
 					this.props.change_path("trousers", "jeans", this.props.categories);
 					break;
 				case 3:
-					this.props.change_path("shirts", "long", this.props.categories);
+					this.props.change_path("tops", "long", this.props.categories);
 					break;
 			}
 			_history2.default.push("/products");
@@ -43395,7 +43416,9 @@ var Order = function (_Component) {
 
 	_createClass(Order, [{
 		key: 'componentDidMount',
-		value: function componentDidMount() {}
+		value: function componentDidMount() {
+			window.scrollTo(0, 0);
+		}
 	}, {
 		key: 'homeHandler',
 		value: function homeHandler() {
@@ -44199,6 +44222,7 @@ var Categories = function (_Component) {
 	_createClass(Categories, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {
+			window.scrollTo(0, 0);
 			var h = window.innerHeight;
 			document.getElementById("productsBody").style.minHeight = h + "px";
 		}
@@ -45199,7 +45223,6 @@ var state_update = function state_update() {
 				var _c = newstate.cartItems;
 				_c--;
 				var _total = 0;
-				console.log(q);
 				for (var _i = 0; _i < _array2.length; _i++) {
 					_total += _array2[_i].price * _quant[_i];
 				}newstate.cartTotal = _total;
