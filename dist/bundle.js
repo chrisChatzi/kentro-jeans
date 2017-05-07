@@ -37302,7 +37302,7 @@ var Checkout = function Checkout(_ref) {
 						),
 						_react2.default.createElement(
 							"div",
-							{ className: "row next" },
+							{ className: "infoBlock deal" },
 							_react2.default.createElement(
 								"div",
 								{ className: "button", onClick: function onClick() {
@@ -38296,7 +38296,7 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Order = function Order(_ref) {
+var Lang = function Lang(_ref) {
 	var state = _ref.state,
 	    langStr = _ref.langStr,
 	    showLang = _ref.showLang,
@@ -38314,26 +38314,26 @@ var Order = function Order(_ref) {
 			{ className: langStr == "el" ? "row on" : "row", onClick: function onClick() {
 					return changeLang("el");
 				} },
-			_react2.default.createElement("img", { className: "flagGr" })
+			"\u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC"
 		),
 		_react2.default.createElement(
 			"div",
 			{ className: langStr == "en" ? "row on" : "row", onClick: function onClick() {
 					return changeLang("en");
 				} },
-			_react2.default.createElement("img", { className: "flagEn" })
+			"English"
 		),
 		_react2.default.createElement(
 			"div",
 			{ className: langStr == "de" ? "row on" : "row", onClick: function onClick() {
 					return changeLang("de");
 				} },
-			_react2.default.createElement("img", { className: "flagDe" })
+			"Deutsch"
 		)
 	);
 };
 
-exports.default = Order;
+exports.default = Lang;
 
 },{"react":230}],269:[function(require,module,exports){
 "use strict";
